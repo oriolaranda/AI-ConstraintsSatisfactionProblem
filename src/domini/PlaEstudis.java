@@ -45,7 +45,7 @@ public class PlaEstudis {
 
     }
 
-    public showAssignatures() {
+    public void showAssignatures() {
 
     }
 }
