@@ -2,7 +2,7 @@ package domini;
 
 public class Grup {
     //Dades
-    private String nom_assig;
+    private String nomAssig;
     private int num;
     private TipusAula tipus;
     private int capacitat;
@@ -10,7 +10,7 @@ public class Grup {
 
     //Constructora
     public Grup(String nom_assig,int num, TipusAula tipus, int capacitat, int duracio) {
-        this.nom_assig = nom_assig;
+        this.nomAssig = nom_assig;
         this.num = num;
         this.tipus = tipus;
         this.capacitat = capacitat;
@@ -20,7 +20,7 @@ public class Grup {
     /** GETTERS **/
 
     public String getAssig() {
-        return nom_assig;
+        return nomAssig;
     }
 
     public int getNum() {
@@ -41,8 +41,8 @@ public class Grup {
 
     /** SETTERS **/
 
-    public void setAssig(String nom_assig){
-        this.nom_assig = nom_assig;
+    public void setAssig(String nomAssig){
+        this.nomAssig = nomAssig;
     }
 
     public void setNum(int num) {
