@@ -15,13 +15,6 @@ public class Aula {
     //Constructors
 
     /**
-     Basic constructor for Aula
-     */
-    public Aula() {
-    }
-
-
-    /**
      Constructor for Aula
      */
     public Aula(String Nom, int Capacitat, TipusAula Tipus, ArrayList<Sessio> Sessions) {

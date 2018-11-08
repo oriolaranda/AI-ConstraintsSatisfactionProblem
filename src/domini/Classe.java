@@ -5,9 +5,6 @@ public class Classe {
     private Aula aula;
     private Hora hora;
 
-    public Classe() {
-    }
-
     public Classe(Aula aula, Hora hora) {
         this.aula = aula;
         this.hora = hora;
