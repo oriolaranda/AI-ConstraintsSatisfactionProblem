@@ -1,9 +1,10 @@
 package domini;
 import java.util.ArrayList;
 
-public class Restriccio {
+public  abstract class Restriccio {
     private String id;
-    private ArrayList<Horari> horari;  //estas cosas hay que iniciarlas en la constructora?
+    String horari;
+    //private ArrayList<Horari> horari;  //estas cosas hay que iniciarlas en la constructora?
 
     //Constructoras
     public Restriccio () {
@@ -22,4 +23,14 @@ public class Restriccio {
     public void setId(String i){
         id=i;
     }
+    public void setHorari(String horari) {this.horari=horari;}
+
+    /* public void afegirHorari(Horari h) throws HorariJaExisteix {
+        for(int i =0;i<horari.size();++i){
+            if(horari.get(i).equals(h)) horari.add(h);
+            //else throw new HorariJaExisteix();
+        }
+    } */
+
+    public abstract Boolean esCompleix();
 }
