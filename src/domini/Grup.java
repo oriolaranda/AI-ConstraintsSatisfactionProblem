@@ -53,12 +53,16 @@ public class Grup {
         this.capacitat = capacitat;
     }
 
-    public void getDuracio(int duracio) {
+    public void setDuracio(int duracio) {
         this.duracio = duracio;
     }
 
-    public void getTipus(TipusAula tipus) {
+    public void setTipus(TipusAula tipus) {
         this.tipus = tipus;
     }
 
+    @Override
+    public String toString() {
+        return nomAssig+"-"+num+" "+tipus+" "+capacitat+"alumnes"+" "+duracio+"h/sessio";
+    }
 }

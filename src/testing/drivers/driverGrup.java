@@ -5,6 +5,8 @@ import domini.TipusAula;
 
 import java.util.Scanner;
 
+import static domini.TipusAula.*;
+
 public class driverGrup {
     public static void main(String[] args) {
         Grup g = null;
@@ -23,10 +25,10 @@ public class driverGrup {
         System.out.println("\t4) Getter tipus grup:");
         System.out.println("\t\tformat: 4");
 
-        System.out.println("\t5) Getter capacitat:");
+        System.out.println("\t5) Getter capacitat grup:");
         System.out.println("\t\tformat: 5");
 
-        System.out.println("\t6) Getter duracio:");
+        System.out.println("\t6) Getter duracio sessio:");
         System.out.println("\t\tformat: 6");
 
         System.out.println("\t7) Setter nom assignatura:");
@@ -62,38 +64,80 @@ public class driverGrup {
                     case 1:
                         nomAssig = sc.next();
                         num = sc.nextInt();
-                        tipus = TipusAula.stoTipusAula(sc.next());
+                        tipus = stoTipusAula(sc.next());
                         capacitat = sc.nextInt();
                         duracio = sc.nextInt();
                         g = new Grup(nomAssig, num, tipus, capacitat, duracio);
 
-                        System.out.println("Grup esperat: " + id + ":" + capacitat + ":" + horari + ":" + tipus);
+                        System.out.println("Grup esperat: " + nomAssig+"-"+num+" "+tipus+" "+capacitat+"alumnes"+" "+duracio+"h/sessio");
                         System.out.println("Grup creat: " + g.toString());
                         break;
                     case 2:
                         if (g == null) throw new NullPointerException();
-                        System.out.println("Id esperat: " + id);
-                        System.out.println("Id obtingut: " + g.getId());
+                        System.out.println("Nom assignatura esperat: " + nomAssig);
+                        System.out.println("Nom assignatura obtingut: " + g.getAssig());
                         break;
                     case 3:
+                        if (g == null) throw new NullPointerException();
+                        System.out.println("Num grup esperat: " + num);
+                        System.out.println("Num grup obtingut: " + g.getNum());
+                        break;
+                    case 4:
+                        if (g == null) throw new NullPointerException();
+                        System.out.println("Tipus grup esperat: " + tipus);
+                        System.out.println("Tipus grup obtingut: " + g.getTipus());
+                        break;
+                    case 5:
                         if (g == null) throw new NullPointerException();
                         System.out.println("Capacitat esperada: " + capacitat);
                         System.out.println("Capacitat obtinguda: " + g.getCapacitat());
                         break;
-                    case 4:
+                    case 6:
                         if (g == null) throw new NullPointerException();
-                        System.out.println("Horari esperat: " + horari);
-                        System.out.println("Horari obtingut: " + g.getHorariAssig());
+                        System.out.println("Duracio esperada: " + duracio);
+                        System.out.println("Duracio obtinguda: " + g.getDuracio());
                         break;
-                    case 5:
+                    case 7:
                         if (g == null) throw new NullPointerException();
-                        System.out.println("Tipus esperat: " + tipus);
-                        System.out.println("Tipus obtingut: " + g.getTipus());
+                        nomAssig = sc.next();
+                        g.setAssig(nomAssig);
+                        if (nomAssig.equals(g.getAssig())) System.out.println("Nom assignatura assignat correctament");
+                        else System.out.println("Nom assignatura NO assignat correctament");
+                        break;
+                    case 8:
+                        if (g == null) throw new NullPointerException();
+                        num = sc.nextInt();
+                        g.setNum(num);
+                        if (num == g.getNum()) System.out.println("Num grup assignat correctament");
+                        else System.out.println("Num grup NO assignat correctament");
+                        break;
+                    case 9:
+                        if (g == null) throw new NullPointerException();
+                        tipus = stoTipusAula(sc.next());
+                        g.setTipus(tipus);
+                        if (tipus.equals(g.getTipus())) System.out.println("Tipus grup assignat correctament");
+                        else System.out.println("Tipus grup NO assignat correctament");
+                        break;
+                    case 10:
+                        if (g == null) throw new NullPointerException();
+                        capacitat = sc.nextInt();
+                        g.setCapacitat(capacitat);
+                        if (capacitat == g.getCapacitat()) System.out.println("Capacitat grup assignat correctament");
+                        else System.out.println("Capacitat grup NO assignat correctament");
+                        break;
+                    case 11:
+                        if (g == null) throw new NullPointerException();
+                        duracio = sc.nextInt();
+                        g.setDuracio(duracio);
+                        if (duracio == g.getDuracio()) System.out.println("Duracio sessio assignat correctament");
+                        else System.out.println("Duracio sessio NO assignat correctament");
                         break;
                 }
-            }catch(NullPointerException npe){
-                System.out.println("Abans de probar altres funcions, crea un grup probant la creadora");
-            }finally{
+            } catch (NullPointerException n){
+                System.out.println("Abans de provar aquesta opció utilitza la creadora");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally{
                 System.out.println("Introdueix una opcio amb el seu format:");
                 opcio = sc.nextInt();
             }
