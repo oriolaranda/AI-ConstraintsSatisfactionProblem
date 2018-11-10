@@ -42,14 +42,17 @@ public class driverGrup {
         System.out.println("\t10) Setter tipus grup:");
         System.out.println("\t\tformat: 10 tipus<TipusAula>");
 
-        System.out.println("\t11) Setter capacitat:");
-        System.out.println("\t\tformat: 11 capacitat<int>");
+        System.out.println("\t11) Setter num sessions:");
+        System.out.println("\t\tformat: 11 numSessions<int>");
 
-        System.out.println("\t12) Setter duracio:");
-        System.out.println("\t\tformat: 12 duracio<int>");
+        System.out.println("\t12) Setter capacitat:");
+        System.out.println("\t\tformat: 12 capacitat<int>");
 
-        System.out.println("\t13) Sortir:");
-        System.out.println("\t\tformat: 13");
+        System.out.println("\t13) Setter duracio:");
+        System.out.println("\t\tformat: 13 duracio<int>");
+
+        System.out.println("\t14) Sortir:");
+        System.out.println("\t\tformat: 14");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
@@ -59,6 +62,7 @@ public class driverGrup {
         String nomAssig = null;
         int num = -1;
         TipusAula tipus = null;
+        int numSessions = -1;
         int capacitat = -1;
         int duracio = -1;
 
@@ -66,13 +70,14 @@ public class driverGrup {
         menu();
         int opcio = sc.nextInt();
 
-        while(opcio!=12){
+        while(opcio!=14){
             try {
                 switch (opcio) {
                     case 1:
                         nomAssig = sc.next();
                         num = sc.nextInt();
                         tipus = stoTipusAula(sc.next());
+                        numSessions = sc.nextInt();
                         capacitat = sc.nextInt();
                         duracio = sc.nextInt();
                         g = new Grup(nomAssig, num, tipus, capacitat, duracio);
@@ -97,43 +102,55 @@ public class driverGrup {
                         break;
                     case 5:
                         if (g == null) throw new NullPointerException();
+                        System.out.println("Num sessions esperat: " + numSessions);
+                        System.out.println("Num sessions obtingut: " + g.getNumSessions();
+                        break;
+                    case 6:
+                        if (g == null) throw new NullPointerException();
                         System.out.println("Capacitat esperada: " + capacitat);
                         System.out.println("Capacitat obtinguda: " + g.getCapacitat());
                         break;
-                    case 6:
+                    case 7:
                         if (g == null) throw new NullPointerException();
                         System.out.println("Duracio esperada: " + duracio);
                         System.out.println("Duracio obtinguda: " + g.getDuracio());
                         break;
-                    case 7:
+                    case 8:
                         nomAssig = sc.next();
                         if (g == null) throw new NullPointerException();
                         g.setAssig(nomAssig);
                         if (nomAssig.equals(g.getAssig())) System.out.println("Nom assignatura assignat correctament");
                         else System.out.println("Nom assignatura NO assignat correctament");
                         break;
-                    case 8:
+                    case 9:
                         num = sc.nextInt();
                         if (g == null) throw new NullPointerException();
                         g.setNum(num);
                         if (num == g.getNum()) System.out.println("Num grup assignat correctament");
                         else System.out.println("Num grup NO assignat correctament");
                         break;
-                    case 9:
+                    case 10:
                         tipus = stoTipusAula(sc.next());
                         if (g == null) throw new NullPointerException();
                         g.setTipus(tipus);
                         if (tipus.equals(g.getTipus())) System.out.println("Tipus grup assignat correctament");
                         else System.out.println("Tipus grup NO assignat correctament");
                         break;
-                    case 10:
+                    case 11:
+                        numSessions = sc.nextInt();
+                        if (g == null) throw new NullPointerException();
+                        g.setNumSessions(numSessions);
+                        if (numSessions == g.getNumSessions()) System.out.println("Capacitat grup assignat correctament");
+                        else System.out.println("Capacitat grup NO assignat correctament");
+                        break;
+                    case 12:
                         capacitat = sc.nextInt();
                         if (g == null) throw new NullPointerException();
                         g.setCapacitat(capacitat);
                         if (capacitat == g.getCapacitat()) System.out.println("Capacitat grup assignat correctament");
                         else System.out.println("Capacitat grup NO assignat correctament");
                         break;
-                    case 11:
+                    case 13:
                         duracio = sc.nextInt();
                         if (g == null) throw new NullPointerException();
                         g.setDuracio(duracio);
