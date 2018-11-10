@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Algorisme {
-    private Map<Sessio,ArrayList<Classe>> prev;
+    private Map<Sessio,Map<>> prev;
     private Map<Sessio, Classe> nou;
 
     public Algorisme(Map<Sessio,ArrayList<Classe>> prev) {
