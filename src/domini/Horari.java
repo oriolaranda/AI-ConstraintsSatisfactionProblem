@@ -5,19 +5,13 @@ import java.util.ArrayList;
 public class Horari {
 
     //Atributs
-    String nom;
-    int HoraIni;
-    int HoraFi;
-    ArrayList<Sessio> Sessions;
-    ArrayList<Restriccio> Restriccions;
+    private String nom;
+    private int HoraIni;
+    private int HoraFi;
+    private ArrayList<Sessio> Sessions;
+    private ArrayList<Restriccio> Restriccions;
 
     //Constructors
-
-    /**
-     Basic constructor for Horari
-     */
-    public Horari() {
-    }
 
     /**
      Constructor for Horari

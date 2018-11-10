@@ -5,26 +5,19 @@ import java.util.ArrayList;
 public class Aula {
     //Atributs 
 
-    String Nom;
-    int Capacitat;
-    String Tipus;
-    ArrayList<Sessio> Sessions;
+    private String Nom;
+    private int Capacitat;
+    private TipusAula Tipus;
+    private ArrayList<Sessio> Sessions;
 
 
 
     //Constructors
 
     /**
-     Basic constructor for Aula
-     */
-    public Aula() {
-    }
-
-
-    /**
      Constructor for Aula
      */
-    public Aula(String Nom, int Capacitat, String Tipus, ArrayList<Sessio> Sessions) {
+    public Aula(String Nom, int Capacitat, TipusAula Tipus, ArrayList<Sessio> Sessions) {
         this.Nom = Nom;
         this.Capacitat = Capacitat;
         this.Tipus = Tipus;
@@ -54,7 +47,7 @@ public class Aula {
     /**
      * Returns the value of Tipus.
      */
-    public String getTipus() {
+    public TipusAula getTipus() {
         return Tipus;
     }
 
@@ -92,7 +85,7 @@ public class Aula {
      * Sets the value of Tipus.
      * @param Tipus The value to assign Tipus.
      */
-    public void setTipus(String Tipus) {
+    public void setTipus(TipusAula Tipus) {
         this.Tipus = Tipus;
     }
 
