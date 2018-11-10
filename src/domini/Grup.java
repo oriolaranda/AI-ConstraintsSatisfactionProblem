@@ -63,6 +63,6 @@ public class Grup {
 
     @Override
     public String toString() {
-        return nomAssig+"-"+num+" "+tipus+" "+capacitat+"alumnes"+" "+duracio+"h/sessio";
+        return nomAssig+"-"+num+" "+tipus+" "+capacitat+" alumnes"+" "+duracio+"h/sessio";
     }
 }

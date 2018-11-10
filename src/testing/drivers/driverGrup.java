@@ -8,9 +8,8 @@ import java.util.Scanner;
 import static domini.TipusAula.*;
 
 public class driverGrup {
-    public static void main(String[] args) {
-        Grup g = null;
 
+    private static void menu() {
         System.out.println("Driver Grup:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
@@ -50,14 +49,20 @@ public class driverGrup {
         System.out.println("\t\tformat: 12");
 
         System.out.println("Introdueix una opcio amb el seu format:");
+    }
 
-        Scanner sc = new Scanner(System.in);
-        int opcio = sc.nextInt();
+    public static void main(String[] args) {
+        Grup g = null;
         String nomAssig = null;
         int num = -1;
         TipusAula tipus = null;
         int capacitat = -1;
         int duracio = -1;
+
+        Scanner sc = new Scanner(System.in);
+        menu();
+        int opcio = sc.nextInt();
+
         while(opcio!=12){
             try {
                 switch (opcio) {
@@ -69,7 +74,7 @@ public class driverGrup {
                         duracio = sc.nextInt();
                         g = new Grup(nomAssig, num, tipus, capacitat, duracio);
 
-                        System.out.println("Grup esperat: " + nomAssig+"-"+num+" "+tipus+" "+capacitat+"alumnes"+" "+duracio+"h/sessio");
+                        System.out.println("Grup esperat: " + nomAssig + "-" + num + " " + tipus + " " + capacitat + "alumnes" + " " + duracio + "h/sessio");
                         System.out.println("Grup creat: " + g.toString());
                         break;
                     case 2:
@@ -98,46 +103,47 @@ public class driverGrup {
                         System.out.println("Duracio obtinguda: " + g.getDuracio());
                         break;
                     case 7:
-                        if (g == null) throw new NullPointerException();
                         nomAssig = sc.next();
+                        if (g == null) throw new NullPointerException();
                         g.setAssig(nomAssig);
                         if (nomAssig.equals(g.getAssig())) System.out.println("Nom assignatura assignat correctament");
                         else System.out.println("Nom assignatura NO assignat correctament");
                         break;
                     case 8:
-                        if (g == null) throw new NullPointerException();
                         num = sc.nextInt();
+                        if (g == null) throw new NullPointerException();
                         g.setNum(num);
                         if (num == g.getNum()) System.out.println("Num grup assignat correctament");
                         else System.out.println("Num grup NO assignat correctament");
                         break;
                     case 9:
-                        if (g == null) throw new NullPointerException();
                         tipus = stoTipusAula(sc.next());
+                        if (g == null) throw new NullPointerException();
                         g.setTipus(tipus);
                         if (tipus.equals(g.getTipus())) System.out.println("Tipus grup assignat correctament");
                         else System.out.println("Tipus grup NO assignat correctament");
                         break;
                     case 10:
-                        if (g == null) throw new NullPointerException();
                         capacitat = sc.nextInt();
+                        if (g == null) throw new NullPointerException();
                         g.setCapacitat(capacitat);
                         if (capacitat == g.getCapacitat()) System.out.println("Capacitat grup assignat correctament");
                         else System.out.println("Capacitat grup NO assignat correctament");
                         break;
                     case 11:
-                        if (g == null) throw new NullPointerException();
                         duracio = sc.nextInt();
+                        if (g == null) throw new NullPointerException();
                         g.setDuracio(duracio);
                         if (duracio == g.getDuracio()) System.out.println("Duracio sessio assignat correctament");
                         else System.out.println("Duracio sessio NO assignat correctament");
                         break;
                 }
+
             } catch (NullPointerException n){
-                System.out.println("Abans de provar aquesta opció utilitza la creadora");
+                System.out.println("Abans de provar aquesta opcio utilitza la creadora");
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally{
+            } finally {
                 System.out.println("Introdueix una opcio amb el seu format:");
                 opcio = sc.nextInt();
             }

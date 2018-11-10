@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Algorisme {
-    private Map<Sessio,Map<>> prev;
+    private Map<Sessio,Map<Classe, Aula>> prev;
     private Map<Sessio, Classe> nou;
 
-    public Algorisme(Map<Sessio,ArrayList<Classe>> prev) {
+    public Algorisme(Map<Sessio, Map<Classe, Aula>> prev) {
         this.prev = prev;
     }
-
+/*
     public Map<Sessio,Classe> getHorari(){
         if (generarHorari()) return nou;
         return null;
@@ -21,7 +21,7 @@ public class Algorisme {
         ArrayList<Sessio> s = new ArrayList<>(prev.keySet());
         if (i < s.size()) {
             for (Classe c: prev.get(s.get(i))){
-                boolean
+                boolean c;
             }
         }
     }
@@ -119,5 +119,5 @@ public class Algorisme {
             }
         }
     }
-
+*/
 }
