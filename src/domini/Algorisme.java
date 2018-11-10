@@ -5,76 +5,43 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Algorisme {
-    private Map<Sessio,Map<Classe, Aula>> prev;
+    private Map<Sessio,Map<Classe, Boolean>> prev;
     private Map<Sessio, Classe> nou;
 
-    public Algorisme(Map<Sessio, Map<Classe, Aula>> prev) {
+    public Algorisme(Map<Sessio, Map<Classe, Boolean>> prev) {
         this.prev = prev;
     }
-/*
+
     public Map<Sessio,Classe> getHorari(){
-        if (generarHorari()) return nou;
+        if (backtraking(0)) return nou;
         return null;
     }
 
     public boolean backtraking(int i) {
         ArrayList<Sessio> s = new ArrayList<>(prev.keySet());
         if (i < s.size()) {
-            for (Classe c: prev.get(s.get(i))){
-                boolean c;
-            }
-        }
-    }
-
-    //retorna true si ja ha acabat o false si encara no
-    public boolean selectClasse (int index) {
-        ArrayList<assignacio> l = new ArrayList<>( conjuntAssignacions.values());
-
-        if (index < l.size()) {
-            assignacio a = l.get(index);
-            ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
-
-            for (Classe c: possibleClasses )
-            {
-                a.updateClassesRestants(-1);
-                Stack<Classe> eliminades = new Stack();
-
-                eliminades.addAll(forward_checking (c)); //forward checking
-
-                boolean valid = checkNotEmpty ();
-
-                if (!valid) System.out.println("Fals");
-                if (valid)  //l'horari compleix totes les restriccions
-                {
-                    boolean r;
-                    if (a.getNumeroClassesRestants() == 0) {  //vol dir que ja no cal seleccionar mes classes per aquesta assignacio
-                        r = selectClasse(index + 1); //passem a comprovar la seguent assignacio
-                    }
-                    else {
-                        r = selectClasse(index);  //encara queden classes que assignar
-                    }
-
-                    if (r) //ja hem acabat
-                        return r;
-
-                    //si not r, hem de seguir iterant
-
+            for (Classe c: prev.get(s.get(i)).keySet()){
+                Stack<Classe> poda = new Stack();
+                boolean val = comprovarRestriccions();
+                if (!val) System.out.println("Fals: no compleix restriccions");
+                else {
+                    boolean seg = backtraking(i+1);
+                    if (seg) return seg;
                 }
-
-                //revertim els canvis fets usant la stack eliminades
-                revertChanges (eliminades);
-
-
-                a.updateClassesRestants(1);
-
+                revertirCanvis();
             }
+            return false;
+        } else return true;
+    }
 
-            return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
-
-        }
-        else return true;
+    private void revertirCanvis() {
 
     }
+
+    private boolean comprovarRestriccions() {
+
+    }
+
 
 
 
@@ -119,5 +86,5 @@ public class Algorisme {
             }
         }
     }
-*/
+
 }
