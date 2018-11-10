@@ -21,7 +21,7 @@ public class Algorisme {
         ArrayList<Sessio> s = new ArrayList<>(prev.keySet());
         if (i < s.size()) {
             for (Classe c: prev.get(s.get(i))){
-
+                boolean
             }
         }
     }
