@@ -27,6 +27,10 @@ public class PlaEstudis {
         return assignatures;
     }
 
+    public Horari getHorari(){
+        return horari;
+    }
+
     /** SETTERS **/
 
     //Canviar nom (el nom no existeix en cap altre PlaEstudis)

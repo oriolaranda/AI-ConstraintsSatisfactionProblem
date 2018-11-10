@@ -6,6 +6,7 @@ public class Grup {
     private int num;
     private TipusAula tipus;
     private int capacitat;
+    private int numSessions;
     private int duracio;
 
     //Constructora
@@ -39,6 +40,10 @@ public class Grup {
         return tipus;
     }
 
+    public int getNumSessions() {
+        return numSessions;
+    }
+
     /** SETTERS **/
 
     public void setAssig(String nomAssig){
@@ -61,8 +66,19 @@ public class Grup {
         this.tipus = tipus;
     }
 
+    public void setNumSessions(int numSessions) {
+        this.numSessions = numSessions;
+    }
+
+
+
+
     @Override
     public String toString() {
         return nomAssig+"-"+num+" "+tipus+" "+capacitat+" alumnes"+" "+duracio+"h/sessio";
     }
+
+
+
+
 }

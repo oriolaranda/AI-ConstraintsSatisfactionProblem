@@ -24,29 +24,32 @@ public class driverGrup {
         System.out.println("\t4) Getter tipus grup:");
         System.out.println("\t\tformat: 4");
 
-        System.out.println("\t5) Getter capacitat grup:");
+        System.out.println("\t5) Getter num sessions:");
         System.out.println("\t\tformat: 5");
 
-        System.out.println("\t6) Getter duracio sessio:");
+        System.out.println("\t6) Getter capacitat grup:");
         System.out.println("\t\tformat: 6");
 
-        System.out.println("\t7) Setter nom assignatura:");
-        System.out.println("\t\tformat: 7 nomAssignatura<String>");
+        System.out.println("\t7) Getter duracio sessio:");
+        System.out.println("\t\tformat: 7");
 
-        System.out.println("\t8) Setter num grup:");
-        System.out.println("\t\tformat: 8 num<int>");
+        System.out.println("\t8) Setter nom assignatura:");
+        System.out.println("\t\tformat: 8 nomAssignatura<String>");
 
-        System.out.println("\t9) Setter tipus grup:");
-        System.out.println("\t\tformat: 9 tipus<TipusAula>");
+        System.out.println("\t9) Setter num grup:");
+        System.out.println("\t\tformat: 9 num<int>");
 
-        System.out.println("\t10) Setter capacitat:");
-        System.out.println("\t\tformat: 10 capacitat<int>");
+        System.out.println("\t10) Setter tipus grup:");
+        System.out.println("\t\tformat: 10 tipus<TipusAula>");
 
-        System.out.println("\t11) Setter duracio:");
-        System.out.println("\t\tformat: 11 duracio<int>");
+        System.out.println("\t11) Setter capacitat:");
+        System.out.println("\t\tformat: 11 capacitat<int>");
 
-        System.out.println("\t12) Sortir:");
-        System.out.println("\t\tformat: 12");
+        System.out.println("\t12) Setter duracio:");
+        System.out.println("\t\tformat: 12 duracio<int>");
+
+        System.out.println("\t13) Sortir:");
+        System.out.println("\t\tformat: 13");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
