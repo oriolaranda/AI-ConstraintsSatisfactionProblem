@@ -3,10 +3,10 @@ package domini;
 public class Classe {
 
     private Aula aula;
-    private Hora hora;
+    private DiaHora hora;
 
 
-    public Classe(Aula aula, Hora hora) {
+    public Classe(Aula aula, DiaHora hora) {
         this.aula = aula;
         this.hora = hora;
     }
@@ -19,11 +19,11 @@ public class Classe {
         this.aula = aula;
     }
 
-    public Hora getHora() {
+    public DiaHora getHora() {
         return hora;
     }
 
-    public void setHora(Hora hora) {
+    public void setHora(DiaHora hora) {
         this.hora = hora;
     }
 }

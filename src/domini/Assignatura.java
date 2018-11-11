@@ -2,25 +2,36 @@ package domini;
 import java.util.ArrayList;
 
 public class Assignatura {
+    private String nomPlaEstudis;
     private String id;
     private String fase;
-    private ArrayList<Assignatura> correquisit;
     private ArrayList<Grup> grup;
-    private String nomPlaEstudis;
 
 
     //Constructoras
-    public Assignatura() {
+    /*public Assignatura() {
         id = null;
         fase = null;
+        grup = new ArrayList<Grup>();
     }
 
     public Assignatura(String i, String f) {
         id = i;
         fase = f;
+
+    }*/
+
+    public Assignatura(String nomPlaEstudis, String id, String fase) {
+        this.nomPlaEstudis = nomPlaEstudis;
+        this.id = id;
+        this.fase = fase;
     }
 
     //Getters
+    public String getNomPlaEstudis() {
+        return nomPlaEstudis;
+    }
+
     public String getId() {
         return id;
     }
@@ -31,6 +42,10 @@ public class Assignatura {
 
 
     //Setters
+    public void setNomPlaEstudis(String nom){
+        nomPlaEstudis=nom;
+    }
+
     public void setId(String i) {
         id = i;
     }
@@ -52,8 +67,8 @@ public class Assignatura {
         //else tractar excepcio
     }
 
-    public Boolean esCorrequisit(Assignatura a) {
-        for (int i = 0; i < correquisit.size(); ++i) if (correquisit.get(i).equals(a)) return true;
-        return false;
+    @Override
+    public String toString() {
+        return nomPlaEstudis+": "+id+" ("+fase+")";
     }
 }
