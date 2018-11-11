@@ -3,12 +3,12 @@ package domini;
 public class DiaHora {
 
     private String Dia;
-    private int Hour;
+    private int Hora;
 
 
-    public  DiaHora(String Dia, int Hour) {
+    public  DiaHora(String Dia, int Hora) {
         this.Dia = Dia;
-        this.Hour = Hour;
+        this.Hora = Hora;
     }
 
     public String getDia() {
@@ -19,11 +19,11 @@ public class DiaHora {
         Dia = dia;
     }
 
-    public int getHour() {
-        return Hour;
+    public int getHora() {
+        return Hora;
     }
 
-    public void setHour(int hour) {
-        Hour = hour;
+    public void setHora(int hora) {
+        Hora = hora;
     }
 }
