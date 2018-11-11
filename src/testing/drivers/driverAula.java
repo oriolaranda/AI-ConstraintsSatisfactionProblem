@@ -12,7 +12,7 @@ public class driverAula {
         System.out.println("Driver Aula:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 nomAula<String> Capacitat<int> Tipus<TipusAula>");
+        System.out.println("\t\tformat: 1 nomAula<String> Capacitat<int> Tipus<TipusAula> (TipusAula pot ser T = Teoria, P = Problemes, L = Laboratori");
 
         System.out.println("\t2) Getter nom Aula:");
         System.out.println("\t\tformat: 2");
