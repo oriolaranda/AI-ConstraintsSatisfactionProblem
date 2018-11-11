@@ -8,7 +8,7 @@ public class Aula {
     private String Nom;
     private int Capacitat;
     private TipusAula Tipus;
-    private ArrayList<Sessio> Sessions;
+   // private ArrayList<Classe> Classes;
 
 
 
@@ -17,11 +17,11 @@ public class Aula {
     /**
      Constructor for Aula
      */
-    public Aula(String Nom, int Capacitat, TipusAula Tipus, ArrayList<Sessio> Sessions) {
+    public Aula(String Nom, int Capacitat, TipusAula Tipus/*ArrayList<Classe> Classes*/) {
         this.Nom = Nom;
         this.Capacitat = Capacitat;
         this.Tipus = Tipus;
-        this.Sessions = Sessions;
+        //this.Classes = Classes;
     }
 
 
@@ -52,13 +52,11 @@ public class Aula {
     }
 
 
-    /**
-     * Returns the value of Sessions.
-     */
-    public ArrayList<Sessio> getSessions() {
-        return Sessions;
+  /*
+    public ArrayList<Classe> getClasses() {
+        return Classes;
     }
-
+*/
 
 
     //Setters
@@ -89,15 +87,11 @@ public class Aula {
         this.Tipus = Tipus;
     }
 
-
-    /**
-     * Sets the value of Sessions.
-     * @param Sessions The value to assign Sessions.
-     */
-    public void setSessions(ArrayList<Sessio> Sessions) {
-        this.Sessions = Sessions;
+/*
+    public void setClasses(ArrayList<Classe> Classes) {
+        this.Classes = Classes;
     }
-
+*/
 
 
     //Metodes
