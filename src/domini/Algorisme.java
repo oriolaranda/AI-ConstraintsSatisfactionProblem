@@ -13,7 +13,9 @@ public class Algorisme {
     }
 
     public Map<Sessio,Classe> getHorari(){
-        if (backtraking(0)) return nou;
+        if (backtraking(0)) {
+            return nou;
+        }
         return null;
     }
 
@@ -23,52 +25,35 @@ public class Algorisme {
             for (Classe c: prev.get(s.get(i)).keySet()){
                 Stack<Classe> poda = new Stack();
                 boolean val = comprovarRestriccions();
-                if (!val) System.out.println("Fals: no compleix restriccions");
+                if (!val) {
+                    System.out.println("Fals: no compleix restriccions");
+                    revertirCanvis(poda);
+                }
                 else {
                     boolean seg = backtraking(i+1);
                     if (seg) return seg;
                 }
-                revertirCanvis();
+
             }
             return false;
         } else return true;
     }
 
-    private void revertirCanvis() {
+    private void revertirCanvis(Stack<Classe> revert) {
+        if (!revert.isEmpty()) {
+            Classe c = revert.pop();
+            while (! revert.isEmpty()) {
+                afegir_possibilitat(c);
+                c = revert.pop();
+            }
+        }
 
     }
 
     private boolean comprovarRestriccions() {
-
-    }
-
-
-
-
-    private Stack<Classe> forward_checking (Classe c) {
-        Stack<Classe> totes_eliminades = new Stack<>();
-
-        assignacio assig_actual = conjuntAssignacions.get(c.getId_assig()+c.getId_grup());
-        totes_eliminades.addAll(assig_actual.borrarTotes (c));
-
-
-        for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
-            assignacio a = aux.getValue();
-            if (a != assig_actual) {
-                ArrayList<Classe> eliminades = a.forwardChecking(c);
-                totes_eliminades.addAll(eliminades);
-            }
-        }
-        return totes_eliminades;
-    }
-
-
-    private boolean checkNotEmpty () {
-        for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
-            assignacio a = aux.getValue();
-            if (a.getAllPossibleClasses().isEmpty()) {
-                System.out.println("La assignacio ");
-                a.showAll();
+        for (Sessio s: prev.keySet()) {
+            if(prev.get(s).isEmpty()) {
+                System.out.println("No queden valors disponibles per a la variable");
                 return false;
             }
         }
@@ -76,15 +61,18 @@ public class Algorisme {
     }
 
 
-    private void revertChanges (Stack<Classe> eliminades) {
-        if (! eliminades.empty()) {
-            Classe c = eliminades.pop();
-            while (!eliminades.isEmpty()) {
-                assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
-                a.afegeixPossibilitat(c);
-                c = eliminades.pop();
+
+
+    private Stack<Classe> forwardChecking (Sessio s, Classe c) {
+        Stack<Classe> poda = new Stack<>();
+        poda.addAll(eliminarTotes(s,c));
+        for (Sessio s2: prev.keySet()) {
+            if (s2 != s) {
+                ArrayList<Classe> podaF = eliminarTotes(s2, c);
+                poda.addAll(podaF);
             }
         }
+        return poda;
     }
 
 }
