@@ -5,7 +5,7 @@ import domini.TipusAula;
 
 import java.util.Scanner;
 
-import static domini.TipusAula.stoTipusAula;
+import static domini.TipusAula.*;
 
 public class driverAula {
     private static void menu() {
@@ -58,8 +58,8 @@ public class driverAula {
 
                         a = new Aula(nomAula, Capacitat, Tipus);
 
-                        System.out.println("Aula esperada: " + nomAula + "-" + "capacitat de: " + Capacitat + " Tipus: " + Tipus);
-                        System.out.println("Aula creada: " + a.toString());
+                        System.out.println("Aula esperada: " + nomAula + "  " + "capacitat de: " + Capacitat + "  Tipus: " + Tipus);
+                        System.out.println("Aula creada: " + a.getNom() + "  " + "capacitat de: " + a.getCapacitat() + "  Tipus: " + a.getTipus());
                         break;
                     case 2:
                         if (a == null) throw new NullPointerException();
