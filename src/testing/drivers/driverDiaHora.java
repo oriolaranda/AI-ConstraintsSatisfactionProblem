@@ -29,7 +29,7 @@ public class driverDiaHora {
     }
 
     public static void main(String[] args) {
-        DiaHora a = null;
+        DiaHora d = null;
         String Dia = null;
         int Hora = -1;
 
@@ -45,41 +45,34 @@ public class driverDiaHora {
                         Hora = sc.nextInt();
 
 
-                        a = new DiaHora(Dia, Hora);
+                        d = new DiaHora(Dia, Hora);
 
-                        System.out.println("DiaHora esperat: " + nomAula + "  " + "capacitat de: " + Capacitat + "  Tipus: " + Tipus);
-                        System.out.println("DiaHora creat: " + a.getNom() + "  " + "capacitat de: " + a.getCapacitat() + "  Tipus: " + a.getTipus());
+                        System.out.println("DiaHora esperat: " + Dia + " a les " + Hora);
+                        System.out.println("DiaHora creat: " + d.getDia() + " a les " + d.getHora());
                         break;
                     case 2:
-                        if (a == null) throw new NullPointerException();
-                        System.out.println("Dia esperat: " + nomAula);
-                        System.out.println("Dia obtingut: " + a.getNom());
+                        if (d == null) throw new NullPointerException();
+                        System.out.println("Dia esperat: " + Dia);
+                        System.out.println("Dia obtingut: " + d.getDia());
                         break;
                     case 3:
-                        if (a == null) throw new NullPointerException();
-                        System.out.println("Hora esperada: " + Capacitat);
-                        System.out.println("Hora obtinguda: " + a.getCapacitat());
+                        if (d == null) throw new NullPointerException();
+                        System.out.println("Hora esperada: " + Hora);
+                        System.out.println("Hora obtinguda: " + d.getHora());
                         break;
                     case 4:
-                        nomAula = sc.next();
-                        if (a == null) throw new NullPointerException();
-                        a.setNom(nomAula);
-                        if (nomAula.equals(a.getNom())) System.out.println("Nom Aula assignat correctament");
-                        else System.out.println("Nom Aula NO assignat correctament");
+                        Dia = sc.next();
+                        if (d == null) throw new NullPointerException();
+                        d.setDia(Dia);
+                        if (Dia.equals(d.getDia())) System.out.println("Dia assignat correctament");
+                        else System.out.println("Dia NO assignat correctament");
                         break;
-                    case 6:
-                        Capacitat = sc.nextInt();
-                        if (a == null) throw new NullPointerException();
-                        a.setCapacitat(Capacitat);
-                        if (Capacitat == a.getCapacitat()) System.out.println("Capacitat Aula assignada correctament");
-                        else System.out.println("Capacitat Aula NO assignada correctament");
-                        break;
-                    case 7:
-                        Tipus = stoTipusAula(sc.next());
-                        if (a == null) throw new NullPointerException();
-                        a.setTipus(Tipus);
-                        if (Tipus.equals(a.getTipus())) System.out.println("Tipus Aula assignat correctament");
-                        else System.out.println("Tipus Aula NO assignat correctament");
+                    case 5:
+                        Hora = sc.nextInt();
+                        if (d == null) throw new NullPointerException();
+                        d.setHora(Hora);
+                        if (Hora == d.getHora()) System.out.println("Hora assignada correctament");
+                        else System.out.println("Hora NO assignada correctament");
                         break;
                 }
 
