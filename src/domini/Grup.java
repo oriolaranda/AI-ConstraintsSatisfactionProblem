@@ -1,5 +1,7 @@
 package domini;
 
+import java.util.Vector;
+
 public class Grup {
     //Dades
     private String nomAssig;
@@ -8,14 +10,18 @@ public class Grup {
     private int capacitat;
     private int numSessions;
     private int duracio;
+    private Vector<Sessio> sessions;
 
     //Constructora
-    public Grup(String nom_assig,int num, TipusAula tipus, int capacitat, int duracio) {
-        this.nomAssig = nom_assig;
+    public Grup(String nomAssig,int num, TipusAula tipus, int capacitat, int duracio) {
+        this.nomAssig = nomAssig;
         this.num = num;
         this.tipus = tipus;
         this.capacitat = capacitat;
         this.duracio = duracio;
+        for (int i = 0; i < numSessions; ++i){
+            sessions.add(new Sessio( nomAssig+"-"+num, i));
+        }
     }
 
     /** GETTERS **/

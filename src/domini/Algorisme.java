@@ -3,16 +3,17 @@ package domini;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Stack;
+import java.util.Vector;
 
 public class Algorisme {
-    private Map<Sessio,Map<Classe, Boolean>> prev;
-    private Map<Sessio, Classe> nou;
+    private Map<Sessio, Vector<Classe>> prev;
+    private Map<Classe, Sessio> nou;
 
-    public Algorisme(Map<Sessio, Map<Classe, Boolean>> prev) {
+    public Algorisme(Map<Sessio, Vector<Classe>> prev) {
         this.prev = prev;
     }
 
-    public Map<Sessio,Classe> getHorari(){
+    public Map<Classe,Sessio> getHorari(){
         if (backtraking(0)) {
             return nou;
         }
@@ -22,7 +23,7 @@ public class Algorisme {
     public boolean backtraking(int i) {
         ArrayList<Sessio> s = new ArrayList<>(prev.keySet());
         if (i < s.size()) {
-            for (Classe c: prev.get(s.get(i)).keySet()){
+            for (Classe c: prev.get(s.get(i))){
                 Stack<Classe> poda = new Stack();
                 boolean val = comprovarRestriccions();
                 if (!val) {
