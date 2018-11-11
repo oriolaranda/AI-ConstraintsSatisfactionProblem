@@ -3,7 +3,6 @@ package domini;
 public class RestriccioAula extends Restriccio{
     private Aula a;
 
-
     //Constructoras
     public RestriccioAula (Aula aula){
         super();

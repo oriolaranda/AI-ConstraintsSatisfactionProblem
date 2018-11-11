@@ -103,7 +103,7 @@ public class driverGrup {
                     case 5:
                         if (g == null) throw new NullPointerException();
                         System.out.println("Num sessions esperat: " + numSessions);
-                        System.out.println("Num sessions obtingut: " + g.getNumSessions();
+                        System.out.println("Num sessions obtingut: " + g.getNumSessions());
                         break;
                     case 6:
                         if (g == null) throw new NullPointerException();
