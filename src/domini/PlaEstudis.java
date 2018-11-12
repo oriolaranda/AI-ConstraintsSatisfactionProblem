@@ -9,14 +9,16 @@ public class PlaEstudis {
     private Horari horari;
 
     //Constructora
-    public PlaEstudis(String nom){
+    public PlaEstudis(String nom) {
         this.nom = nom;
         periodeLectiu = 0;
         horari = null;
         assignatures = new ArrayList<Assignatura>();
     }
 
-    /** GETTERS **/
+    /**
+     * GETTERS
+     **/
 
 
     public String getNom() {
@@ -27,11 +29,13 @@ public class PlaEstudis {
         return assignatures;
     }
 
-    public Horari getHorari(){
+    public Horari getHorari() {
         return horari;
     }
 
-    /** SETTERS **/
+    /**
+     * SETTERS
+     **/
 
     //Canviar nom (el nom no existeix en cap altre PlaEstudis)
     public void setNom(String nom) {
@@ -41,7 +45,8 @@ public class PlaEstudis {
     public void addAssignatura(Assignatura a) {
         assignatures.add(a);
     }
-    public void removeAssignatura(Assignatura a){
+
+    public void removeAssignatura(Assignatura a) {
         assignatures.remove(a);
     }
 

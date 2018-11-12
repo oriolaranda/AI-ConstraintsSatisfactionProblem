@@ -11,14 +11,14 @@ public class Horari {
     private ArrayList<Sessio> Sessions;
     private ArrayList<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
-    private Map<Sessio, Vector<Classe> > prev;
+    private Map<Sessio, Vector<Classe>> prev;
     private Map<Classe, Sessio> nou;
     private boolean Ple;
 
     //Constructors
 
     /**
-     Constructor for Horari
+     * Constructor for Horari
      */
     public Horari(String nom, ArrayList<Sessio> Sessions, ArrayList<Classe> Classes, ArrayList<Restriccio> Restriccions) {
         this.nom = nom;
@@ -27,8 +27,8 @@ public class Horari {
         this.Restriccions = Restriccions;
         this.Ple = false;
 
-        for(int i = 0; i < Sessions.size(); ++i) {
-            prev.put(Sessions.get(i),Classes);
+        for (int i = 0; i < Sessions.size(); ++i) {
+            prev.put(Sessions.get(i), Classes);
         }
 
     }
@@ -51,11 +51,17 @@ public class Horari {
         return Restriccions;
     }
 
-    public boolean getPle() { return Ple; }
+    public boolean getPle() {
+        return Ple;
+    }
 
-    public Map<Classe, Sessio> getNou() { return nou; }
+    public Map<Classe, Sessio> getNou() {
+        return nou;
+    }
 
-    public Map<Sessio, ArrayList<Classe>> getPrev() { return prev; }
+    public Map<Sessio, ArrayList<Classe>> getPrev() {
+        return prev;
+    }
 
     //Setters
 
@@ -75,7 +81,9 @@ public class Horari {
         Classes = classes;
     }
 
-    public void setPle(boolean ple) { Ple = ple; }
+    public void setPle(boolean ple) {
+        Ple = ple;
+    }
 
 
     //Metodes
@@ -83,7 +91,7 @@ public class Horari {
     public void generar_horari() {
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
-        if(!nou.isEmpty()) Ple = true;
+        if (!nou.isEmpty()) Ple = true;
     }
 
 }

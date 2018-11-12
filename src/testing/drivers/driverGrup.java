@@ -5,7 +5,7 @@ import domini.TipusAula;
 
 import java.util.Scanner;
 
-import static domini.TipusAula.*;
+import static domini.TipusAula.stoTipusAula;
 
 public class driverGrup {
 
@@ -70,7 +70,7 @@ public class driverGrup {
         menu();
         int opcio = sc.nextInt();
 
-        while(opcio!=14){
+        while (opcio != 14) {
             try {
                 switch (opcio) {
                     case 1:
@@ -140,7 +140,8 @@ public class driverGrup {
                         numSessions = sc.nextInt();
                         if (g == null) throw new NullPointerException();
                         g.setNumSessions(numSessions);
-                        if (numSessions == g.getNumSessions()) System.out.println("Capacitat grup assignat correctament");
+                        if (numSessions == g.getNumSessions())
+                            System.out.println("Capacitat grup assignat correctament");
                         else System.out.println("Capacitat grup NO assignat correctament");
                         break;
                     case 12:
@@ -159,7 +160,7 @@ public class driverGrup {
                         break;
                 }
 
-            } catch (NullPointerException n){
+            } catch (NullPointerException n) {
                 System.out.println("Abans de provar aquesta opcio utilitza la creadora");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -168,9 +169,6 @@ public class driverGrup {
                 opcio = sc.nextInt();
             }
         }
-
-
-
 
 
     }

@@ -1,4 +1,5 @@
 package domini;
+
 import java.util.ArrayList;
 
 public class Assignatura {
@@ -8,23 +9,19 @@ public class Assignatura {
     private ArrayList<Grup> grup;
 
 
-    //Constructoras
-    /*public Assignatura() {
+    //Constructora
+    public Assignatura() {
+        nomPlaEstudis = null;
         id = null;
         fase = null;
         grup = new ArrayList<Grup>();
     }
 
-    public Assignatura(String i, String f) {
-        id = i;
-        fase = f;
-
-    }*/
-
     public Assignatura(String nomPlaEstudis, String id, String fase) {
         this.nomPlaEstudis = nomPlaEstudis;
         this.id = id;
         this.fase = fase;
+        this.grup = new ArrayList<Grup>();
     }
 
     //Getters
@@ -40,10 +37,9 @@ public class Assignatura {
         return fase;
     }
 
-
     //Setters
-    public void setNomPlaEstudis(String nom){
-        nomPlaEstudis=nom;
+    public void setNomPlaEstudis(String nom) {
+        nomPlaEstudis = nom;
     }
 
     public void setId(String i) {
@@ -59,7 +55,7 @@ public class Assignatura {
         return false;
     }
 
-    public void crearGrup(int num, TipusAula tipus, int capacitat, int duracio) {
+    public void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
             Grup g = new Grup(id, num, tipus, capacitat, duracio);
             grup.add(g);
@@ -69,6 +65,6 @@ public class Assignatura {
 
     @Override
     public String toString() {
-        return nomPlaEstudis+": "+id+" ("+fase+")";
+        return nomPlaEstudis + ": " + id + " (" + fase + ")";
     }
 }

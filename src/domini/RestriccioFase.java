@@ -1,37 +1,36 @@
 package domini;
 
-public class RestriccioFase extends Restriccio{
-    private Assignatura a;
-    private Assignatura b;
+import java.util.Map;
+
+public class RestriccioFase extends Restriccio {
 
 
     //Constructoras
-    public RestriccioFase (Assignatura assigA, Assignatura assigB){
+    public RestriccioFase() {
         super();
-        a=assigA;
-        b=assigB;
     }
 
     //Getters
-    public Assignatura getA(){
+    public Assignatura getA() {
         return a;
     }
 
-    public Assignatura getB(){
+    public Assignatura getB() {
         return b;
     }
 
 
     //Setters
-    public void setA(Assignatura assig){
-        a=assig;
-    }
-    public void setB(Assignatura assig){
-        b=assig;
+    public void setA(Assignatura assig) {
+        a = assig;
     }
 
-//retorna true si A i B son de fases diferents.
-    public Boolean esCompleix() {
+    public void setB(Assignatura assig) {
+        b = assig;
+    }
+
+    //retorna true si A i B son de fases diferents.
+    public Boolean esCompleix(Map<Classe, Sessio> nou) {
         String fa = a.getFase();
         String fb = b.getFase();
         return !(fa.equals(fb));

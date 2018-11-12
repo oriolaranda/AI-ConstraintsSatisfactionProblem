@@ -5,7 +5,6 @@ public class Classe {
     private Aula aula;
     private DiaHora hora;
 
-
     public Classe(Aula aula, DiaHora hora) {
         this.aula = aula;
         this.hora = hora;
@@ -29,7 +28,7 @@ public class Classe {
 
     @Override
     public String toString() {
-        return aula.getNom()+"-> "+hora;
+        return aula.getNom() + "-> " + hora;
     }
 
 
