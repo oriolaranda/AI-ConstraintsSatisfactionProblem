@@ -30,4 +30,9 @@ public class Sessio {
     public void setNum(int num) {
         this.num = num;
     }
+
+    @Override
+    public String toString() {
+        return id+"["+num+"]";
+    }
 }

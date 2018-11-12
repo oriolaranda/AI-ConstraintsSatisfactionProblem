@@ -95,4 +95,10 @@ public class Aula {
 
 
     //Metodes
+
+
+    @Override
+    public String toString() {
+        return Nom+": "+Tipus+" "+Capacitat+" persones ";
+    }
 }

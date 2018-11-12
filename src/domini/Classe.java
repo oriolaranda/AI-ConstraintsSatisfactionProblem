@@ -29,6 +29,8 @@ public class Classe {
 
     @Override
     public String toString() {
-        return aula.toString()+hora.toString();
+        return aula.getNom()+"-> "+hora;
     }
+
+
 }

@@ -2,28 +2,33 @@ package domini;
 
 public class DiaHora {
 
-    private String Dia;
-    private int Hora;
+    private String dia;
+    private int hora;
 
 
     public  DiaHora(String Dia, int Hora) {
-        this.Dia = Dia;
-        this.Hora = Hora;
+        this.dia = Dia;
+        this.hora = Hora;
     }
 
     public String getDia() {
-        return Dia;
+        return dia;
     }
 
     public void setDia(String dia) {
-        Dia = dia;
+        dia = dia;
     }
 
     public int getHora() {
-        return Hora;
+        return hora;
     }
 
     public void setHora(int hora) {
-        Hora = hora;
+        this.hora = hora;
+    }
+
+    @Override
+    public String toString() {
+        return dia+": "+hora+"-"+(hora+1);
     }
 }
