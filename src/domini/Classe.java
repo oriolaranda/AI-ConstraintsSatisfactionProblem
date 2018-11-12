@@ -26,4 +26,9 @@ public class Classe {
     public void setHora(DiaHora hora) {
         this.hora = hora;
     }
+
+    @Override
+    public String toString() {
+        return aula.toString()+hora.toString();
+    }
 }
