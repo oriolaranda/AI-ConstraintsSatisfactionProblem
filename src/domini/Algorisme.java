@@ -81,6 +81,7 @@ public class Algorisme {
     private Vector<Classe> add(Vector<Classe> v, Classe c) {
         Vector<Classe> vector = (Vector<Classe>) v.clone();
         vector.add(c);
+        return vector;
     }
 
     private void revertirCanvis(Stack<Classe> revert) {
