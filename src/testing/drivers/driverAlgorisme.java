@@ -22,7 +22,7 @@ public class driverAlgorisme {
         for (String s : vs) {
             m.put(new Sessio(s, 0), v);
         }
-        Algorisme a = new Algorisme(m);
+        Algorisme a = new Algorisme(m, null);
         for (Sessio s : m.keySet()) {
             //System.out.print(s+"= { ");
             for (Classe e : m.get(s)) {

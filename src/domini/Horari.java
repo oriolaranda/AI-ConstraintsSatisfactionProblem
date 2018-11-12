@@ -2,6 +2,7 @@ package domini;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Vector;
 
 public class Horari {
 
@@ -10,7 +11,7 @@ public class Horari {
     private ArrayList<Sessio> Sessions;
     private ArrayList<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
-    private Map<Sessio, ArrayList<Classe> > prev;
+    private Map<Sessio, Vector<Classe> > prev;
     private Map<Classe, Sessio> nou;
     private boolean Ple;
 

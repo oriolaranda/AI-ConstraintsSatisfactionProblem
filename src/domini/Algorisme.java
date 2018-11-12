@@ -1,14 +1,15 @@
 package domini;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Algorisme {
     private Map<Sessio, Vector<Classe>> prev;
     private Map<Classe, Sessio> nou;
     private Vector<Sessio> s;
-    private Vector<Restriccio> restriccions;
+    private ArrayList<Restriccio> restriccions;
 
-    public Algorisme(Map<Sessio, Vector<Classe>> prev, Vector<Restriccio> restriccions) {
+    public Algorisme(Map<Sessio, Vector<Classe>> prev, ArrayList<Restriccio> restriccions) {
         this.prev = (Map<Sessio, Vector<Classe>>) prev;
         nou = new HashMap<>();
         s = new Vector<Sessio>(prev.keySet());
