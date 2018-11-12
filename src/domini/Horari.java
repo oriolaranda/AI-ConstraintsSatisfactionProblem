@@ -1,27 +1,35 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Horari {
 
     //Atributs
     private String nom;
-    private int HoraIni;
-    private int HoraFi;
     private ArrayList<Sessio> Sessions;
+    private ArrayList<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
+    private Map<Sessio, ArrayList<Classe> > prev;
+    private Map<Classe, Sessio> nou;
+    private boolean Ple;
 
     //Constructors
 
     /**
      Constructor for Horari
      */
-    public Horari(String nom, int HoraIni, int HoraFi, ArrayList<Sessio> Sessions, ArrayList<Restriccio> Restriccions) {
+    public Horari(String nom, ArrayList<Sessio> Sessions, ArrayList<Classe> Classes, ArrayList<Restriccio> Restriccions) {
         this.nom = nom;
-        this.HoraIni = HoraIni;
-        this.HoraFi = HoraFi;
         this.Sessions = Sessions;
+        this.Classes = Classes;
         this.Restriccions = Restriccions;
+        this.Ple = false;
+
+        for(int i = 0; i < Sessions.size(); ++i) {
+            prev.put(Sessions.get(i),Classes);
+        }
+
     }
 
 
@@ -30,85 +38,51 @@ public class Horari {
         return nom;
     }
 
-
-    /**
-     * Returns the value of HoraIni.
-     */
-    public int getHoraIni() {
-        return HoraIni;
-    }
-
-    /**
-     * Returns the value of HoraFi.
-     */
-    public int getHoraFi() {
-        return HoraFi;
-    }
-
-
-    /**
-     * Returns the value of Sessions.
-     */
     public ArrayList<Sessio> getSessions() {
         return Sessions;
     }
 
+    public ArrayList<Classe> getClasses() {
+        return Classes;
+    }
 
-    /**
-     * Returns the value of Restriccions.
-     */
     public ArrayList<Restriccio> getRestriccions() {
         return Restriccions;
     }
 
+    public boolean getPle() { return Ple; }
 
+    public Map<Classe, Sessio> getNou() { return nou; }
+
+    public Map<Sessio, ArrayList<Classe>> getPrev() { return prev; }
 
     //Setters
-    /**
-     * Sets the value of nom.
-     * @param nom The value to assign nom.
-     */
+
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-
-    /**
-     * Sets the value of HoraIni.
-     * @param HoraIni The value to assign HoraIni.
-     */
-    public void setHoraIni(int HoraIni) {
-        this.HoraIni = HoraIni;
-    }
-
-
-    /**
-     * Sets the value of HoraFi.
-     * @param HoraFi The value to assign HoraFi.
-     */
-    public void setHoraFi(int HoraFi) {
-        this.HoraFi = HoraFi;
-    }
-
-
-    /**
-     * Sets the value of Sessions.
-     * @param Sessions The value to assign Sessions.
-     */
     public void setSessions(ArrayList<Sessio> Sessions) {
         this.Sessions = Sessions;
     }
 
-
-    /**
-     * Sets the value of Restriccions.
-     * @param Restriccions The value to assign Restriccions.
-     */
     public void setRestriccions(ArrayList<Restriccio> Restriccions) {
         this.Restriccions = Restriccions;
     }
 
+    public void setClasses(ArrayList<Classe> classes) {
+        Classes = classes;
+    }
+
+    public void setPle(boolean ple) { Ple = ple; }
 
 
     //Metodes
+
+    public void generar_horari() {
+        Algorisme A = new Algorisme(prev, Restriccions);
+        nou = A.getHorari();
+        if(!nou.isEmpty()) Ple = true;
+    }
+
 }
