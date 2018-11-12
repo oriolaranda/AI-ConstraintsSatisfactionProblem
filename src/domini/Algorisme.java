@@ -6,11 +6,13 @@ public class Algorisme {
     private Map<Sessio, Vector<Classe>> prev;
     private Map<Classe, Sessio> nou;
     private Vector<Sessio> s;
+    private Vector<Restriccio> restriccions;
 
-    public Algorisme(Map<Sessio, Vector<Classe>> prev) {
+    public Algorisme(Map<Sessio, Vector<Classe>> prev, Vector<Restriccio> restriccions) {
         this.prev = (Map<Sessio, Vector<Classe>>) prev;
         nou = new HashMap<>();
         s = new Vector<Sessio>(prev.keySet());
+        this.restriccions = restriccions;
     }
 
     public Map<Classe,Sessio> getHorari(){
