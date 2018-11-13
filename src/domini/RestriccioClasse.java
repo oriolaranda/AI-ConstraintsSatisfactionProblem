@@ -1,7 +1,7 @@
 package domini;
 
-import java.util.Iterator;
 import java.util.Map;
+import java.util.Vector;
 
 public class RestriccioClasse extends Restriccio {
     private String nomAula;
@@ -9,8 +9,7 @@ public class RestriccioClasse extends Restriccio {
     private int hora;
 
     //Constructoras
-    public RestriccioClasse(String id, String aula, String dia, int hora) {
-        super(id);
+    public RestriccioClasse(String aula, String dia, int hora) {
         nomAula = aula;
         this.nomAula = aula;
         this.dia = dia;
@@ -45,9 +44,26 @@ public class RestriccioClasse extends Restriccio {
 
 
     @Override
-    public Boolean esCompleix(Map<Classe, Sessio> nou) {
+     public void precondicions() {
+        Map<Sessio, Vector<Classe>> m = super.getMap();
+        Boolean stop = false;
+        for (Sessio s : m.keySet()) {
+            Vector<Classe> c = m.get(s);
+            for (int i = 0; i < c.size() && !stop; ++i) {
+                if (c.get(i).getHora().getDia().equals(dia) && (c.get(i).getHora().getHora() == hora) && c.get(i).getAula().getNom().equals(nomAula)) {
+                    c.removeElementAt(i);
+                    stop = true;
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public Boolean esCompleix(Map<Classe, Sessio> nou) { return true;}
+    /*
         Iterator<Classe> it = nou.keySet().iterator();
-        Classe c = new Classe();
+        Classe c;
         while (it.hasNext()) {
             c = it.next();
             String a = c.getAula().getNom();
@@ -57,5 +73,9 @@ public class RestriccioClasse extends Restriccio {
             if (a.equals(nomAula) && d.equals(dia) && h.equals(hora)) return false;
         }
         return true;
+
     }
+    */
+
+
 }

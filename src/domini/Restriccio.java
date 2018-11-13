@@ -1,28 +1,32 @@
 package domini;
 
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Vector;
 
 public abstract class Restriccio {
-    private String id;
+    //private String id;
+    private Horari horari;
 
     //Constructoras
     public Restriccio() {
-        id = null;
-    }
-
-    public Restriccio(String i) {
-        id = i;
     }
 
     //Getters
-    public String getId() {
-        return id;
+
+    public Vector<Classe> getClassesHorari() {
+        return horari.getClasses();
     }
 
-    //Setters
-    public void setId(String i) {
-        id = i;
+    public ArrayList<Sessio> getSessionsHorari() {
+        return horari.getSessions();
     }
+
+    public Map<Sessio, Vector<Classe>> getMap(){
+        return horari.getPrev();
+    }
+    //Setters
+
     /*public void setHorari(String horari) {this.horari=horari;}
 
      public void afegirHorari(Horari h) throws HorariJaExisteix {
@@ -31,6 +35,7 @@ public abstract class Restriccio {
             //else throw new HorariJaExisteix();
         }
     } */
+    public abstract void precondicions();
 
     public abstract Boolean esCompleix(Map<Classe, Sessio> nou);
 }
