@@ -58,10 +58,10 @@ public class RestriccioClasse extends Restriccio {
         }
     }
 
-
+/*
     @Override
     public Boolean esCompleix(Map<Classe, Sessio> nou) { return true;}
-    /*
+
         Iterator<Classe> it = nou.keySet().iterator();
         Classe c;
         while (it.hasNext()) {

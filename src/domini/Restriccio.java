@@ -37,5 +37,5 @@ public abstract class Restriccio {
     } */
     public abstract void precondicions();
 
-    public abstract Boolean esCompleix(Map<Classe, Sessio> nou);
+    /*public abstract Boolean esCompleix(Map<Classe, Sessio> nou);*/
 }

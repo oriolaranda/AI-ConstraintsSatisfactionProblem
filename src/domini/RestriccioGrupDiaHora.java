@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
-public class RestriccioGrupDiaHora {
+public class RestriccioGrupDiaHora extends Restriccio{
     private String nomAssignatura;
     private int num;
 
@@ -56,6 +56,15 @@ public class RestriccioGrupDiaHora {
 
     @Override
     public void precondicions(){
+        Map<Sessio, Vector<Classe>> m = super.getMap();
+        Boolean stop = false;
+        for (Sessio s : m.keySet()) {
+
+            Vector<Classe> c = m.get(s);
+            for (int i = 0; i < c.size() && !stop; ++i) {
+
+            }
+        }
 
     }
 
