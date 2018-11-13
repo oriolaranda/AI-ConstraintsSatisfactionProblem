@@ -87,7 +87,7 @@ public class Horari {
     public void generar_horari() {
 
         for(int i = 0; i < Restriccions.size(); ++i) {
-            Restriccions.get(i).restriccioUnaria();
+            Restriccions.get(i).precondicions();
         }
         Algorisme A = new Algorisme(prev, Restriccions);
         for (int i = 0; i < Sessions.size(); ++i) {

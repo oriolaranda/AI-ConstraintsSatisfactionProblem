@@ -2,6 +2,7 @@ package testing.drivers;
 
 import domini.Aula;
 import domini.Classe;
+import domini.DiaHora;
 import domini.TipusAula;
 
 import java.util.Scanner;
@@ -14,49 +15,43 @@ public class DriverClasse {
         System.out.println("Driver Classe:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 nomAula<String> Dia<String> Hora<int>");
+        System.out.println("\t\tformat: 1 nomAula<String> Capacitat<int> TipusAula<TipusAula> Dia<String> Hora<int>");
 
-        System.out.println("\t2) Getter nom Aula:");
+        System.out.println("\t2) Getter Aula:");
         System.out.println("\t\tformat: 2");
 
-        System.out.println("\t3) Getter Dia:");
+        System.out.println("\t3) Getter DiaHora:");
         System.out.println("\t\tformat: 3");
 
-        System.out.println("\t4) Getter Hora:");
-        System.out.println("\t\tformat: 4");
+        System.out.println("\t4) Setter Aula:");
+        System.out.println("\t\tformat: 4 nomAula<String> Capacitat<int> TipusAula<TipusAula>");
 
-        System.out.println("\t5) Setter nom Aula:");
-        System.out.println("\t\tformat: 5 nomAula<String>");
+        System.out.println("\t5) Setter Dia");
+        System.out.println("\t\tformat: 6 Dia<String> Hora<int>");
 
-        System.out.println("\t6) Setter Dia");
-        System.out.println("\t\tformat: 6 Dia<String>");
-
-        System.out.println("\t7) Setter Hora:");
-        System.out.println("\t\tformat: 7 Hora<int>");
-
-        System.out.println("\t8) Sortir:");
-        System.out.println("\t\tformat: 8");
+        System.out.println("\t6) Sortir:");
+        System.out.println("\t\tformat: 6");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
 
     public static void main(String[] args) {
         Classe c = null;
-        String nomAula = null;
-        String Dia  = null;
-        int Hora = -1;
+        Aula a = null;
+        DiaHora h = null;
+
 
         Scanner sc = new Scanner(System.in);
         menu();
         int opcio = sc.nextInt();
 
-        while (opcio != 8) {
+        while (opcio != 6) {
             try {
                 switch (opcio) {
                     case 1:
-                        nomAula = sc.next();
-                        Dia = sc.next();
-                        Hora = sc.nextInt();
+                        a.setNom(); = sc.next();
+                        a.setCapacitat(); = sc.nextInt();
+                        a.setTipus()= stoTipusAula(sc.next());
 
                         c = new Classe(nomAula, Dia, Hora);
 
