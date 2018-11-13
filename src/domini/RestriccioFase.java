@@ -1,39 +1,44 @@
 package domini;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class RestriccioFase extends Restriccio {
-
+    private ArrayList<Assignatura> assignaturas;
 
     //Constructoras
-    public RestriccioFase() {
-        super();
+    public RestriccioFase(){
+
     }
 
     //Getters
-    public Assignatura getA() {
-        return a;
-    }
-
-    public Assignatura getB() {
-        return b;
+    public ArrayList<Assignatura> getAssignaturas(){
+        return assignaturas;
     }
 
 
     //Setters
-    public void setA(Assignatura assig) {
-        a = assig;
+    public void setAssignaturas(ArrayList<Assignatura> assignaturas) {
+        this.assignaturas = assignaturas;
     }
 
-    public void setB(Assignatura assig) {
-        b = assig;
+    @Override
+    public Boolean esCompleix(Map<Classe, Sessio> nou, Sessio actual) {
+        Map<String,String> f=null;
+        for(Assignatura a: assignaturas) f.put(a.getNom(),a.getFase());
+        if (f!=null) {
+            for(Classe c: nou.keySet()) {
+                Sessio s=nou.get(c);
+                if(f.get(s.getNomAssignatura()).equals(f.get(actual.getNomAssignatura()))) return false;
+            }
+        }
+        return true;
     }
 
-    //retorna true si A i B son de fases diferents.
-    public Boolean esCompleix(Map<Classe, Sessio> nou) {
-        String fa = a.getFase();
-        String fb = b.getFase();
-        return !(fa.equals(fb));
+    @Override
+    public void precondicions(){
+
     }
+
 }
 
