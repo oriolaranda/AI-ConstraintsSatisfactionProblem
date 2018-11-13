@@ -27,5 +27,8 @@ public class Classe {
 
     public void setHora(DiaHora hora) { this.Hora = hora; }
 
-
+    @Override
+    public String toString() {
+        return aula.getNom()+": "+Hora;
+    }
 }

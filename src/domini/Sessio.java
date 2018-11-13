@@ -1,38 +1,53 @@
 package domini;
 
 public class Sessio {
-    private String id;
-    private int num;
+    private String nomAssig;
+    private int numG;
+    private int numS;
 
+
+    public Sessio(String nomAssig, int numG,int numS) {
+        this.nomAssig = nomAssig;
+        this.numG = numG;
+        this.numS = numS;
+    }
 
     public Sessio(String id, int num) {
-        this.id = id;
-        this.num = num;
+        this.numS = num;
+        this.nomAssig = id.split("-")[0];
+        this.numG = Integer.parseInt(id.split("-")[1]);
     }
 
     /* GETTERS */
 
-    public String getId() {
-        return id;
+    public String getNomAssig() {
+        return nomAssig;
     }
 
-    public int getNum() {
-        return num;
+    public int getNumG() {
+        return numG;
+    }
+
+    public int getNumS() {
+        return numS;
     }
 
 
     /*SETTERS */
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String nomAssig) {
+        this.nomAssig = nomAssig;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setNumG(int num) {
+        this.numG = numG;
     }
 
+    public void setNumS(int numS) {
+        this.numS = numS;
+    }
     @Override
     public String toString() {
-        return id + "[" + num + "]";
+        return nomAssig+"-"+numG + "[" + numS + "]";
     }
 }

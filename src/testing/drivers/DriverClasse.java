@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static domini.TipusAula.stoTipusAula;
 
 public class DriverClasse {
-
+/*
     private static void menu() {
         System.out.println("Driver Classe:");
         System.out.println("Opcions:");
@@ -106,5 +106,5 @@ public class DriverClasse {
             }
         }
 
-    }
+    }*/
 }

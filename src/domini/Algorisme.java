@@ -5,13 +5,13 @@ import java.util.*;
 public class Algorisme {
     private Map<Sessio, Vector<Classe>> prev;
     private Map<Classe, Sessio> nou;
-    private Vector<Sessio> s;
+    private LinkedList<Sessio> s;
     private ArrayList<Restriccio> restriccions;
 
     public Algorisme(Map<Sessio, Vector<Classe>> prev, ArrayList<Restriccio> restriccions) {
         this.prev = (Map<Sessio, Vector<Classe>>) prev;
-        nou = new HashMap<>();
-        s = new Vector<Sessio>(prev.keySet());
+        nou = new LinkedHashMap<>();
+        s = new LinkedList<Sessio>(prev.keySet());
         this.restriccions = restriccions;
     }
 
@@ -26,8 +26,8 @@ public class Algorisme {
         return null;
     }
 
-    private Vector<Sessio> split(int x) {
-        Vector<Sessio> vector = (Vector<Sessio>) s.clone();
+    private LinkedList<Sessio> split(int x) {
+        LinkedList<Sessio> vector = (LinkedList<Sessio>) s.clone();
         for (int i = 0; i < x; ++i) {
             vector.remove(0);
         }
