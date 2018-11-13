@@ -9,7 +9,7 @@ public class Horari {
     //Atributs
     private String nom;
     private ArrayList<Sessio> Sessions;
-    private ArrayList<Classe> Classes;
+    private Vector<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
     private Map<Sessio, Vector<Classe>> prev;
     private Map<Classe, Sessio> nou;
@@ -20,16 +20,12 @@ public class Horari {
     /**
      * Constructor for Horari
      */
-    public Horari(String nom, ArrayList<Sessio> Sessions, ArrayList<Classe> Classes, ArrayList<Restriccio> Restriccions) {
+    public Horari(String nom, ArrayList<Sessio> Sessions, Vector<Classe> Classes, ArrayList<Restriccio> Restriccions) {
         this.nom = nom;
         this.Sessions = Sessions;
         this.Classes = Classes;
         this.Restriccions = Restriccions;
         this.Ple = false;
-
-        for (int i = 0; i < Sessions.size(); ++i) {
-            prev.put(Sessions.get(i), Classes);
-        }
 
     }
 
@@ -43,7 +39,7 @@ public class Horari {
         return Sessions;
     }
 
-    public ArrayList<Classe> getClasses() {
+    public Vector<Classe> getClasses() {
         return Classes;
     }
 
@@ -59,7 +55,7 @@ public class Horari {
         return nou;
     }
 
-    public Map<Sessio, ArrayList<Classe>> getPrev() {
+    public Map<Sessio, Vector<Classe>> getPrev() {
         return prev;
     }
 
@@ -77,7 +73,7 @@ public class Horari {
         this.Restriccions = Restriccions;
     }
 
-    public void setClasses(ArrayList<Classe> classes) {
+    public void setClasses(Vector<Classe> classes) {
         Classes = classes;
     }
 
@@ -89,9 +85,15 @@ public class Horari {
     //Metodes
 
     public void generar_horari() {
+
+        for(int i = 0; i < Restriccions.size(); ++i) {
+            Restriccions.get(i).restriccioUnaria();
+        }
         Algorisme A = new Algorisme(prev, Restriccions);
+        for (int i = 0; i < Sessions.size(); ++i) {
+            prev.put(Sessions.get(i),Classes);
+        }
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
     }
-
 }

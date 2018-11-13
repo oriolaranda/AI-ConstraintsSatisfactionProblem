@@ -2,33 +2,41 @@ package domini;
 
 public class Classe {
 
-    private Aula aula;
-    private DiaHora hora;
+    private String aula;
+    private String dia;
+    private int hora;
 
-    public Classe(Aula aula, DiaHora hora) {
+    public Classe() {
+    }
+
+    public Classe(String aula, String dia,  int hora) {
         this.aula = aula;
+        this.dia = dia;
         this.hora = hora;
     }
 
-    public Aula getAula() {
+    public String getAula() {
         return aula;
     }
 
-    public void setAula(Aula aula) {
+    public void setAula(String  aula) {
         this.aula = aula;
     }
 
-    public DiaHora getHora() {
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String  Dia) {
+        this.dia = Dia;
+    }
+
+    public int getHora() {
         return hora;
     }
 
-    public void setHora(DiaHora hora) {
+    public void setHora(int hora) {
         this.hora = hora;
-    }
-
-    @Override
-    public String toString() {
-        return aula.getNom() + "-> " + hora;
     }
 
 
