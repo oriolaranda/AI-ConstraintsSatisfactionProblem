@@ -11,36 +11,36 @@ public class stubGrup extends Grup {
 
     @Override
     public String getAssig() {
-        return super.getAssig();
+        return "PRO1";
     }
 
     @Override
     public int getNum() {
-        return super.getNum();
+        return 20;
     }
 
     @Override
     public TipusAula getTipus() {
-        return super.getTipus();
+        return TipusAula.TEORIA;
     }
 
     @Override
     public int getCapacitat() {
-        return super.getCapacitat();
+        return 70;
     }
 
     @Override
     public int getNumSessions() {
-        return super.getNumSessions();
+        return 2;
     }
 
     @Override
     public int getDuracio() {
-        return super.getDuracio();
+        return 2;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return "PRO1-20: TEORIA 70 alumnes 2 sessions 2h/sessio";
     }
 }
