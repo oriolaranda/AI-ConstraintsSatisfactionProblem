@@ -61,7 +61,7 @@ public class Horari {
     }
 
     //Setters
-
+/*
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -74,7 +74,7 @@ public class Horari {
         this.Restriccions = Restriccions;
     }
 
-    public void setClasses(Vector<Classe> classes) {
+    public void setClasses(Vimport domini.*;ector<Classe> classes) {
         Classes = classes;
     }
 
@@ -97,5 +97,5 @@ public class Horari {
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
-    }
+    }*/
 }

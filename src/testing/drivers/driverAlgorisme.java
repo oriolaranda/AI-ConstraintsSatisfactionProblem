@@ -3,6 +3,7 @@ package testing.drivers;
 import domini.*;
 
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -22,14 +23,22 @@ public class driverAlgorisme {
             v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Dijous", 8)));
             v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Divendres", 8)));
         }
+
+        Vector<Classe> v1 = new Vector<Classe>();
+
+        v1.add(new Classe(new Aula("A5001", 50, TipusAula.TEORIA), new DiaHora("Dilluns", 8)));
         for (String s : vs) {
             m.put(new Sessio(s, 0), v);
         }
+
+        m.put(new Sessio("M1-20", 0), v1);
+
+
         Algorisme a = new Algorisme(m, null);
         for (Sessio s : m.keySet()) {
             //System.out.print(s+"= { ");
             for (Classe e : m.get(s)) {
-                // System.out.print(e + ", ");
+                //System.out.print(e + ", ");
             }
             //System.out.print("}\n");
         }

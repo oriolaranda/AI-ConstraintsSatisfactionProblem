@@ -1,7 +1,7 @@
 package domini;
 
 import java.util.Map;
-
+/*
 public class RestriccioFase extends Restriccio {
 
 
@@ -35,5 +35,6 @@ public class RestriccioFase extends Restriccio {
         String fb = b.getFase();
         return !(fa.equals(fb));
     }
-}
 
+}
+*/

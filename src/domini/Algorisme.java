@@ -9,7 +9,7 @@ public class Algorisme {
     private ArrayList<Restriccio> restriccions;
 
     public Algorisme(Map<Sessio, Vector<Classe>> prev, ArrayList<Restriccio> restriccions) {
-        this.prev = (Map<Sessio, Vector<Classe>>) prev;
+        this.prev = (LinkedHashMap<Sessio, Vector<Classe>>) prev;
         nou = new LinkedHashMap<>();
         s = new LinkedList<Sessio>(prev.keySet());
         this.restriccions = restriccions;

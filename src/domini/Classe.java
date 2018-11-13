@@ -1,5 +1,7 @@
 package domini;
 
+import java.util.Objects;
+
 public class Classe {
 
     private Aula aula;
@@ -30,5 +32,20 @@ public class Classe {
     @Override
     public String toString() {
         return aula.getNom()+": "+Hora;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+
+        if (! (obj instanceof Classe)) return false;
+
+        Classe c = (Classe) obj;
+        return this.aula.equals(c.aula) && this.Hora.equals(c.Hora);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aula,Hora);
     }
 }

@@ -1,5 +1,5 @@
 package domini;
-
+/*
 public class RestriccioCorrequisit extends Restriccio {
     private Assignatura A;
     private Assignatura B;
@@ -36,3 +36,4 @@ public class RestriccioCorrequisit extends Restriccio {
         return true;
     }
 }
+*/
