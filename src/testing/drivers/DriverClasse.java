@@ -15,7 +15,7 @@ public class DriverClasse {
         System.out.println("Driver Classe:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 nomAula<String> Capacitat<int> TipusAula<TipusAula> Dia<String> Hora<int>");
+        System.out.println("\t\tformat: 1 nomAula<String>  Dia<String> Hora<int>");
 
         System.out.println("\t2) Getter Aula:");
         System.out.println("\t\tformat: 2");
@@ -24,7 +24,7 @@ public class DriverClasse {
         System.out.println("\t\tformat: 3");
 
         System.out.println("\t4) Setter Aula:");
-        System.out.println("\t\tformat: 4 nomAula<String> Capacitat<int> TipusAula<TipusAula>");
+        System.out.println("\t\tformat: 4 nomAula<String>");
 
         System.out.println("\t5) Setter Dia");
         System.out.println("\t\tformat: 6 Dia<String> Hora<int>");
@@ -49,7 +49,7 @@ public class DriverClasse {
             try {
                 switch (opcio) {
                     case 1:
-                        a.setNom(); = sc.next();
+                        a.setNom(sc.next()); = sc.next();
                         a.setCapacitat(); = sc.nextInt();
                         a.setTipus()= stoTipusAula(sc.next());
 
@@ -61,7 +61,7 @@ public class DriverClasse {
                     case 2:
                         if (c == null) throw new NullPointerException();
                         System.out.println("Nom Classe esperat: " + nomAula);
-                        System.out.println("Nom Classe obtingut: " + c.getAula());
+                        System.out.println("Nom Classe obtingut: " + c.getAula().getNom());
                         break;
                     case 3:
                         if (c == null) throw new NullPointerException();
