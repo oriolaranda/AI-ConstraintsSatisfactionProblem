@@ -5,7 +5,7 @@ public class Sessio {
     private int num;
 
 
-    public Sessio (String id, int num) {
+    public Sessio(String id, int num) {
         this.id = id;
         this.num = num;
     }
@@ -33,6 +33,6 @@ public class Sessio {
 
     @Override
     public String toString() {
-        return id+"["+num+"]";
+        return id + "[" + num + "]";
     }
 }

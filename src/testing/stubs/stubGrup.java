@@ -5,7 +5,7 @@ import domini.TipusAula;
 
 public class stubGrup extends Grup {
 
-    public stubGrup(){
+    public stubGrup() {
         super("PRO1", 20, TipusAula.TEORIA, 70, 2);
     }
 

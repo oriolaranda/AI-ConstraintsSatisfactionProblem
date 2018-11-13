@@ -2,9 +2,9 @@ package testing.stubs;
 
 import domini.Assignatura;
 
-public class stubAssignatura extends Assignatura{
-    public stubAssignatura(){
-        super("Grau en Enginyeria Informatica",  "PRO1", "inicial");
+public class stubAssignatura extends Assignatura {
+    public stubAssignatura() {
+        super("Grau en Enginyeria Informatica", "PRO1", "inicial");
     }
 
     @Override

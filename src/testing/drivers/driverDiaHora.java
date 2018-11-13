@@ -1,6 +1,7 @@
 package testing.drivers;
 
 import domini.DiaHora;
+
 import java.util.Scanner;
 
 public class driverDiaHora {
@@ -37,7 +38,7 @@ public class driverDiaHora {
         menu();
         int opcio = sc.nextInt();
 
-        while(opcio!=6){
+        while (opcio != 6) {
             try {
                 switch (opcio) {
                     case 1:
@@ -76,7 +77,7 @@ public class driverDiaHora {
                         break;
                 }
 
-            } catch (NullPointerException n){
+            } catch (NullPointerException n) {
                 System.out.println("Abans de provar aquesta opcio utilitza la creadora");
             } catch (Exception e) {
                 e.printStackTrace();

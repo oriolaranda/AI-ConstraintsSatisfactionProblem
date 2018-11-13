@@ -2,7 +2,9 @@ package testing.drivers;
 
 import domini.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 
 public class driverAlgorisme {

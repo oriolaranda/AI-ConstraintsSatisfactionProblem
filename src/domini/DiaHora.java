@@ -6,7 +6,7 @@ public class DiaHora {
     private int hora;
 
 
-    public  DiaHora(String Dia, int Hora) {
+    public DiaHora(String Dia, int Hora) {
         this.dia = Dia;
         this.hora = Hora;
     }
@@ -29,6 +29,6 @@ public class DiaHora {
 
     @Override
     public String toString() {
-        return dia+": "+hora+"-"+(hora+1);
+        return dia + ": " + hora + "-" + (hora + 1);
     }
 }

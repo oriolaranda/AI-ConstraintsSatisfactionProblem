@@ -3,34 +3,29 @@ package domini;
 public class Classe {
 
     private Aula aula;
-    private DiaHora hora;
+    private DiaHora Hora;
 
+    public Classe() {
+    }
 
     public Classe(Aula aula, DiaHora hora) {
         this.aula = aula;
-        this.hora = hora;
+        this.Hora = hora;
     }
 
     public Aula getAula() {
         return aula;
     }
 
-    public void setAula(Aula aula) {
+    public void setAula(Aula  aula) {
         this.aula = aula;
     }
 
     public DiaHora getHora() {
-        return hora;
+        return Hora;
     }
 
-    public void setHora(DiaHora hora) {
-        this.hora = hora;
-    }
-
-    @Override
-    public String toString() {
-        return aula.getNom()+"-> "+hora;
-    }
+    public void setHora(DiaHora hora) { this.Hora = hora; }
 
 
 }

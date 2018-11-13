@@ -5,7 +5,7 @@ import domini.TipusAula;
 
 import java.util.Scanner;
 
-import static domini.TipusAula.*;
+import static domini.TipusAula.stoTipusAula;
 
 public class driverAula {
     private static void menu() {
@@ -48,7 +48,7 @@ public class driverAula {
         menu();
         int opcio = sc.nextInt();
 
-        while(opcio!=8){
+        while (opcio != 8) {
             try {
                 switch (opcio) {
                     case 1:
@@ -99,7 +99,7 @@ public class driverAula {
                         break;
                 }
 
-            } catch (NullPointerException n){
+            } catch (NullPointerException n) {
                 System.out.println("Abans de provar aquesta opcio utilitza la creadora");
             } catch (Exception e) {
                 e.printStackTrace();
