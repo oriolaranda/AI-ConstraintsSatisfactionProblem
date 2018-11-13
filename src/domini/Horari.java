@@ -2,6 +2,7 @@ package domini;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.SortedMap;
 import java.util.Vector;
 
 public class Horari {
@@ -11,8 +12,8 @@ public class Horari {
     private ArrayList<Sessio> Sessions;
     private Vector<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
-    private Map<Sessio, Vector<Classe>> prev;
-    private Map<Classe, Sessio> nou;
+    private SortedMap<Sessio, Vector<Classe>> prev;
+    private SortedMap<Classe, Sessio> nou;
     private boolean Ple;
 
     //Constructors
@@ -89,10 +90,11 @@ public class Horari {
         for(int i = 0; i < Restriccions.size(); ++i) {
             Restriccions.get(i).precondicions();
         }
-        Algorisme A = new Algorisme(prev, Restriccions);
         for (int i = 0; i < Sessions.size(); ++i) {
             prev.put(Sessions.get(i),Classes);
         }
+
+        Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
     }
