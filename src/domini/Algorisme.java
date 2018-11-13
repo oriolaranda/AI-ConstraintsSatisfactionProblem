@@ -100,6 +100,7 @@ public class Algorisme {
     }
 
     private void afegir_possibilitat(Classe c) {
+
     }
 
     private boolean comprovarRestriccions() {
