@@ -6,6 +6,9 @@ public class Sessio {
     private String nomAssig;
     private int numG;
     private int numS;
+    private String id;
+    private int num;
+    private Grup grup;
 
 
     public Sessio(String nomAssig, int numG,int numS) {
@@ -34,19 +37,41 @@ public class Sessio {
         return numS;
     }
 
+    public String getFaseSessio(){
+        return grup.getFaseGrup();
+    }
+
+    public String getNomAssignaturaSessio(){
+        return grup.getAssig();
+    }
+
+    public int getNumGrupSessio(){
+        return grup.getNum();
+    }
 
     /*SETTERS */
 
-    public void setId(String nomAssig) {
-        this.nomAssig = nomAssig;
+
+    public String getId() {
+        return id;
     }
 
+    public int getNum() {
+        return num;
+    }
     public void setNumG(int num) {
         this.numG = numG;
     }
 
     public void setNumS(int numS) {
         this.numS = numS;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
     @Override
     public String toString() {
