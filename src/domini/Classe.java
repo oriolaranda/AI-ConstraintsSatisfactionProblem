@@ -2,42 +2,40 @@ package domini;
 
 public class Classe {
 
-    private Aula aula;
-    private DiaHora Hora;
+
+    private String nomAula;
+    private String dia;
+    private int hour;
 
     public Classe() {
     }
 
-    public Classe(Aula aula, DiaHora hora) {
+    public Classe(String nomAula, String dia, int hour) {
+        this.nomAula = nomAula;
+        this.dia = dia;
+        this.hour = hour;
+       // aula.setNom(nomAula);
+        //Hora.setDia(dia);
+        //Hora.setHora(hour);
+    }
+
+  /*  public Classe(Aula aula, DiaHora hora) {
         this.aula = aula;
         this.Hora = hora;
-    }
+        nomAula = aula.getNom();
+        dia = hora.getDia();
+        hour = hora.getHora();
+    }*/
+    public String getNomAulaClasse() { return nomAula; }
 
-    public Aula getAula() {
-        return aula;
-    }
+    public void setNomAulaClasse(String nomAula) { this.nomAula = nomAula; }
 
-    public void setAula(Aula  aula) {
-        this.aula = aula;
-    }
+    public String getDiaClasse() { return dia; }
 
-    public DiaHora getHora() {
-        return Hora;
-    }
+    public void setDiaClasse(String dia) { this.dia = dia; }
 
-    public void setHora(DiaHora hora) { this.Hora = hora; }
+    public int getHoraClasse() { return hour; }
 
-    public String getDiaClasse(){
-        return Hora.getDia();
-    }
-
-    public int getHoraClasse(){
-        return Hora.getHora();
-    }
-
-    public String getNomAulaClasse(){
-        return aula.getNom();
-    }
-
+    public void setHoraClasse(int hour) { this.hour = hour; }
 
 }

@@ -9,6 +9,8 @@ public class Horari {
 
     //Atributs
     private String nom;
+    private int HoraIni;
+    private int HoraFi;
     private ArrayList<Sessio> Sessions;
     private Vector<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
@@ -21,13 +23,14 @@ public class Horari {
     /**
      * Constructor for Horari
      */
-    public Horari(String nom, ArrayList<Sessio> Sessions, Vector<Classe> Classes, ArrayList<Restriccio> Restriccions) {
+    public Horari(String nom, int HoraIni, int HoraFi, ArrayList<Sessio> Sessions, Vector<Classe> Classes, ArrayList<Restriccio> Restriccions) {
         this.nom = nom;
+        this.HoraIni = HoraIni;
+        this.HoraFi = HoraFi;
         this.Sessions = Sessions;
         this.Classes = Classes;
         this.Restriccions = Restriccions;
         this.Ple = false;
-
     }
 
 
@@ -35,6 +38,10 @@ public class Horari {
     public String getNom() {
         return nom;
     }
+
+    public int getHoraIni() { return HoraIni; }
+
+    public int getHoraFi() { return HoraFi; }
 
     public ArrayList<Sessio> getSessions() {
         return Sessions;
@@ -66,6 +73,10 @@ public class Horari {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public void setHoraIni(int horaIni) { HoraIni = horaIni; }
+
+    public void setHoraFi(int horaFi) { HoraFi = horaFi; }
 
     public void setSessions(ArrayList<Sessio> Sessions) {
         this.Sessions = Sessions;
@@ -99,4 +110,6 @@ public class Horari {
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
     }
+
+
 }
