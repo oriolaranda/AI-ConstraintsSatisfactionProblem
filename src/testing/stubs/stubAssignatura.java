@@ -13,7 +13,7 @@ public class stubAssignatura extends Assignatura {
     }
 
     @Override
-    public String getId() {
+    public String getNom() {
         return "PRO1";
     }
 

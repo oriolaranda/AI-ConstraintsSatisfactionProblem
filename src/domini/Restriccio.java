@@ -18,22 +18,27 @@ public abstract class Restriccio {
 
     //Getters
 
-
     public Horari getHorari() {
         return horari;
     }
 
-    public Vector<Classe> getClassesHorari() {
+    public Map<Sessio, Vector<Classe>> getMap(){
+        return horari.getPrev();
+    }
+
+    public abstract void precondicions();
+
+    public abstract Boolean esCompleix(Map<Classe, Sessio> nou,Classe actualc, Sessio actuals);
+
+    /*public Vector<Classe> getClassesHorari() {
         return horari.getClasses();
     }
 
     public ArrayList<Sessio> getSessionsHorari() {
         return horari.getSessions();
     }
+    */
 
-    public Map<Sessio, Vector<Classe>> getMap(){
-        return horari.getPrev();
-    }
     //Setters
 
     /*public void setHorari(String horari) {this.horari=horari;}
@@ -44,7 +49,5 @@ public abstract class Restriccio {
             //else throw new HorariJaExisteix();
         }
     } */
-    public abstract void precondicions();
 
-    public abstract Boolean esCompleix(Map<Classe, Sessio> nou, Sessio actual);
 }

@@ -3,6 +3,7 @@ package domini;
 public class Sessio {
     private String id;
     private int num;
+    private Grup grup;
 
 
     public Sessio(String id, int num) {
@@ -20,6 +21,17 @@ public class Sessio {
         return num;
     }
 
+    public String getFaseSessio(){
+        return grup.getFaseGrup();
+    }
+
+    public String getNomAssignaturaSessio(){
+        return grup.getAssig();
+    }
+
+    public int getNumGrupSessio(){
+        return grup.getNum();
+    }
 
     /*SETTERS */
 

@@ -50,7 +50,7 @@ public class RestriccioClasse extends Restriccio {
             Vector<Classe> c = m.get(s);
             Boolean stop = false;
             for (int i = 0; i < c.size() && !stop; ++i) {
-                if (c.get(i).getHora().getDia().equals(dia) && (c.get(i).getHora().getHora() == hora) && c.get(i).getAula().getNom().equals(nomAula)) {
+                if (c.get(i).getDiaClasse().equals(dia) && (c.get(i).getHoraClasse() == hora) && c.get(i).getNomAulaClasse().equals(nomAula)) {
                     c.removeElementAt(i);
                     stop = true;
                 }
@@ -59,28 +59,11 @@ public class RestriccioClasse extends Restriccio {
     }
 
     @Override
-    public Boolean esCompleix(Map<Classe, Sessio> nou,Sessio actual){
+    public Boolean esCompleix(Map<Classe, Sessio> nou,Classe actualc, Sessio actuals){
         return true;
     }
 
-/*
-    @Override
-    public Boolean esCompleix(Map<Classe, Sessio> nou) { return true;}
 
-        Iterator<Classe> it = nou.keySet().iterator();
-        Classe c;
-        while (it.hasNext()) {
-            c = it.next();
-            String a = c.getAula().getNom();
-            String d = c.getHora().getDia();
-            Integer h = c.getHora().getHora();
-
-            if (a.equals(nomAula) && d.equals(dia) && h.equals(hora)) return false;
-        }
-        return true;
-
-    }
-    */
     @Override
     public String toString() {
         return nomAula+": "+dia+"de " +hora+":00 a" +(hora+1)+ ":00";

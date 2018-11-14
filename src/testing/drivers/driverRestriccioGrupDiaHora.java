@@ -48,65 +48,78 @@ public class driverRestriccioGrupDiaHora {
         RestriccioGrupDiaHora rgdh = null;
         String nomAssignatura = null;
         int numGrup = -1;
-        String
+        String dia = null;
         int hora = -1;
 
         Scanner sc = new Scanner(System.in);
         menu();
         int opcio = sc.nextInt();
 
-        while (opcio != 9) {
+        while (opcio != 11) {
             try {
                 switch (opcio) {
                     case 1:
-                        nomAula = sc.next();
+                        nomAssignatura = sc.next();
+                        numGrup =sc.nextInt();
                         dia = sc.next();
                         hora = sc.nextInt();
-                        rc = new RestriccioClasse(nomAula, dia, hora);
+                        rgdh = new RestriccioGrupDiaHora(nomAssignatura, numGrup, dia, hora);
 
-                        System.out.println("RestriccioClasse esperada: " + nomAula + ": " + dia + " de " + hora + ":00 a" + (hora + 1) + ":00");
-                        System.out.println("RestriccioClasse creada: " + rc.toString());
+                        System.out.println("RestriccioGrupDiaHora esperada: "+nomAssignatura+"-"+numGrup+" "+dia+"de "+hora+":00 a" + (hora + 1) + ":00");
+                        System.out.println("RestriccioGrupDiaHora creada: " + rgdh.toString());
                         break;
                     case 2:
-                        if (rc == null) throw new NullPointerException();
-                        System.out.println("Nom Aula classe esperat: " + nomAula);
-                        System.out.println("Nom Aula classe obtingut: " + rc.getNomAula());
+                        if (rgdh == null) throw new NullPointerException();
+                        System.out.println("NomAssignatura RestriccioGrupDiaHora esperat: " + nomAssignatura);
+                        System.out.println("NomAssignatura RestriccioGrupDiaHora obtingut: " + rgdh.getNomAssignatura());
                         break;
                     case 3:
-                        if (rc == null) throw new NullPointerException();
-                        System.out.println("Dia classe esperat: " + dia);
-                        System.out.println("Dia classe obtingut: " + rc.getDia());
+                        if (rgdh == null) throw new NullPointerException();
+                        System.out.println("NumGrup RestriccioGrupDiaHora esperat: " + numGrup);
+                        System.out.println("NumGrup RestriccioGrupDiaHora obtingut: " + rgdh.getNumGrup());
                         break;
                     case 4:
-                        if (rc == null) throw new NullPointerException();
-                        System.out.println("Hora classe esperada: " + hora);
-                        System.out.println("Hora classe obtinguda: " + rc.getHora());
+                        if (rgdh == null) throw new NullPointerException();
+                        System.out.println("Dia RestriccioGrupDiaHora esperada: " + dia);
+                        System.out.println("Dia RestriccioGrupDiaHora obtinguda: " + rgdh.getDia());
                         break;
                     case 5:
-                        nomAula = sc.next();
-                        if (rc == null) throw new NullPointerException();
-                        rc.setNomAula(nomAula);
-                        if (nomAula.equals(rc.getNomAula()))
-                            System.out.println("Nom Aula classe assignat correctament");
-                        else System.out.println("Nom Aula classe NO assignat correctament");
+                        if (rgdh == null) throw new NullPointerException();
+                        System.out.println("Hora RestriccioGrupDiaHora esperada: " + hora);
+                        System.out.println("Hora RestriccioGrupDiaHora obtinguda: " + rgdh.getHora());
                         break;
                     case 6:
-                        dia = sc.next();
-                        if (rc == null) throw new NullPointerException();
-                        rc.setDia(dia);
-                        if (dia.equals(rc.getDia())) System.out.println("Dia classe assignat correctament");
-                        else System.out.println("Dia classe NO assignat correctament");
+                        nomAssignatura = sc.next();
+                        if (rgdh == null) throw new NullPointerException();
+                        rgdh.setNomAssignatura(nomAssignatura);
+                        if (nomAssignatura.equals(rgdh.getNomAssignatura()))
+                            System.out.println("NomAssignatura RestriccioGrupDiaHora assignat correctament");
+                        else System.out.println("NomAssignatura RestriccioGrupDiaHora NO assignat correctament");
                         break;
                     case 7:
-                        hora = sc.nextInt();
-                        if (rc == null) throw new NullPointerException();
-                        rc.setHora(hora);
-                        if (hora == (rc.getHora())) System.out.println("Hora classe assignada correctament");
-                        else System.out.println("Hora classe NO assignada correctament");
+                        numGrup = sc.nextInt();
+                        if (rgdh == null) throw new NullPointerException();
+                        rgdh.setNumGrup(numGrup);
+                        if (numGrup==rgdh.getNumGrup()) System.out.println("NumGrup RestriccioGrupDiaHora assignat correctament");
+                        else System.out.println("NumGrup RestriccioGrupDiaHora NO assignat correctament");
                         break;
                     case 8:
-                        if (rc == null) throw new NullPointerException();
-                        rc.precondicions();
+                        dia = sc.next();
+                        if (rgdh == null) throw new NullPointerException();
+                        rgdh.setDia(dia);
+                        if (dia.equals(rgdh.getDia())) System.out.println("Dia RestriccioGrupDiaHora assignada correctament");
+                        else System.out.println("Dia RestriccioGrupDiaHora NO assignada correctament");
+                        break;
+                    case 9:
+                        hora = sc.nextInt();
+                        if (rgdh == null) throw new NullPointerException();
+                        rgdh.setHora(hora);
+                        if (hora==rgdh.getHora()) System.out.println("Hora RestriccioGrupDiaHora assignat correctament");
+                        else System.out.println("Hora RestriccioGrupDiaHora NO assignat correctament");
+                        break;
+                    case 10:
+                        if (rgdh == null) throw new NullPointerException();
+                        rgdh.precondicions();
                         System.out.println("Ja s'han eliminat els dominis de les variables que satisfeien la restriccio");
                 }
 

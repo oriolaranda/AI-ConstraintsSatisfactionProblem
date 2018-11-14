@@ -11,6 +11,7 @@ public class Grup {
     private int numSessions;
     private int duracio;
     private Vector<Sessio> sessions;
+    private Assignatura assignatura;
 
     //Constructora
     public Grup(String nomAssig, int num, TipusAula tipus, int capacitat, int duracio) {
@@ -50,6 +51,10 @@ public class Grup {
 
     public int getNumSessions() {
         return numSessions;
+    }
+
+    public String getFaseGrup(){
+        return assignatura.getFase();
     }
 
     /**

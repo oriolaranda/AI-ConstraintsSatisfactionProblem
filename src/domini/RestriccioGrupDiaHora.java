@@ -13,7 +13,7 @@ public class RestriccioGrupDiaHora extends Restriccio{
 
 
     //Constructora
-    RestriccioGrupDiaHora(String nomAssignatura, int numGrup, String dia, int hora){
+    public RestriccioGrupDiaHora(String nomAssignatura, int numGrup, String dia, int hora){
         this.nomAssignatura=nomAssignatura;
         this.numGrup=numGrup;
         this.dia=dia;
@@ -23,7 +23,7 @@ public class RestriccioGrupDiaHora extends Restriccio{
     //Getters
     public String getNomAssignatura(){ return nomAssignatura;}
 
-    public int getNum() {
+    public int getNumGrup() {
         return numGrup;
     }
 
@@ -56,18 +56,23 @@ public class RestriccioGrupDiaHora extends Restriccio{
     public void precondicions(){
         Map<Sessio, Vector<Classe>> m = super.getMap();
         for (Sessio s : m.keySet()) {
-            if(s.getNomAssignatura().equals(nomAssignatura) && s.getNumGrup().equals(numGrup)) {
+            if(s.getNomAssignaturaSessio().equals(nomAssignatura) && s.getNumGrupSessio()==numGrup) {
                 Vector<Classe> c = m.get(s);
                 for (int i = 0; i < c.size(); ++i) {
-                    if(c.get(i).getHora().getDia().equals(dia) && c.get(i).getHora().getHora()==hora) c.remove(i);
+                    if(c.get(i).getDiaClasse().equals(dia) && c.get(i).getHoraClasse()==hora) c.remove(i);
                 }
             }
         }
-
     }
+
     @Override
-    public Boolean esCompleix(Map<Classe,Sessio> nou, Sessio actual){
+    public Boolean esCompleix(Map<Classe,Sessio> nou, Classe actualc, Sessio actuals){
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return nomAssignatura+"-"+numGrup+" "+dia+"de "+hora+":00 a" + (hora + 1) + ":00";
     }
 
 

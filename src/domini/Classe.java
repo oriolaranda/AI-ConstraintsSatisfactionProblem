@@ -27,5 +27,17 @@ public class Classe {
 
     public void setHora(DiaHora hora) { this.Hora = hora; }
 
+    public String getDiaClasse(){
+        return Hora.getDia();
+    }
+
+    public int getHoraClasse(){
+        return Hora.getHora();
+    }
+
+    public String getNomAulaClasse(){
+        return aula.getNom();
+    }
+
 
 }

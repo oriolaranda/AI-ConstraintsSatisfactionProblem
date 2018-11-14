@@ -60,6 +60,7 @@ public class Horari {
         return prev;
     }
 
+
     //Setters
 
     public void setNom(String nom) {
