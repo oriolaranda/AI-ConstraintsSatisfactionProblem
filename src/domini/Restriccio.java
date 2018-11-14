@@ -1,6 +1,5 @@
 package domini;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Vector;
 
@@ -10,6 +9,7 @@ public abstract class Restriccio {
 
     //Constructoras
     public Restriccio() {
+        horari=null;
     }
 
     public void setHorari(Horari horari) {

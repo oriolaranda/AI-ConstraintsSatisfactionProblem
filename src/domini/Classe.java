@@ -42,6 +42,9 @@ public class Classe {
     public TipusAula getTipusClasse(){
         return aula.getTipus();
     }
+    public int getCapacitatClasse() {
+        return aula.getCapacitat();
+    }
 
 
 }

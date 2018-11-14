@@ -36,6 +36,10 @@ public class Sessio {
     public TipusAula getTipusSessio(){
         return grup.getTipus();
     }
+
+    public int getCapacitatSessio(){
+        return grup.getCapacitat();
+    }
     /*SETTERS */
 
     public void setId(String id) {
