@@ -74,7 +74,7 @@ public class Algorisme {
                         System.out.println(s1+" "+prev.get(s1));
                     }
                     //tornem a posar tots els valors que tenia la variable
-                    prev.put(s.get(i), prev.get(s.get(i))); //
+                    prev.put(s.get(i), prev.get(s.get(i)));
                     System.out.println(s.get(i)+" "+prev.get(s.get(i)));
                 }
 
