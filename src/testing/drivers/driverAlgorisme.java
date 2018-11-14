@@ -15,11 +15,11 @@ public class driverAlgorisme {
         String[] as = {"A5001", "A5002", "A5003", "A5004", "A5005", "A5006", "A5007", "A5008", "A5009", "A5010", "A5011", "A5012", "A5013", "A5014"};
         Vector<Classe> v = new Vector<Classe>();
         for (String a : as) {
-           v.add(new Classe(a, "Dilluns", 8));
-            v.add(new Classe(a,"Dimarts", 8));
-            v.add(new Classe(a, "Dimecres", 8));
-            v.add(new Classe(a, "Dijous", 8));
-            v.add(new Classe(a, "Divendres", 8));
+           v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Dilluns", 8)));
+            v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Dimarts", 8)));
+            v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Dimecres", 8)));
+            v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Dijous", 8)));
+            v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Divendres", 8)));
         }
         for (String s : vs) {
             m.put(new Sessio(s, 0), v);
@@ -34,6 +34,6 @@ public class driverAlgorisme {
         }
         System.out.println("Num variables: " + m.keySet().size() + " Num valors: " + v.size());
         a.getHorari().forEach((x, y) -> System.out.println(x + "->" + y));
-        a.getHorari();
+        //a.getHorari();
     }
 }
