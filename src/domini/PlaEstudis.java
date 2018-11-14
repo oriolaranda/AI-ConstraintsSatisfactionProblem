@@ -1,17 +1,19 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class PlaEstudis {
     private String nom;
-    private int periodeLectiu;
+    private int[] periodeLectiu;
     private ArrayList<Assignatura> assignatures;
     private Horari horari;
 
     //Constructora
-    public PlaEstudis(String nom) {
+    public PlaEstudis(String nom, int[] periodeLectiu) {
         this.nom = nom;
-        periodeLectiu = 0;
+        this.periodeLectiu = (int[]) periodeLectiu;
         horari = null;
         assignatures = new ArrayList<Assignatura>();
     }
@@ -33,6 +35,10 @@ public class PlaEstudis {
         return horari;
     }
 
+    public int[] getPeriodeLectiu() {
+        return periodeLectiu;
+    }
+
     /**
      * SETTERS
      **/
@@ -42,19 +48,28 @@ public class PlaEstudis {
         this.nom = nom;
     }
 
-    public void addAssignatura(Assignatura a) {
-        assignatures.add(a);
+    public void setPeriodeLectiu(int hi, int hf) {
+        this.periodeLectiu = new int[]{hi,hf};
     }
 
+    public void addAssignatura(Assignatura a) {
+        assignatures.add(a);
+        Collections.sort(assignatures);
+    }
+
+    public void addAssignatures(ArrayList<Assignatura> assignatures) {
+        assignatures.addAll(assignatures);
+    }
     public void removeAssignatura(Assignatura a) {
         assignatures.remove(a);
     }
 
-    public void modAssignatura(Assignatura a) {
-
+    public void addHorari(Horari horari) {
+        this.horari = horari;
     }
 
-    public void showAssignatures() {
-
+    @Override
+    public String toString() {
+        return nom + " periode lectiu "+periodeLectiu[0] +"h-"+periodeLectiu[1]+"h";
     }
 }
