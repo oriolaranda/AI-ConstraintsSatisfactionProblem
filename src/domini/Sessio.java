@@ -33,6 +33,9 @@ public class Sessio {
         return grup.getNum();
     }
 
+    public TipusAula getTipusSessio(){
+        return grup.getTipus();
+    }
     /*SETTERS */
 
     public void setId(String id) {

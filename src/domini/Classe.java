@@ -39,5 +39,9 @@ public class Classe {
         return aula.getNom();
     }
 
+    public TipusAula getTipusClasse(){
+        return aula.getTipus();
+    }
+
 
 }

@@ -30,24 +30,4 @@ public abstract class Restriccio {
 
     public abstract Boolean esCompleix(Map<Classe, Sessio> nou,Classe actualc, Sessio actuals);
 
-    /*public Vector<Classe> getClassesHorari() {
-        return horari.getClasses();
-    }
-
-    public ArrayList<Sessio> getSessionsHorari() {
-        return horari.getSessions();
-    }
-    */
-
-    //Setters
-
-    /*public void setHorari(String horari) {this.horari=horari;}
-
-     public void afegirHorari(Horari h) throws HorariJaExisteix {
-        for(int i =0;i<horari.size();++i){
-            if(horari.get(i).equals(h)) horari.add(h);
-            //else throw new HorariJaExisteix();
-        }
-    } */
-
 }
