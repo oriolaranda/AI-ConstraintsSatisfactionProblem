@@ -12,12 +12,17 @@ public class stubDiaHora extends DiaHora {
 
     @Override
     public String getDia() {
-        return super.getDia();
+        return "Dimarts";
     }
 
     @Override
     public int getHora() {
-        return super.getHora();
+        return 11;
+    }
+
+    @Override
+    public String toString() {
+        return "Dimarts a les 11";
     }
 
 }

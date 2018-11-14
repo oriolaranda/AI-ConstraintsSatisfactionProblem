@@ -9,10 +9,10 @@ public class RestriccioClasse extends Restriccio {
     private int hora;
 
     //Constructoras
-    public RestriccioClasse(String aula, String dia, int hora) {
-        nomAula = aula;
-        this.nomAula = aula;
+    public RestriccioClasse(String nomAula, String dia, int hora) {
+        this.nomAula = nomAula;
         this.dia = dia;
+        this.hora = hora;
     }
 
     //Getters
@@ -30,8 +30,8 @@ public class RestriccioClasse extends Restriccio {
 
 
     //Setters
-    public void setNomAula(String aula) {
-        nomAula = aula;
+    public void setNomAula(String nomAula) {
+        this.nomAula = nomAula;
     }
 
     public void setDia(String dia) {
@@ -58,6 +58,11 @@ public class RestriccioClasse extends Restriccio {
         }
     }
 
+    @Override
+    public Boolean esCompleix(Map<Classe, Sessio> nou,Sessio actual){
+        return true;
+    }
+
 /*
     @Override
     public Boolean esCompleix(Map<Classe, Sessio> nou) { return true;}
@@ -76,6 +81,10 @@ public class RestriccioClasse extends Restriccio {
 
     }
     */
+    @Override
+    public String toString() {
+        return nomAula+": "+dia+"de " +hora+":00 a" +(hora+1)+ ":00";
+    }
 
 
 }

@@ -10,12 +10,12 @@ public class driverAssignatura {
         System.out.println("Driver Assignatura:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 NomPlaEstudis<String> Id<String> Fase<String>");
+        System.out.println("\t\tformat: 1 NomPlaEstudis<String> Nom<String> Fase<String>");
 
         System.out.println("\t2) Getter nomPlaEstudis assignatura:");
         System.out.println("\t\tformat: 2");
 
-        System.out.println("\t3) Getter id assignatura:");
+        System.out.println("\t3) Getter nom assignatura:");
         System.out.println("\t\tformat: 3");
 
         System.out.println("\t4) Getter fase assignatura:");
@@ -25,8 +25,8 @@ public class driverAssignatura {
         System.out.println("\t5) Setter nomPlaEstudis PlaEstudis:");
         System.out.println("\t\tformat: 5 nomPlaEstudis<String>");
 
-        System.out.println("\t6) Setter id assignatura:");
-        System.out.println("\t\tformat: 6 id<int>");
+        System.out.println("\t6) Setter nom assignatura:");
+        System.out.println("\t\tformat: 6 nom<String>");
 
         System.out.println("\t7) Setter fase assignatura:");
         System.out.println("\t\tformat: 7 fase<String>");
@@ -40,7 +40,7 @@ public class driverAssignatura {
     public static void main(String[] args) {
         Assignatura a = null;
         String nomPlaEstudis = null;
-        String id = null;
+        String nom = null;
         String fase = null;
 
         Scanner sc = new Scanner(System.in);
@@ -52,11 +52,11 @@ public class driverAssignatura {
                 switch (opcio) {
                     case 1:
                         nomPlaEstudis = sc.next();
-                        id = sc.next();
+                        nom = sc.next();
                         fase = sc.next();
-                        a = new Assignatura(nomPlaEstudis,id,fase);
+                        a = new Assignatura(nomPlaEstudis,nom,fase);
 
-                        System.out.println("Assignatura esperada: " + nomPlaEstudis+": "+id+" ("+fase+")");
+                        System.out.println("Assignatura esperada: " + nomPlaEstudis+": "+nom+" ("+fase+")");
                         System.out.println("Assignatura creada: " + a.toString());
                         break;
                     case 2:
@@ -66,8 +66,8 @@ public class driverAssignatura {
                         break;
                     case 3:
                         if (a == null) throw new NullPointerException();
-                        System.out.println("Id assignatura esperat: " + id);
-                        System.out.println("Id assignatura obtingut: " + a.getId());
+                        System.out.println("Nom assignatura esperat: " + nom);
+                        System.out.println("Nom assignatura obtingut: " + a.getNom());
                         break;
                     case 4:
                         if (a == null) throw new NullPointerException();
@@ -82,11 +82,11 @@ public class driverAssignatura {
                         else System.out.println("Nom plaEstudis NO assignat correctament");
                         break;
                     case 6:
-                        id = sc.next();
+                        nom = sc.next();
                         if (a == null) throw new NullPointerException();
-                        a.setId(id);
-                        if (id.equals(a.getId())) System.out.println("Id assignatura assignat correctament");
-                        else System.out.println("Id assignatura NO assignat correctament");
+                        a.setNom(nom);
+                        if (nom.equals(a.getNom())) System.out.println("Nom assignatura assignat correctament");
+                        else System.out.println("Nom assignatura NO assignat correctament");
                         break;
                     case 7:
                         fase = sc.next();

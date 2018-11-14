@@ -5,14 +5,23 @@ import java.util.Map;
 import java.util.Vector;
 
 public abstract class Restriccio {
-    //private String id;
+
     private Horari horari;
 
     //Constructoras
     public Restriccio() {
     }
 
+    public void setHorari(Horari horari) {
+        this.horari = horari;
+    }
+
     //Getters
+
+
+    public Horari getHorari() {
+        return horari;
+    }
 
     public Vector<Classe> getClassesHorari() {
         return horari.getClasses();
@@ -37,5 +46,5 @@ public abstract class Restriccio {
     } */
     public abstract void precondicions();
 
-    /*public abstract Boolean esCompleix(Map<Classe, Sessio> nou);*/
+    public abstract Boolean esCompleix(Map<Classe, Sessio> nou, Sessio actual);
 }

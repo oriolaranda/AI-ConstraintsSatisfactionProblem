@@ -51,17 +51,17 @@ public class Algorisme {
         if (i < s.size()) {
 
             for (Classe c : prev.get(s.get(i))) {
-                System.out.println("***"+s.get(i));
+                //System.out.println("***"+s.get(i));
 
                 //eliminem el valor de les altres variables
                 for (Sessio s1 : split(i + 1)) {
                     prev.put(s1, supr(prev.get(s1), c));
-                    System.out.println(s1+" "+prev.get(s1));
+                    //System.out.println(s1+" "+prev.get(s1));
                 }
                 //eliminem tots els valors menys el bo a la variable
                 prev.put(s.get(i), eliminar(prev.get(s.get(i)), c));
-                System.out.println(s.get(i)+" "+ prev.get(s.get(i)));
-                boolean correcte = comprovarRestriccions();
+                //System.out.println(s.get(i)+" "+ prev.get(s.get(i)));
+                boolean correcte = comprovarRestriccions(s.get(i));
                 if (correcte) {
                     boolean seg = backtraking(i + 1);
                     if (seg) return seg;
@@ -71,11 +71,10 @@ public class Algorisme {
                     //tornem a posar el valor a la resta de variables
                     for (Sessio s1 : split(i + 1)) {
                         prev.put(s1, add(prev.get(s1), c));
-                        System.out.println(s1+" "+prev.get(s1));
+                        //System.out.println(s1+" "+prev.get(s1));
                     }
                     //tornem a posar tots els valors que tenia la variable
-                    prev.put(s.get(i), prev.get(s.get(i)));
-                    System.out.println(s.get(i)+" "+prev.get(s.get(i)));
+                    prev.put(s.get(i), prev.get(s.get(i))); //
                 }
 
             }
@@ -104,11 +103,14 @@ public class Algorisme {
 
     }
 
-    private boolean comprovarRestriccions() {
+    private boolean comprovarRestriccions(Sessio sessio) {
         for (Sessio s : prev.keySet()) {
             if (prev.get(s).isEmpty()) {
                 System.out.println("No queden valors disponibles per a la variable " + s);
                 return false;
+            }
+            for(Restriccio r: restriccions){
+                Boolean b= r.esCompleix(nou, sessio);
             }
         }
         return true;

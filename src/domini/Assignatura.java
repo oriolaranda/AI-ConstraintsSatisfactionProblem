@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Assignatura {
     private String nomPlaEstudis;
-    private String id;
+    private String nom;
     private String fase;
     private ArrayList<Grup> grup;
 
@@ -12,14 +12,14 @@ public class Assignatura {
     //Constructora
     public Assignatura() {
         nomPlaEstudis = null;
-        id = null;
+        nom = null;
         fase = null;
         grup = new ArrayList<Grup>();
     }
 
-    public Assignatura(String nomPlaEstudis, String id, String fase) {
+    public Assignatura(String nomPlaEstudis, String nom, String fase) {
         this.nomPlaEstudis = nomPlaEstudis;
-        this.id = id;
+        this.nom = nom;
         this.fase = fase;
         this.grup = new ArrayList<Grup>();
     }
@@ -29,8 +29,8 @@ public class Assignatura {
         return nomPlaEstudis;
     }
 
-    public String getId() {
-        return id;
+    public String getNom() {
+        return nom;
     }
 
     public String getFase() {
@@ -38,19 +38,19 @@ public class Assignatura {
     }
 
     //Setters
-    public void setNomPlaEstudis(String nom) {
-        nomPlaEstudis = nom;
+    public void setNomPlaEstudis(String pla) {
+        nomPlaEstudis = pla;
     }
 
-    public void setId(String i) {
-        id = i;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setFase(String f) {
         fase = f;
     }
 
-    private Boolean existeixGrup(int num) {
+    /*private Boolean existeixGrup(int num) {
         for (int i = 0; i < grup.size(); ++i) if (grup.get(i).getNum() == num) return true;
         return false;
     }
@@ -62,9 +62,10 @@ public class Assignatura {
         }
         //else tractar excepcio
     }
+    */
 
     @Override
     public String toString() {
-        return nomPlaEstudis + ": " + id + " (" + fase + ")";
+        return nomPlaEstudis + ": " + nom + " (" + fase + ")";
     }
 }

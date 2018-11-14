@@ -12,8 +12,8 @@ public class Horari {
     private ArrayList<Sessio> Sessions;
     private Vector<Classe> Classes;
     private ArrayList<Restriccio> Restriccions;
-    private SortedMap<Sessio, Vector<Classe>> prev;
-    private SortedMap<Classe, Sessio> nou;
+    private Map<Sessio, Vector<Classe>> prev;
+    private Map<Classe, Sessio> nou;
     private boolean Ple;
 
     //Constructors
