@@ -2,24 +2,22 @@ package domini;
 
 import java.util.Map;
 
-public class RestriccioFase extends Restriccio {
-
+public class RestriccioCorrequisit extends Restriccio{
 
     //Constructora
-    public RestriccioFase(){
+    public RestriccioCorrequisit(){
 
     }
-
 
     @Override
     public Boolean esCompleix(Map<Classe, Sessio> nou, Classe actualc, Sessio actuals) {
         String dca= actualc.getDiaClasse();
         int hca= actualc.getHoraClasse();
-        String fase=actuals.getFaseSessio();
+        String ns = actuals.getNomAssignaturaSessio();
         for(Classe c: nou.keySet()) {
             if(c.getDiaClasse().equals(dca) && c.getHoraClasse()==hca){
                 Sessio s=nou.get(c);
-                if(s.getFaseSessio().equals(fase)) return false;
+                if(s.esCorrequisit(ns)) return false;
             }
         }
         return true;
@@ -29,6 +27,4 @@ public class RestriccioFase extends Restriccio {
     public void precondicions(){
 
     }
-
 }
-

@@ -36,8 +36,8 @@ public class CtrlDominio {
         }
     }
     /*
-    public void crear_assignatura(String nom, String fase) {
-        Assignatura aux = new Assignatura(pla.getNom(),nom,fase);
+    public void crear_assignatura(String nom, String fase,int capGrup, int capSGrup, int matric, TipusAula tipus, int numSes, int dur) {
+        Assignatura aux = new Assignatura(pla.getNom(),nom,fase,capGrup,capSGrup,matric,tipus,numSes,dur);
         pla.addAssignatura(aux);
         for(int i = 0; i < aux.getGrups().size();++i) {
             Grup g = aux.getGrups.get(i);
