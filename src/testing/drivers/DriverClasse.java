@@ -13,7 +13,7 @@ import static domini.TipusAula.stoTipusAula;
 import static javafx.scene.input.KeyCode.T;
 
 public class DriverClasse {
-/*
+
     private static void menu() {
         System.out.println("Driver Classe:");
         System.out.println("Opcions:");
@@ -119,5 +119,5 @@ public class DriverClasse {
             }
         }
 
-    }*/
+    }
 }

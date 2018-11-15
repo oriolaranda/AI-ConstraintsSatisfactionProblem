@@ -9,34 +9,38 @@ import java.util.Vector;
 public class CtrlDominio {
 
     private Horari horari;
-    private PlaEstudis pla;
+    private int preparat;           //Si val 4 haura fet els passos previs per poder generar horari.
 
     public CtrlDominio() {
-        pla = new
+        preparat = 0;
     }
 
+    public int getPreparat() { return preparat; }
+
+    public void setPreparat(int p) { this.preparat = p; }
+
     public void inicialitzar_horari(String nom) {
-        int horaI;
-        int horaF;
-        //get hores del pla i tal
-        horari = new Horari(nom,horaI,horaF);
+        horari = new Horari(nom,8,21);
+        ++preparat;
 
     }
 
     public void inicialitzar_sessions(ArrayList<Sessio> S) {
         horari.setSessions(S);
+        ++preparat;
     }
 
     public void inicialitzar_classes(Vector<Classe> C) {
         horari.setClasses(C);
+        ++preparat;
     }
 
     public void inicialitzar_restriccions(ArrayList<Restriccio> R) {
         horari.setRestriccions(R);
+        ++preparat;
     }
 
     public void generacio_horari() {
-        horari.generar_horari();
-        if(horari.Pl)
+        if(preparat == 4) horari.generar_horari();
     }
 }
