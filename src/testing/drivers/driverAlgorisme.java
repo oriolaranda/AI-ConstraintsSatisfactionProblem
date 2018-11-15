@@ -23,7 +23,7 @@ public class driverAlgorisme {
             v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Dijous", 8)));
             v.add(new Classe(new Aula(a, 50, TipusAula.TEORIA), new DiaHora("Divendres", 8)));
         }
-
+        /*
         Vector<Classe> v1 = new Vector<Classe>();
 
         v1.add(new Classe(new Aula("A5001", 50, TipusAula.TEORIA), new DiaHora("Dilluns", 8)));
@@ -32,7 +32,7 @@ public class driverAlgorisme {
         }
 
         m.put(new Sessio("M1-20", 0), v1);
-
+        */
 
         Algorisme a = new Algorisme(m, null);
         for (Sessio s : m.keySet()) {

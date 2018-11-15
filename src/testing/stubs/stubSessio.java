@@ -4,7 +4,19 @@ import domini.Sessio;
 
 public class stubSessio extends Sessio {
 
+
     public stubSessio() {
-        super("M1-10", 0);
+        super("PRO1-20", 0, new stubGrup());
     }
+
+    @Override
+    public int getNum() {
+        return 0;
+    }
+
+    @Override
+    public String getId() {
+        return "PRO1-20";
+    }
+
 }

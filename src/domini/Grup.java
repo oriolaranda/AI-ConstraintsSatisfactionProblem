@@ -25,7 +25,7 @@ public class Grup {
         this.duracio = duracio;
         this.sessions = new ArrayList<>();
         for (int i = 0; i < numSessions; ++i) {
-            sessions.add(new Sessio(nomAssig + "-" + num, i));
+            sessions.add(new Sessio(nomAssig + "-" + num, i,this));
         }
         this.fase = fase;
     }

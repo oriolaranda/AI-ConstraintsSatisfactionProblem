@@ -11,7 +11,7 @@ import java.util.Vector;
 public class stubHorari extends Horari {
 
     public stubHorari() {
-        super("H1", 8, 20, new ArrayList<Sessio>(), new Vector<Classe>(), new ArrayList<Restriccio>() );
+        super("H1", null, null, null);
     }
 
     public String getNom() {
