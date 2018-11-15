@@ -93,6 +93,10 @@ public class Aula {
     }
 */
 
+    @Override
+    public String toString() {
+        return Nom;
+    }
 
     //Metodes
 }

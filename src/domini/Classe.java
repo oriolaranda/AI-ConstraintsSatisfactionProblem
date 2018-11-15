@@ -3,14 +3,14 @@ package domini;
 public class Classe {
 
     private Aula aula;
-    private DiaHora Hora;
+    private DiaHora hora;
 
     public Classe() {
     }
 
     public Classe(Aula aula, DiaHora hora) {
         this.aula = aula;
-        this.Hora = hora;
+        this.hora = hora;
     }
 
     public Aula getAula() {
@@ -22,17 +22,17 @@ public class Classe {
     }
 
     public DiaHora getHora() {
-        return Hora;
+        return hora;
     }
 
-    public void setHora(DiaHora hora) { this.Hora = hora; }
+    public void setHora(DiaHora hora) { this.hora = hora; }
 
     public String getDiaClasse(){
-        return Hora.getDia();
+        return hora.getDia();
     }
 
     public int getHoraClasse(){
-        return Hora.getHora();
+        return hora.getHora();
     }
 
     public String getNomAulaClasse(){
@@ -40,4 +40,8 @@ public class Classe {
     }
 
 
+    @Override
+    public String toString() {
+        return aula+"->"+hora;
+    }
 }
