@@ -74,7 +74,7 @@ public class Assignatura implements Comparable<Assignatura> {
 
     private void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
-            Grup g = new Grup(nom, num, tipus, numSessions, capacitat, duracio, fase);
+            Grup g = new Grup(nom, num, tipus, numSessions, capacitat, duracio, this);
             grups.add(g);
         }
         //else tractar excepcio
