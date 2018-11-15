@@ -17,6 +17,7 @@ public class Assignatura implements Comparable<Assignatura> {
         nom = null;
         fase = null;
         grups = new ArrayList<Grup>();
+        correquisits = new ArrayList<String>();
     }
 
     public Assignatura(String nomPlaEstudis, String nom, String fase) {
@@ -24,6 +25,7 @@ public class Assignatura implements Comparable<Assignatura> {
         this.nom = nom;
         this.fase = fase;
         this.grups = new ArrayList<Grup>();
+        this.correquisits = new ArrayList<String>();
     }
     public Assignatura(String nomPlaEstudis, String nom, String fase, int capacitatGrup, int capacitatSubGrups, int matriculats, TipusAula tipusSubgrup, int numSessions, int duracio) {
         this.nomPlaEstudis = nomPlaEstudis;
@@ -36,7 +38,9 @@ public class Assignatura implements Comparable<Assignatura> {
                 crearGrup((i+1)*10+j,tipusSubgrup,capacitatSubGrups,numSessions,duracio);
             }
         }
+        this.correquisits= new ArrayList<String>();
     }
+
 
     //Getters
     public String getNomPlaEstudis() {
@@ -54,6 +58,7 @@ public class Assignatura implements Comparable<Assignatura> {
     public Boolean esCorrequisit(String nom){
         return correquisits.contains(nom);
     }
+
 
     //Setters
     public void setNomPlaEstudis(String pla) {
@@ -80,6 +85,14 @@ public class Assignatura implements Comparable<Assignatura> {
         }
         //else tractar excepcio
     }
+    public void afegirCorrequisit(String nom){
+        correquisits.add(nom);
+    }
+
+    public void eliminarCorrequisit(String nom){
+        correquisits.remove(nom);
+    }
+
 
     @Override
     public String toString() {
