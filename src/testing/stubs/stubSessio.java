@@ -19,4 +19,8 @@ public class stubSessio extends Sessio {
         return "PRO1-20";
     }
 
+    @Override
+    public String toString() {
+        return "PRO1-20[0]";
+    }
 }

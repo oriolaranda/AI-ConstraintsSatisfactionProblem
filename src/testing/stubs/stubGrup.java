@@ -6,7 +6,7 @@ import domini.TipusAula;
 public class stubGrup extends Grup {
 
     public stubGrup() {
-        super("PRO1", 20, TipusAula.TEORIA, 2, 70, 2, "inicial");
+        super("PRO1", 20, TipusAula.TEORIA, 2, 70, 2, new stubAssignatura());
     }
 
     @Override
@@ -37,6 +37,11 @@ public class stubGrup extends Grup {
     @Override
     public int getDuracio() {
         return 2;
+    }
+
+    @Override
+    public String getFase() {
+        return "inicial";
     }
 
     @Override

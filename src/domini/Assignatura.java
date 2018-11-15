@@ -50,6 +50,10 @@ public class Assignatura implements Comparable<Assignatura> {
         return fase;
     }
 
+    public ArrayList<Grup> getGrups() {
+        return grups;
+    }
+
     //Setters
     public void setNomPlaEstudis(String pla) {
         nomPlaEstudis = pla;
@@ -68,7 +72,7 @@ public class Assignatura implements Comparable<Assignatura> {
         return false;
     }
 
-    public void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
+    private void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
             Grup g = new Grup(nom, num, tipus, numSessions, capacitat, duracio, fase);
             grups.add(g);

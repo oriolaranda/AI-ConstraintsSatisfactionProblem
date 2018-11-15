@@ -7,6 +7,7 @@ public class Sessio {
     private int num;
     private Grup grup;
 
+
     public Sessio(String id, int num, Grup grup) {
         this.num = num;
         this.id = id;

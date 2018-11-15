@@ -11,12 +11,12 @@ public class Grup {
     private int capacitat;
     private int numSessions;
     private int duracio;
-    private String fase;
+    private Assignatura assignatura;
     private ArrayList<Sessio> sessions;
 
 
     //Constructora
-    public Grup(String nomAssig, int num, TipusAula tipus, int numSessions, int capacitat, int duracio, String fase) {
+    public Grup(String nomAssig, int num, TipusAula tipus, int numSessions, int capacitat, int duracio, Assignatura assignatura) {
         this.nomAssig = nomAssig;
         this.num = num;
         this.tipus = tipus;
@@ -27,7 +27,7 @@ public class Grup {
         for (int i = 0; i < numSessions; ++i) {
             sessions.add(new Sessio(nomAssig + "-" + num, i,this));
         }
-        this.fase = fase;
+        this.assignatura = assignatura;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Grup {
         return numSessions;
     }
 
-    public String getFase(){ return fase; }
+    public String getFase(){ return assignatura.getFase(); }
 
     public ArrayList<Sessio> getSessions() {
         return sessions;
@@ -92,9 +92,6 @@ public class Grup {
         this.numSessions = numSessions;
     }
 
-    public void setFase(String fase) {
-        this.fase = fase;
-    }
 
     @Override
     public String toString() {
