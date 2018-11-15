@@ -18,6 +18,13 @@ public class PlaEstudis {
         assignatures = new ArrayList<Assignatura>();
     }
 
+    public PlaEstudis(String nom, int[] periodeLectiu, ArrayList<Assignatura> assignatures) {
+        this.nom = nom;
+        this.periodeLectiu = periodeLectiu;
+        horari = null;
+        this.assignatures = (ArrayList<Assignatura>) assignatures.clone();
+    }
+
     /**
      * GETTERS
      **/

@@ -7,7 +7,7 @@ public class Assignatura implements Comparable<Assignatura> {
     private String nomPlaEstudis;
     private String nom;
     private String fase;
-    private ArrayList<Grup> grup;
+    private ArrayList<Grup> grups;
 
 
     //Constructora
@@ -15,14 +15,14 @@ public class Assignatura implements Comparable<Assignatura> {
         nomPlaEstudis = null;
         nom = null;
         fase = null;
-        grup = new ArrayList<Grup>();
+        grups = new ArrayList<Grup>();
     }
 
     public Assignatura(String nomPlaEstudis, String nom, String fase) {
         this.nomPlaEstudis = nomPlaEstudis;
         this.nom = nom;
         this.fase = fase;
-        this.grup = new ArrayList<Grup>();
+        this.grups = new ArrayList<Grup>();
     }
 
     //Getters
@@ -52,14 +52,14 @@ public class Assignatura implements Comparable<Assignatura> {
     }
 
     private Boolean existeixGrup(int num) {
-        for (int i = 0; i < grup.size(); ++i) if (grup.get(i).getNum() == num) return true;
+        for (int i = 0; i < grups.size(); ++i) if (grups.get(i).getNum() == num) return true;
         return false;
     }
 
     public void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
             Grup g = new Grup(nom, num, tipus, numSessions, capacitat, duracio, fase);
-            grup.add(g);
+            grups.add(g);
         }
         //else tractar excepcio
     }
@@ -77,7 +77,7 @@ public class Assignatura implements Comparable<Assignatura> {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(nomPlaEstudis, nom, fase, grup);
+        return Objects.hash(nomPlaEstudis, nom, fase, grups);
     }
 
 
