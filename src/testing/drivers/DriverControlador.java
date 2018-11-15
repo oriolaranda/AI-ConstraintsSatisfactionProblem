@@ -48,28 +48,36 @@ public class DriverControlador {
             try {
                 switch (opcio) {
                     case 1:
-                        C.crear_pla(sc.next(),sc.nextInt(),sc.nextInt());
+                        String nom = sc.next();
+                        int horaIni = sc.nextInt();
+                        int horaFi = sc.nextInt();
+                        if (horaIni >= horaFi || horaFi > 24 || horaIni < 0 || horaFi<0 ||horaIni > 24)  System.out.println("Valors entre 0-24 i HoraInicial < HoraFinal");
+                        else {
+                            C.crear_pla(nom, horaIni, horaFi);
+                            System.out.println("Pla Esperat: " + nom + " comença a les " + horaIni + " i acaba a les " + horaFi);
+                            System.out.println("Pla Obtingut: " + C.getPla().getNom() + " comença a les " + C.getPla().getPeriodeLectiu()[0] + " i acaba a les " + C.getPla().getPeriodeLectiu()[1]);
+                        }
                         break;
                     case 2:
                         if (C == null) throw new NullPointerException();
                         C.crear_assignatura(sc.next(),sc.next(),sc.nextInt(),sc.nextInt(),sc.nextInt(),stoTipusAula(sc.next()),sc.nextInt(),sc.nextInt());
+                        System.out.println("Assignatura: " + C.getHorari().getSessions().get(3).getNomAssignaturaSessio() + " " + C.getHorari().getSessions().get(3).getNumGrupSessio() + " " + C.getHorari().getSessions().get(3).getNum());
                         break;
                     case 3:
                         if (C == null) throw new NullPointerException();
+                        System.out.println("\t\tformat: 5");
                         C.crear_aula(sc.next(),sc.nextInt(),stoTipusAula(sc.next()));
+                        System.out.println("Classe: " + C.getHorari().getClasses().get(3).getNomAulaClasse() + " " + C.getHorari().getClasses().get(3).getDiaClasse() + " " + C.getHorari().getClasses().get(3).getHoraClasse());
+
                         break;
                    /* case 4:
                         if (a == null) throw new NullPointerException();
                         System.out.println("Fase assignatura esperada: " + fase);
                         System.out.println("Fase assignatura obtinguda: " + a.getFase());
-                        break;
+                        break;*/
                     case 5:
-                        nomPlaEstudis = sc.next();
-                        if (a == null) throw new NullPointerException();
-                        a.setNomPlaEstudis(nomPlaEstudis);
-                        if (nomPlaEstudis.equals(a.getNomPlaEstudis())) System.out.println("Nom plaEstudis assignat correctament");
-                        else System.out.println("Nom plaEstudis NO assignat correctament");
-                        break;
+
+                        break;/*
                     case 6:
                         nom = sc.next();
                         if (a == null) throw new NullPointerException();

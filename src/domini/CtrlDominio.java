@@ -11,16 +11,32 @@ public class CtrlDominio {
 
     private Horari horari;
     private PlaEstudis pla;
-    private Vector<DiaHora> hores;
-    private Vector<Aula> aules;
+    private ArrayList<DiaHora> hores;
+    private ArrayList<Aula> aules;
 
     public CtrlDominio() {
+        this.horari = new Horari("Alex");
+        this.hores = new ArrayList<DiaHora>();
+        this.aules = new ArrayList<Aula>();
+    }
+
+    public PlaEstudis getPla() {
+        return pla;
+    }
+
+    public Horari getHorari() {
+        return horari;
+    }
+    public ArrayList<DiaHora> getHores() {
+        return hores;
+    }
+
+    public ArrayList<Aula> getAules() {
+        return aules;
     }
 
     public void crear_pla(String nom, int horaIni, int horaFi) {
-        int[] periode = null;
-        periode[0] = horaIni;
-        periode[1] = horaFi;
+        int[] periode = new int[] {horaIni,horaFi};
         pla = new PlaEstudis(nom,periode);
         for(int i = horaIni; i < horaFi;++i) {
             DiaHora aux = new DiaHora("Dilluns",i);
@@ -41,11 +57,12 @@ public class CtrlDominio {
         pla.addAssignatura(aux);
         for(int i = 0; i < aux.getGrups().size();++i) {
             Grup g = aux.getGrups().get(i);
-            for (int j = 0; j < g.getSessions().size(); ++i) {
+            for (int j = 0; j < g.getSessions().size(); ++j) {
                 Sessio s = g.getSessions().get(j);
                 horari.add_sessio(s);
             }
         }
+
     }
 
     public void crear_aula(String nom, int capacitat, TipusAula tipus) {

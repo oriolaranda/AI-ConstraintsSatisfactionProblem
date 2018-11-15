@@ -21,6 +21,9 @@ public class Horari {
     public Horari(String nom) {
         this.nom = nom;
         this.Ple = false;
+        this.Sessions = new ArrayList<Sessio>();
+        this.Classes = new Vector<Classe>();
+        this.Restriccions = new ArrayList<Restriccio>();
     }
 
     /**
