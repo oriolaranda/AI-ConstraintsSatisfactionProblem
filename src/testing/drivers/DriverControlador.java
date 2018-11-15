@@ -15,7 +15,7 @@ public class DriverControlador {
         System.out.println("\t\tformat: 1 NomPlaEstudis<String> HoraInicial<int> HoraFinal<int>     //Valors entre 0-24 HoraInicial < HoraFinal");
 
         System.out.println("\t2) Crear Assignatura:");
-        System.out.println("\t\tformat: 2 NomAssignatura<String> Fase<String> CapacitatGrup<int> CapacitatSubgrups<int> matriculats<int> TipusAula<TipusAula> numeroSessionsPerGrup<int> duracioSessions<int>");
+        System.out.println("\t\tformat: 2 NomAssignatura<String> Fase<String> CapacitatGrup<int> CapacitatSubgrups<int> matriculats<int> TipusAula<TipusAula> numeroSessionsPerGrup<int> duracioSessions<int>   //Fase es el nom del nivell");
 
         System.out.println("\t3) Crear Aula:");
         System.out.println("\t\tformat: 3 NomAula<String> Capacitat<int> TipusAula<TipusAula>");
@@ -61,7 +61,7 @@ public class DriverControlador {
                     case 2:
                         if (C == null) throw new NullPointerException();
                         C.crear_assignatura(sc.next(),sc.next(),sc.nextInt(),sc.nextInt(),sc.nextInt(),stoTipusAula(sc.next()),sc.nextInt(),sc.nextInt());
-                        System.out.println("Assignatura: " + C.getHorari().getSessions().get(3).getNomAssignaturaSessio() + " " + C.getHorari().getSessions().get(3).getNumGrupSessio() + " " + C.getHorari().getSessions().get(3).getNum());
+                        //System.out.println("Assignatura: " + C.getHorari().getSessions().get(3).getNomAssignaturaSessio() + " " + C.getHorari().getSessions().get(3).getNumGrupSessio() + " " + C.getHorari().getSessions().get(3).getNum());
                         break;
                     case 3:
                         if (C == null) throw new NullPointerException();
@@ -76,7 +76,8 @@ public class DriverControlador {
                         System.out.println("Fase assignatura obtinguda: " + a.getFase());
                         break;*/
                     case 5:
-
+                        C.generar_horari();
+                        System.out.println("Valors entre 0-24 i HoraInicial < HoraFinal");
                         break;/*
                     case 6:
                         nom = sc.next();

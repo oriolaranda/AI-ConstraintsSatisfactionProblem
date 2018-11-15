@@ -1,9 +1,6 @@
 package domini;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 public class Horari {
 
@@ -24,6 +21,8 @@ public class Horari {
         this.Sessions = new ArrayList<Sessio>();
         this.Classes = new Vector<Classe>();
         this.Restriccions = new ArrayList<Restriccio>();
+        this.prev = new HashMap<>();
+
     }
 
     /**
@@ -101,7 +100,6 @@ public class Horari {
         for (int i = 0; i < Sessions.size(); ++i) {
             prev.put(Sessions.get(i),Classes);
         }
-
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
