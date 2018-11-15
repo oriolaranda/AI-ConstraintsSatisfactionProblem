@@ -47,4 +47,15 @@ public class Classe {
         return aula+"->"+hora;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Classe)) return false;
+        return this.aula.equals(((Classe) obj).aula) && this.hora.equals(((Classe) obj).hora);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(aula, hora);
+    }
+
 }
