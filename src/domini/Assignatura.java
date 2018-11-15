@@ -24,6 +24,18 @@ public class Assignatura implements Comparable<Assignatura> {
         this.fase = fase;
         this.grups = new ArrayList<Grup>();
     }
+    public Assignatura(String nomPlaEstudis, String nom, String fase, int capacitatGrup, int capacitatSubGrups, int matriculats, TipusAula tipusSubgrup, int numSessions, int duracio) {
+        this.nomPlaEstudis = nomPlaEstudis;
+        this.nom = nom;
+        this.fase = fase;
+        this.grups = new ArrayList<Grup>();
+        for (int i = 0; i < matriculats/capacitatGrup; ++i) {
+            crearGrup((i + 1) * 10, TipusAula.TEORIA, capacitatGrup, numSessions, duracio);
+            for (int j = 0; j < capacitatGrup / capacitatSubGrups;++j) {
+                crearGrup((i+1)*10+j,tipusSubgrup,capacitatSubGrups,numSessions,duracio);
+            }
+        }
+    }
 
     //Getters
     public String getNomPlaEstudis() {
