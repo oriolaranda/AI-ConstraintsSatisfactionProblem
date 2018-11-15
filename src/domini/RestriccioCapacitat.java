@@ -16,7 +16,7 @@ public class RestriccioCapacitat extends Restriccio {
             Vector<Classe> classes = m.get(s);
             int cs = s.getCapacitatSessio();
             for (Classe c : classes) {
-                if (c.getCapacitatClasse() < cs) classes.removeElement(c);
+                if (c.getAula().getCapacitat() < cs) classes.removeElement(c);
             }
         }
     }

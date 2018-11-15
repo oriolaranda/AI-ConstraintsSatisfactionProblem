@@ -48,7 +48,6 @@ public class driverPlaEstudis {
         System.out.println("\t10) Afegir horari:");
         System.out.println("\t\tformat: 10");
 
-
         System.out.println("\t11) Sortir:");
         System.out.println("\t\tformat: 11");
 
