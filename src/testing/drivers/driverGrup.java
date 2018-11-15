@@ -83,7 +83,7 @@ public class driverGrup {
                         capacitat = sc.nextInt();
                         duracio = sc.nextInt();
                         fase = sc.next();
-                        //g = new Grup(nomAssig, num, tipus, numSessions, capacitat, duracio, fase);
+                        g = new Grup(nomAssig, num, tipus, numSessions, capacitat, duracio, fase);
 
                         System.out.println("Grup esperat: " + nomAssig + "-" + num + " " + tipus + " " + capacitat + "alumnes" + " " + duracio + "h/sessio");
                         System.out.println("Grup creat: " + g.toString());

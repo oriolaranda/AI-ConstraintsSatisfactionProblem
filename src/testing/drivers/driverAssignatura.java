@@ -95,6 +95,7 @@ public class driverAssignatura {
                         if (fase.equals(a.getFase())) System.out.println("Fase assignatura assignada correctament");
                         else System.out.println("Fase assignatura NO assignada correctament");
                         break;
+
                 }
 
             } catch (NullPointerException n){
