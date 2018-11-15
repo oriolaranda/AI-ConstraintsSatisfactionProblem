@@ -51,19 +51,18 @@ public class Assignatura implements Comparable<Assignatura> {
         fase = f;
     }
 
-    /*private Boolean existeixGrup(int num) {
+    private Boolean existeixGrup(int num) {
         for (int i = 0; i < grup.size(); ++i) if (grup.get(i).getNum() == num) return true;
         return false;
     }
 
     public void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
-            Grup g = new Grup(id, num, tipus, capacitat, duracio);
+            Grup g = new Grup(nom, num, tipus, capacitat, duracio);
             grup.add(g);
         }
         //else tractar excepcio
     }
-    */
 
     @Override
     public String toString() {

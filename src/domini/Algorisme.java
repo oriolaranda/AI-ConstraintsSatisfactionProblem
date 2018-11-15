@@ -112,6 +112,7 @@ public class Algorisme {
 
         if (nou.containsKey(classe) && nou.get(classe) != null) return false;
         nou.put(classe,sessio);
+
         /*for(Restriccio r: restriccions){
             Boolean b = r.esCompleix(nou,classe,sessio);
         }*/

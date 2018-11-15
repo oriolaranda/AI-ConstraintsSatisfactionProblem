@@ -1,4 +1,4 @@
-package testing.stubs;
+/*package testing.stubs;
 
 import domini.PlaEstudis;
 
@@ -13,3 +13,4 @@ public class stubPlaEstudis extends PlaEstudis {
     public int[]
 
 }
+*/
