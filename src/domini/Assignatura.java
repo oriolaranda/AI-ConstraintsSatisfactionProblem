@@ -8,6 +8,7 @@ public class Assignatura implements Comparable<Assignatura> {
     private String nom;
     private String fase;
     private ArrayList<Grup> grups;
+    private ArrayList<String> correquisits;
 
 
     //Constructora
@@ -50,6 +51,10 @@ public class Assignatura implements Comparable<Assignatura> {
         return fase;
     }
 
+    public Boolean esCorrequisit(String nom){
+        return correquisits.contains(nom);
+    }
+
     //Setters
     public void setNomPlaEstudis(String pla) {
         nomPlaEstudis = pla;
@@ -87,6 +92,7 @@ public class Assignatura implements Comparable<Assignatura> {
         if (!(obj instanceof Assignatura)) return false;
         return this.nom.equals(((Assignatura) obj).nom);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(nomPlaEstudis, nom, fase, grups);
