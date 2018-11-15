@@ -9,7 +9,7 @@ public abstract class Restriccio {
 
     //Constructoras
     public Restriccio() {
-        horari=null;
+
     }
 
     public void setHorari(Horari horari) {
