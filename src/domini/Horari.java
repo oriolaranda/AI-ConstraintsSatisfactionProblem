@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Vector;
 
@@ -79,11 +80,11 @@ public class Horari {
     }
 
     public void setClasses(Vector<Classe> classes) {
-        Classes = classes;
+        this.Classes = classes;
     }
 
     public void setPle(boolean ple) {
-        Ple = ple;
+        this.Ple = ple;
     }
 
 
@@ -103,5 +104,27 @@ public class Horari {
         if (!nou.isEmpty()) Ple = true;
     }
 
+    public void add_sessio(Sessio S) {
+        Sessions.add(S);
+    }
 
+    public void remove_sessio(Sessio S) {
+        Sessions.remove(S);
+    }
+
+    public void add_classe(Classe C) {
+        Classes.add(C);
+    }
+
+    public void remove_classe(Classe C) {
+        Classes.remove(C);
+    }
+
+    public void add_restriccio(Restriccio R) {
+        Restriccions.add(R);
+    }
+
+    public void remove_restriccio(Restriccio R) {
+        Restriccions.remove(R);
+    }
 }
