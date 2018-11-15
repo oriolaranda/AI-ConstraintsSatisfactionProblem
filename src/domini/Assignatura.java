@@ -1,9 +1,6 @@
 package domini;
 
-import jdk.dynalink.support.AbstractRelinkableCallSite;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 public class Assignatura implements Comparable<Assignatura> {

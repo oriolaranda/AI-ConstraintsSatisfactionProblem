@@ -13,7 +13,8 @@ public class driverGrup {
         System.out.println("Driver Grup:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 nomAssignatura<String> num<int> tipus<TipusAula> capacitat<int> duracio<int>");
+        System.out.println("\t\tformat: 1 nomAssignatura<String> num<int> tipus<TipusAula> numSessions<int> capacitat<int> duracio<int>");
+        System.out.println("\t\t<TipusAula> pot ser (T | TEORIA) | (L | LABORATORI) | (P | PROBLEMES)");
 
         System.out.println("\t2) Getter nom assignatura:");
         System.out.println("\t\tformat: 2");
