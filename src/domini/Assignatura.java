@@ -27,6 +27,7 @@ public class Assignatura implements Comparable<Assignatura> {
         this.grups = new ArrayList<Grup>();
         this.correquisits = new ArrayList<String>();
     }
+
     public Assignatura(String nomPlaEstudis, String nom, String fase, int capacitatGrup, int capacitatSubGrups, int matriculats, TipusAula tipusSubgrup, int numSessions, int duracio) {
         this.nomPlaEstudis = nomPlaEstudis;
         this.nom = nom;
@@ -59,9 +60,10 @@ public class Assignatura implements Comparable<Assignatura> {
         return grups;
     }
 
-    public Boolean esCorrequisit(String nom){
-        return correquisits.contains(nom);
+    public ArrayList<String> getCorrequisits() {
+        return correquisits;
     }
+
 
     //Setters
     public void setNomPlaEstudis(String pla) {
@@ -76,25 +78,31 @@ public class Assignatura implements Comparable<Assignatura> {
         fase = f;
     }
 
-    private Boolean existeixGrup(int num) {
-        for (int i = 0; i < grups.size(); ++i) if (grups.get(i).getNum() == num) return true;
-        return false;
-    }
-
     private void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
             Grup g = new Grup(nom, num, tipus, numSessions, capacitat, duracio, this);
             grups.add(g);
         }
-        //else tractar excepcio
     }
     public void afegirCorrequisit(String nom){
         correquisits.add(nom);
     }
 
     public void eliminarCorrequisit(String nom){
-        correquisits.remove(nom);
+        if(esCorrequisit(nom)) correquisits.remove(nom);
     }
+
+
+    //Consultores
+    public Boolean esCorrequisit(String nom){
+        return correquisits.contains(nom);
+    }
+
+    private Boolean existeixGrup(int num) {
+        for (int i = 0; i < grups.size(); ++i) if (grups.get(i).getNum() == num) return true;
+        return false;
+    }
+
 
 
     @Override
@@ -113,7 +121,6 @@ public class Assignatura implements Comparable<Assignatura> {
     public int hashCode() {
         return Objects.hash(nomPlaEstudis, nom, fase, grups);
     }
-
 
     @Override
     public int compareTo(Assignatura o) {
