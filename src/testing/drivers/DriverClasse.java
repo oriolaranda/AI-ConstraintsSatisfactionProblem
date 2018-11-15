@@ -1,5 +1,17 @@
 package testing.drivers;
 
+import domini.Aula;
+import domini.Classe;
+import domini.DiaHora;
+
+
+import java.util.Scanner;
+
+
+import static domini.TipusAula.TEORIA;
+import static domini.TipusAula.stoTipusAula;
+import static javafx.scene.input.KeyCode.T;
+
 public class DriverClasse {
 
     private static void menu() {
