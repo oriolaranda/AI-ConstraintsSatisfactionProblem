@@ -1,5 +1,6 @@
 package domini;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Grup {
@@ -10,19 +11,23 @@ public class Grup {
     private int capacitat;
     private int numSessions;
     private int duracio;
-    private Vector<Sessio> sessions;
-    private Assignatura assignatura;
+    private String fase;
+    private ArrayList<Sessio> sessions;
+
 
     //Constructora
-    public Grup(String nomAssig, int num, TipusAula tipus, int capacitat, int duracio) {
+    public Grup(String nomAssig, int num, TipusAula tipus, int numSessions, int capacitat, int duracio, String fase) {
         this.nomAssig = nomAssig;
         this.num = num;
         this.tipus = tipus;
+        this.numSessions = numSessions;
         this.capacitat = capacitat;
         this.duracio = duracio;
+        this.sessions = new ArrayList<>();
         for (int i = 0; i < numSessions; ++i) {
             sessions.add(new Sessio(nomAssig + "-" + num, i));
         }
+        this.fase = fase;
     }
 
     /**
@@ -53,8 +58,10 @@ public class Grup {
         return numSessions;
     }
 
-    public String getFaseGrup(){
-        return assignatura.getFase();
+    public String getFase(){ return fase; }
+
+    public ArrayList<Sessio> getSessions() {
+        return sessions;
     }
 
     /**
@@ -85,6 +92,9 @@ public class Grup {
         this.numSessions = numSessions;
     }
 
+    public void setFase(String fase) {
+        this.fase = fase;
+    }
 
     @Override
     public String toString() {

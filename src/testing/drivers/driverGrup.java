@@ -66,6 +66,7 @@ public class driverGrup {
         int numSessions = -1;
         int capacitat = -1;
         int duracio = -1;
+        String fase = null;
 
         Scanner sc = new Scanner(System.in);
         menu();
@@ -81,7 +82,8 @@ public class driverGrup {
                         numSessions = sc.nextInt();
                         capacitat = sc.nextInt();
                         duracio = sc.nextInt();
-                        g = new Grup(nomAssig, num, tipus, capacitat, duracio);
+                        fase = sc.next();
+                        g = new Grup(nomAssig, num, tipus, numSessions, capacitat, duracio, fase);
 
                         System.out.println("Grup esperat: " + nomAssig + "-" + num + " " + tipus + " " + capacitat + "alumnes" + " " + duracio + "h/sessio");
                         System.out.println("Grup creat: " + g.toString());
