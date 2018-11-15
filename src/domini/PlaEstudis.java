@@ -13,7 +13,7 @@ public class PlaEstudis {
     //Constructora
     public PlaEstudis(String nom, int[] periodeLectiu) {
         this.nom = nom;
-        this.periodeLectiu = (int[]) periodeLectiu;
+        this.periodeLectiu = periodeLectiu;
         horari = null;
         assignatures = new ArrayList<Assignatura>();
     }
@@ -57,11 +57,16 @@ public class PlaEstudis {
         Collections.sort(assignatures);
     }
 
-    public void addAssignatures(ArrayList<Assignatura> assignatures) {
-        assignatures.addAll(assignatures);
+    public void addAssignatures(ArrayList<Assignatura> assig) {
+        assignatures.addAll(assig);
+        Collections.sort(assignatures);
     }
     public void removeAssignatura(Assignatura a) {
         assignatures.remove(a);
+    }
+
+    public void removeAssignatures(ArrayList<Assignatura> assig) {
+        assignatures.removeAll(assig);
     }
 
     public void addHorari(Horari horari) {

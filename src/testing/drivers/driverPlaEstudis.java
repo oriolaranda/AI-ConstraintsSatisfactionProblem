@@ -7,6 +7,7 @@ import domini.Assignatura;
 import domini.Grup;
 import domini.PlaEstudis;
 import testing.stubs.stubAssignatura;
+import testing.stubs.stubHorari;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -56,11 +57,11 @@ public class driverPlaEstudis {
 
     public static void main(String[] args) {
         PlaEstudis pe = null;
-        String nom;
-        int[] periodeLectiu;
-        stubHorari horari = new stubHorari;
+        String nom = null;
+        int[] periodeLectiu = new int[] {0,0};
+        stubHorari horari = new stubHorari();
+        stubAssignatura assig = new stubAssignatura();
         LinkedList<stubAssignatura> assignatures = new LinkedList<stubAssignatura>();
-        assignatures.add(new stubAssignatura());
         Scanner sc = new Scanner(System.in);
         menu();
         int opcio = sc.nextInt();
@@ -88,8 +89,10 @@ public class driverPlaEstudis {
                         break;
                     case 4:
                         if (pe == null) throw new NullPointerException();
+                        if (!pe.getAssignatures().contains(assig)) assignatures.add(assig);
                         System.out.println("Assignatures esperades: " + assignatures);
                         System.out.println("Assignatures obtingudes: " + pe.getAssignatures());
+
                         break;
                     case 5:
                         if (pe == null) throw new NullPointerException();
@@ -113,47 +116,25 @@ public class driverPlaEstudis {
                         break;
                     case 8:
                         if (pe == null) throw new NullPointerException();
-                        stubAssignatura assignatura = new stubAssignatura();
-                        pe.addAssignatura(assignatura);
-                        if () System.out.println("Assignatura afegida correctament");
-                        else System.out.println("Assignatura NO assignada correctament");
+                        if (!pe.getAssignatures().contains(assig)) pe.addAssignatura(assig);
+                        if (pe.getAssignatures().contains(assig)) System.out.println("Assignatura afegida correctament");
+                        else System.out.println("Assignatura NO afegida correctament");
+                        pe.removeAssignatura(assig);
                         break;
                     case 9:
-                        num = sc.nextInt();
-                        if (g == null) throw new NullPointerException();
-                        g.setNum(num);
-                        if (num == g.getNum()) System.out.println("Num grup assignat correctament");
-                        else System.out.println("Num grup NO assignat correctament");
+                        if (pe == null) throw new NullPointerException();
+                        if (!pe.getAssignatures().contains(assig)) pe.addAssignatura(assig);
+                        pe.removeAssignatura(assig);
+                        if (!pe.getAssignatures().contains(assig)) System.out.println("Assignatura esborrada correctament");
+                        else System.out.println("Assignatura NO esborrada correctament");
                         break;
                     case 10:
-                        tipus = stoTipusAula(sc.next());
-                        if (g == null) throw new NullPointerException();
-                        g.setTipus(tipus);
-                        if (tipus.equals(g.getTipus())) System.out.println("Tipus grup assignat correctament");
-                        else System.out.println("Tipus grup NO assignat correctament");
+                        if (pe == null) throw new NullPointerException();
+                        if (pe.getHorari() == null) pe.addHorari(new stubHorari());
+                        if (pe.getHorari() != null) System.out.println("Horari afegit correctament");
+                        else System.out.println("Horari NO afegit correctament");
                         break;
-                    case 11:
-                        numSessions = sc.nextInt();
-                        if (g == null) throw new NullPointerException();
-                        g.setNumSessions(numSessions);
-                        if (numSessions == g.getNumSessions())
-                            System.out.println("Capacitat grup assignat correctament");
-                        else System.out.println("Capacitat grup NO assignat correctament");
-                        break;
-                    case 12:
-                        capacitat = sc.nextInt();
-                        if (g == null) throw new NullPointerException();
-                        g.setCapacitat(capacitat);
-                        if (capacitat == g.getCapacitat()) System.out.println("Capacitat grup assignat correctament");
-                        else System.out.println("Capacitat grup NO assignat correctament");
-                        break;
-                    case 13:
-                        duracio = sc.nextInt();
-                        if (g == null) throw new NullPointerException();
-                        g.setDuracio(duracio);
-                        if (duracio == g.getDuracio()) System.out.println("Duracio sessio assignat correctament");
-                        else System.out.println("Duracio sessio NO assignat correctament");
-                        break;
+
                 }
 
             } catch (NullPointerException n) {

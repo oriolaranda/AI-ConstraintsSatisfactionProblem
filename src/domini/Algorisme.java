@@ -61,7 +61,7 @@ public class Algorisme {
                 //eliminem tots els valors menys el bo a la variable
                 prev.put(s.get(i), eliminar(prev.get(s.get(i)), c));
                 //System.out.println(s.get(i)+" "+ prev.get(s.get(i)));
-                boolean correcte = comprovarRestriccions(s.get(i));
+                boolean correcte = comprovarRestriccions(c,s.get(i));
                 if (correcte) {
                     boolean seg = backtraking(i + 1);
                     if (seg) return seg;
@@ -103,14 +103,14 @@ public class Algorisme {
 
     }
 
-    private boolean comprovarRestriccions(Sessio sessio) {
+    private boolean comprovarRestriccions(Classe classe, Sessio sessio) {
         for (Sessio s : prev.keySet()) {
             if (prev.get(s).isEmpty()) {
                 System.out.println("No queden valors disponibles per a la variable " + s);
                 return false;
             }
             for(Restriccio r: restriccions){
-                Boolean b= r.esCompleix(nou, sessio);
+                Boolean b= r.esCompleix(nou,classe,sessio);
             }
         }
         return true;

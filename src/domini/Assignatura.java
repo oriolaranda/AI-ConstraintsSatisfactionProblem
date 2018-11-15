@@ -1,8 +1,12 @@
 package domini;
 
-import java.util.ArrayList;
+import jdk.dynalink.support.AbstractRelinkableCallSite;
 
-public class Assignatura {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
+
+public class Assignatura implements Comparable<Assignatura> {
     private String nomPlaEstudis;
     private String nom;
     private String fase;
@@ -67,5 +71,22 @@ public class Assignatura {
     @Override
     public String toString() {
         return nomPlaEstudis + ": " + nom + " (" + fase + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Assignatura)) return false;
+        return this.nom.equals(((Assignatura) obj).nom);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(nom);
+    }
+
+
+    @Override
+    public int compareTo(Assignatura o) {
+        return this.nom.compareTo(o.nom);
     }
 }
