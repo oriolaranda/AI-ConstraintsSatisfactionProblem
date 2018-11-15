@@ -20,6 +20,13 @@ public class Horari {
 
     //Constructors
 
+    public Horari(String nom,int HoraIni, int HoraFi) {
+        this.nom = nom;
+        this.HoraIni = HoraIni;
+        this.HoraFi = HoraFi;
+        this.Ple = false;
+    }
+
     /**
      * Constructor for Horari
      */
