@@ -16,7 +16,7 @@ public class DiaHora {
     }
 
     public void setDia(String dia) {
-        dia = dia;
+        this.dia = dia;
     }
 
     public int getHora() {

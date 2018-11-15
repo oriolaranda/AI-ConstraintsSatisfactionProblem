@@ -3,11 +3,11 @@ package testing.drivers;
 import domini.Aula;
 import domini.Classe;
 import domini.DiaHora;
-import domini.TipusAula;
+
 
 import java.util.Scanner;
 
-import static domini.TipusAula.LABORATORI;
+
 import static domini.TipusAula.TEORIA;
 import static domini.TipusAula.stoTipusAula;
 import static javafx.scene.input.KeyCode.T;
@@ -30,26 +30,39 @@ public class DriverClasse {
         System.out.println("\t\tformat: 4 nomAula<String> capacitat<int> tipusAula<TipusAula>");
 
         System.out.println("\t5) Setter Dia");
-        System.out.println("\t\tformat: 6 Dia<String> Hora<int>");
+        System.out.println("\t\tformat: 5 Dia<String> Hora<int>");
 
-        System.out.println("\t6) Sortir:");
+        System.out.println("\t6) Getter NomAula:");
         System.out.println("\t\tformat: 6");
+
+        System.out.println("\t7) Getter Dia:");
+        System.out.println("\t\tformat: 7");
+
+        System.out.println("\t8) Getter Hora:");
+        System.out.println("\t\tformat: 8");
+
+        System.out.println("\t9) Sortir:");
+        System.out.println("\t\tformat: 9");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
 
     public static void main(String[] args) {
         Classe c = null;
+        Aula a;
+        DiaHora d;
 
         Scanner sc = new Scanner(System.in);
         menu();
         int opcio = sc.nextInt();
 
-        while (opcio != 6) {
+        while (opcio != 9) {
             try {
                 switch (opcio) {
                     case 1:
-                        c = new Classe();
+                        a = new Aula(sc.next(),60,TEORIA);
+                        d = new DiaHora(sc.next(),sc.nextInt());
+                        c = new Classe(a,d);
                         System.out.println("Classe creada: " + c.getAula().getNom() + " al " + c.getHora().getDia() + " a les " + c.getHora().getHora());
                         break;
                     case 2:
@@ -61,26 +74,38 @@ public class DriverClasse {
                         System.out.println("Dia obtingut: " + c.getHora().getDia() + " a les " + c.getHora().getHora());
                         break;
                     case 4:
-                        Aula a = null;
+                        a = c.getAula();
                         String nomAula = sc.next();
                         a.setNom(nomAula);
                         a.setCapacitat(sc.nextInt());
                         a.setTipus(stoTipusAula(sc.next()));
                         if (c == null) throw new NullPointerException();
                         c.setAula(a);
-                        if (nomAula.equals(c.getAula())) System.out.println("Aula assignada correctament");
+                        if (nomAula.equals(c.getNomAulaClasse())) System.out.println("Aula assignada correctament");
                         else System.out.println("Aula NO assignada correctament");
                         break;
                     case 5:
-                        DiaHora d= null;
+                        d = c.getHora();
                         String dia = sc.next();
                         int hora = sc.nextInt();
                         d.setDia(dia);
                         d.setHora(hora);
                         if (c == null) throw new NullPointerException();
                         c.setHora(d);
-                        if (dia.equals(c.getHora().getDia()) && hora == c.getHora().getHora()) System.out.println("Dia i Hora assignats correctament");
+                        if (dia.equals(c.getDiaClasse()) && hora == c.getHoraClasse()) System.out.println("Dia i Hora assignats correctament");
                         else System.out.println("Dia i Hora NO assignats correctament");
+                        break;
+                    case 6:
+                        if (c == null) throw new NullPointerException();
+                        System.out.println("Nom Aula: " + c.getNomAulaClasse());
+                        break;
+                    case 7:
+                        if (c == null) throw new NullPointerException();
+                        System.out.println("Dia obtingut: " + c.getDiaClasse());
+                        break;
+                    case 8:
+                        if (c == null) throw new NullPointerException();
+                        System.out.println("Hora obtinguda: " + c.getHoraClasse());
                         break;
                 }
 
