@@ -5,7 +5,9 @@ import java.util.Vector;
 
 public class RestriccioTipusAula extends Restriccio{
 
+    public RestriccioTipusAula() {
 
+    }
 
     @Override
     public void precondicions() {

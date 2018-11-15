@@ -55,13 +55,12 @@ public class Assignatura implements Comparable<Assignatura> {
         return fase;
     }
 
-    public Boolean esCorrequisit(String nom){
-        return correquisits.contains(nom);
-    }
-
-
     public ArrayList<Grup> getGrups() {
         return grups;
+    }
+
+    public Boolean esCorrequisit(String nom){
+        return correquisits.contains(nom);
     }
 
     //Setters
