@@ -99,4 +99,7 @@ public class Grup {
     }
 
 
+    public boolean esCorrequisit(String ns) {
+        return assignatura.esCorrequisit(ns);
+    }
 }

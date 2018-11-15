@@ -77,4 +77,8 @@ public class Sessio {
     public int hashCode() {
         return Objects.hash(id,num,grup);
     }
+
+    public boolean esCorrequisit(String ns) {
+        return grup.esCorrequisit(ns);
+    }
 }
