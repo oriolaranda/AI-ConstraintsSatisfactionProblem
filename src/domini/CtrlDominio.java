@@ -12,14 +12,14 @@ public class CtrlDominio {
     private PlaEstudis pla;
 
     public CtrlDominio() {
-        pla = new
+       // pla = new
     }
 
     public void inicialitzar_horari(String nom) {
         int horaI;
         int horaF;
         //get hores del pla i tal
-        horari = new Horari(nom,horaI,horaF);
+        //horari = new Horari(nom,horaI,horaF);
 
     }
 
@@ -37,6 +37,6 @@ public class CtrlDominio {
 
     public void generacio_horari() {
         horari.generar_horari();
-        if(horari.Pl)
+        //if(horari.Pl)
     }
 }

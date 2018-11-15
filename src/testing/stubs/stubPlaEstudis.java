@@ -1,4 +1,4 @@
-package testing.stubs;
+/*package testing.stubs;
 
 import domini.PlaEstudis;
 
@@ -8,7 +8,8 @@ public class stubPlaEstudis extends PlaEstudis {
         super("FIB2018");
     }
 
-    @Override
-    public
+    //@Override
+    //public
 
 }
+*/
