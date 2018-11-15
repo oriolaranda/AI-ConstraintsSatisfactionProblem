@@ -49,6 +49,13 @@ public class Sessio {
         return grup.getNum();
     }
 
+    public TipusAula getTipusSessio(){
+        return grup.getTipus();
+    }
+
+    public int getCapacitatSessio(){
+        return grup.getCapacitat();
+    }
     /*SETTERS */
 
 
