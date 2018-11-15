@@ -35,18 +35,18 @@ public class CtrlDominio {
             hores.add(aux);
         }
     }
-    /*
+
     public void crear_assignatura(String nom, String fase,int capGrup, int capSGrup, int matric, TipusAula tipus, int numSes, int dur) {
         Assignatura aux = new Assignatura(pla.getNom(),nom,fase,capGrup,capSGrup,matric,tipus,numSes,dur);
         pla.addAssignatura(aux);
         for(int i = 0; i < aux.getGrups().size();++i) {
-            Grup g = aux.getGrups.get(i);
+            Grup g = aux.getGrups().get(i);
             for (int j = 0; j < g.getSessions().size(); ++i) {
                 Sessio s = g.getSessions().get(j);
                 horari.add_sessio(s);
             }
         }
-    }*/
+    }
 
     public void crear_aula(String nom, int capacitat, TipusAula tipus) {
         Aula aux = new Aula(nom, capacitat, tipus);

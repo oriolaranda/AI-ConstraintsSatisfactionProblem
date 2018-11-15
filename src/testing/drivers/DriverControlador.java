@@ -1,75 +1,64 @@
 package testing.drivers;
 
 import domini.Assignatura;
+import domini.CtrlDominio;
 
 import java.util.Scanner;
 
-public class driverAssignatura {
+import static domini.TipusAula.stoTipusAula;
 
+public class DriverControlador {
     private static void menu() {
-        System.out.println("Driver Assignatura:");
+        System.out.println("Driver Controlador:");
         System.out.println("Opcions:");
-        System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 NomPlaEstudis<String> Nom<String> Fase<String>");
+        System.out.println("\t1) Crear Pla:");
+        System.out.println("\t\tformat: 1 NomPlaEstudis<String> HoraInicial<int> HoraFinal<int>     //Valors entre 0-24 HoraInicial < HoraFinal");
 
-        System.out.println("\t2) Getter nomPlaEstudis assignatura:");
-        System.out.println("\t\tformat: 2");
+        System.out.println("\t2) Crear Assignatura:");
+        System.out.println("\t\tformat: 2 NomAssignatura<String> Fase<String> CapacitatGrup<int> CapacitatSubgrups<int> matriculats<int> TipusAula<TipusAula> numeroSessionsPerGrup<int> duracioSessions<int>");
 
-        System.out.println("\t3) Getter nom assignatura:");
-        System.out.println("\t\tformat: 3");
+        System.out.println("\t3) Crear Aula:");
+        System.out.println("\t\tformat: 3 NomAula<String> Capacitat<int> TipusAula<TipusAula>");
 
-        System.out.println("\t4) Getter fase assignatura:");
-        System.out.println("\t\tformat: 4");
+        System.out.println("\t4) Afegir restriccio de tipus:");
+        System.out.println("\t\tformat: 4 1     //Afegir RestriccioFase per tenir en compte els nivells de les assignatures");
+        System.out.println("\t\tformat: 4 2     //Afegir RestriccioCorrequisits per tenir en compte correquisits entre Assignatures");
+        System.out.println("\t\tformat: 4 3     //Afegir RestriccioTipusAula");
+        System.out.println("\t\tformat: 4 4     //Afegir RestriccioCapacitat");
+        System.out.println("\t\tformat: 4 5     //Afegir RestriccioGrupDiaHora");
+        System.out.println("\t\tformat: 4 6 nomAula<String>     //Afegir RestriccioClasse per bloquejar una Aula en un dia i hora concreta");
 
+        System.out.println("\t5) Generar Horari");
+        System.out.println("\t\tformat: 5");
 
-        System.out.println("\t5) Setter nomPlaEstudis PlaEstudis:");
-        System.out.println("\t\tformat: 5 nomPlaEstudis<String>");
-
-        System.out.println("\t6) Setter nom assignatura:");
-        System.out.println("\t\tformat: 6 nom<String>");
-
-        System.out.println("\t7) Setter fase assignatura:");
-        System.out.println("\t\tformat: 7 fase<String>");
-
-        System.out.println("\t8) Sortir:");
-        System.out.println("\t\tformat: 8");
+        System.out.println("\t6) Sortir:");
+        System.out.println("\t\tformat: 6");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
 
     public static void main(String[] args) {
-        Assignatura a = null;
-        String nomPlaEstudis = null;
-        String nom = null;
-        String fase = null;
 
         Scanner sc = new Scanner(System.in);
         menu();
+        CtrlDominio C = new CtrlDominio();
         int opcio = sc.nextInt();
 
-        while(opcio!=8){
+        while(opcio!=6){
             try {
                 switch (opcio) {
                     case 1:
-                        nomPlaEstudis = sc.next();
-                        nom = sc.next();
-                        fase = sc.next();
-                        a = new Assignatura(nomPlaEstudis,nom,fase);
-
-                        System.out.println("Assignatura esperada: " + nomPlaEstudis+": "+nom+" ("+fase+")");
-                        System.out.println("Assignatura creada: " + a.toString());
+                        C.crear_pla(sc.next(),sc.nextInt(),sc.nextInt());
                         break;
                     case 2:
-                        if (a == null) throw new NullPointerException();
-                        System.out.println("Nom plaEstudis esperat: " + nomPlaEstudis);
-                        System.out.println("Nom plaEstudis obtingut: " + a.getNomPlaEstudis());
+                        if (C == null) throw new NullPointerException();
+                        C.crear_assignatura(sc.next(),sc.next(),sc.nextInt(),sc.nextInt(),sc.nextInt(),stoTipusAula(sc.next()),sc.nextInt(),sc.nextInt());
                         break;
                     case 3:
-                        if (a == null) throw new NullPointerException();
-                        System.out.println("Nom assignatura esperat: " + nom);
-                        System.out.println("Nom assignatura obtingut: " + a.getNom());
+                        if (C == null) throw new NullPointerException();
+                        C.crear_aula(sc.next(),sc.nextInt(),stoTipusAula(sc.next()));
                         break;
-                    case 4:
+                   /* case 4:
                         if (a == null) throw new NullPointerException();
                         System.out.println("Fase assignatura esperada: " + fase);
                         System.out.println("Fase assignatura obtinguda: " + a.getFase());
@@ -94,8 +83,7 @@ public class driverAssignatura {
                         a.setFase(fase);
                         if (fase.equals(a.getFase())) System.out.println("Fase assignatura assignada correctament");
                         else System.out.println("Fase assignatura NO assignada correctament");
-                        break;
-
+                        break;*/
                 }
 
             } catch (NullPointerException n){
