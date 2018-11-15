@@ -78,7 +78,7 @@ public class Assignatura implements Comparable<Assignatura> {
     }
     @Override
     public int hashCode() {
-        return Objects.hashCode(nom);
+        return Objects.hash(nomPlaEstudis, nom, fase, grup);
     }
 
 

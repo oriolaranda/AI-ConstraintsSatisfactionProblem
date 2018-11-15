@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Aula {
     //Atributs
@@ -96,6 +97,17 @@ public class Aula {
     @Override
     public String toString() {
         return Nom;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Aula)) return false;
+        return this.Nom.equals(((Aula) obj).Nom);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(Nom, Capacitat, Tipus);
     }
 
     //Metodes

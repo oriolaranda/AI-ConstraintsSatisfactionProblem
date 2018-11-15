@@ -17,7 +17,7 @@ public class Algorisme {
 
     public Map<Classe, Sessio> getHorari() {
         System.out.println(s);
-        if (backtraking(0)) {
+        if (backtracking(0)) {
             System.out.println("S'HA TROBAT UN HORARI");
             /*for (Map.Entry<Sessio, Vector<Classe>> entry : prev.entrySet()) {
                 nou.put(entry.getValue().firstElement(), entry.getKey());
@@ -49,7 +49,7 @@ public class Algorisme {
         return vector;
     }
 
-    public boolean backtraking(int i) {
+    public boolean backtracking(int i) {
         if (i < s.size()) {
 
             for (Classe c : prev.get(s.get(i))) {
@@ -64,15 +64,13 @@ public class Algorisme {
                 prev.put(s.get(i), eliminar(prev.get(s.get(i)), c));
                 //System.out.println(s.get(i)+" "+ prev.get(s.get(i)));
                 */
-                nou.put(c,s.get(i));
+
                 boolean correcte = comprovarRestriccions(c,s.get(i));
 
                 if (correcte) {
-                    boolean seg = backtraking(i + 1);
-                    if (seg) return seg;
+                    if (backtracking(i+1)) return true;
+                    else nou.remove(c);
                 } else {
-                    //canviem el valor
-                    nou.put(c,null);
 
                     //tornem a posar el valor a la resta de variables
                     /*for (Sessio s1 : split(i + 1)) {
@@ -96,13 +94,6 @@ public class Algorisme {
     }
 
     private void revertirCanvis(Stack<Classe> revert) {
-        if (!revert.isEmpty()) {
-            Classe c = revert.pop();
-            while (!revert.isEmpty()) {
-                afegir_possibilitat(c);
-                c = revert.pop();
-            }
-        }
 
     }
 
@@ -116,25 +107,22 @@ public class Algorisme {
                 System.out.println("No queden valors disponibles per a la variable " + s);
                 return false;
             }
-
         }*/
         System.out.println(sessio+" "+classe);
-        if (nou.containsKey(classe) | nou.get(classe) != null) return false;
-       /* for(Restriccio r: restriccions){
+
+        if (nou.containsKey(classe) && nou.get(classe) != null) return false;
+        nou.put(classe,sessio);
+        /*for(Restriccio r: restriccions){
             Boolean b = r.esCompleix(nou,classe,sessio);
         }*/
         return true;
     }
 
 
-    private Stack<Classe> forwardChecking(Sessio s, Classe c) {
+    private Stack<Classe> forwardChecking(int i, Classe c) {
         Stack<Classe> poda = new Stack<>();
-        poda.addAll(eliminarTotes(s, c));
-        for (Sessio s2 : prev.keySet()) {
-            if (s2 != s) {
-                ArrayList<Classe> podaF = eliminarTotes(s2, c);
-                poda.addAll(podaF);
-            }
+        for (Sessio sessio : s.subList(i+1, s.size()-1)) {
+            prev.put(sessio, supr(prev.get(sessio), c));
         }
         return poda;
     }
