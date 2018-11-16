@@ -30,4 +30,14 @@ public class stubAula extends Aula {
     public String toString() {
         return "Aula A5002 amb capacitat de 60 i tipus Teoria";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

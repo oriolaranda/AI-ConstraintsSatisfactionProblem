@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Vector;
 
 public class Grup {
@@ -98,6 +99,17 @@ public class Grup {
         return nomAssig + "-" + num + " " + tipus + " " + capacitat + " alumnes" + " " + duracio + "h/sessio";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Grup)) return false;
+        return this.nomAssig.equals(((Grup) obj).nomAssig) && this.num == ((Grup) obj).num && this.tipus.equals(((Grup) obj).tipus);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nomAssig,num,tipus);
+    }
 
     public boolean esCorrequisit(String ns) {
         return assignatura.esCorrequisit(ns);

@@ -23,4 +23,14 @@ public class stubSessio extends Sessio {
     public String toString() {
         return "PRO1-20[0]";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
