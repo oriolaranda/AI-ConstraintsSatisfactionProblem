@@ -4,7 +4,6 @@ import domini.Aula;
 import domini.Horari;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Vector;
 
 public class CtrlDominio {
@@ -15,7 +14,7 @@ public class CtrlDominio {
     private ArrayList<Aula> aules;
 
     public CtrlDominio() {
-        this.horari = new Horari("Alex");
+        this.horari = new Horari("Horari");
         this.hores = new ArrayList<DiaHora>();
         this.aules = new ArrayList<Aula>();
     }

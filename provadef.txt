@@ -46,22 +46,14 @@
 3 A4102 70 T
 3 A6202 80 T
 5
-4 1 activar
-5
-4 2 activar
-5
-4 3 activar
-5 
-4 4 activar
-5
-4 5 activar pro1 11 Dimarts 6
-5 
-4 6 activar A5E01 Dimarts 8
+4 1
+4 2
+4 3
+4 4
+4 5 pro1 11 Dimarts 6
+4 6 A5E01 Dimarts 8
 5
 3 A4103 20 P
-4 4 desactivar
 2 m1 2 70 20 100 P 2 1
-5
-4 1 desactivar
 5
 6

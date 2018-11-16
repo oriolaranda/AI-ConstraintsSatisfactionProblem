@@ -22,12 +22,12 @@ public class driverControlador {
         System.out.println("\t\tformat: 3 NomAula<String> Capacitat<int> TipusAula<TipusAula>");
 
         System.out.println("\t4) Afegir restriccio de tipus:");
-        System.out.println("\t\tformat: 4 1  activar/desactivar  //Activar o desactivar RestriccioFase per tenir en compte els nivells de les assignatures");
-        System.out.println("\t\tformat: 4 2  activar/desactivar   //Activar o desactivar RestriccioCorrequisits per tenir en compte correquisits entre Assignatures");
-        System.out.println("\t\tformat: 4 3  activar/desactivar   //Activar o desactivar RestriccioTipusAula");
-        System.out.println("\t\tformat: 4 4  activar/desactivar   //Activar o desactivar RestriccioCapacitat");
-        System.out.println("\t\tformat: 4 5  activar/desactivar   nomAssignatura<String> numGrup<int> dia<String> hora<int>     //Activar o desactivar RestriccioGrupDiaHora per bloquejar que un grup fagi classe a un Dia i Hora concrets");
-        System.out.println("\t\tformat: 4 6  activar/desactivar   nomAula<String> Dia<String> Hora<int>    //Activar o desactivar RestriccioClasse per bloquejar una Aula en un dia i hora concrets");
+        System.out.println("\t\tformat: 4 1   //Activar o desactivar RestriccioFase per tenir en compte els nivells de les assignatures");
+        System.out.println("\t\tformat: 4 2   //Activar o desactivar RestriccioCorrequisits per tenir en compte correquisits entre Assignatures");
+        System.out.println("\t\tformat: 4 3   //Activar o desactivar RestriccioTipusAula");
+        System.out.println("\t\tformat: 4 4   //Activar o desactivar RestriccioCapacitat");
+        System.out.println("\t\tformat: 4 5   nomAssignatura<String> numGrup<int> dia<String> hora<int>     //Activar o desactivar RestriccioGrupDiaHora per bloquejar que un grup fagi classe a un Dia i Hora concrets");
+        System.out.println("\t\tformat: 4 6   nomAula<String> Dia<String> Hora<int>    //Activar o desactivar RestriccioClasse per bloquejar una Aula en un dia i hora concrets");
 
         System.out.println("\t5) Generar Horari");
         System.out.println("\t\tformat: 5");
@@ -94,58 +94,46 @@ public class driverControlador {
                         ArrayList<Restriccio> r = new ArrayList<Restriccio>();
                         switch (opcio2) {
                             case 1:
-                                active = sc.next();
                                 aux = new RestriccioFase();
                                 aux.setHorari(C.getHorari());
-                                if (active.equals("activar")) r.add(aux);
-                                if (active.equals("desactivar")) r.remove(aux);
+                                r.add(aux);
                                 System.out.println("Restriccio Fase modificada");
                                 break;
                             case 2:
-                                active = sc.next();
                                 aux = new RestriccioCorrequisit();
                                 aux.setHorari(C.getHorari());
-                                if (active.equals("activar")) r.add(aux);
-                                if (active.equals("desactivar")) r.remove(aux);
+                                r.add(aux);
                                 System.out.println("Restriccio Correquisit modificada");
                                 break;
                             case 3:
-                                active = sc.next();
                                 aux = new RestriccioTipusAula();
                                 aux.setHorari(C.getHorari());
-                                if (active.equals("activar")) r.add(aux);
-                                if (active.equals("desactivar")) r.remove(aux);
+                                r.add(aux);
                                 System.out.println("Restriccio TipusAula modificada");
                                 break;
                             case 4:
-                                active = sc.next();
                                 aux = new RestriccioCapacitat();
                                 aux.setHorari(C.getHorari());
-                                if (active.equals("activar")) r.add(aux);
-                                if (active.equals("desactivar")) r.remove(aux);
+                                r.add(aux);
                                 System.out.println("Restriccio Capacitat modificada");
                                 break;
                             case 5:
-                                active = sc.next();
                                 String assig = sc.next();
                                 int grup = sc.nextInt();
                                 String day = sc.next();
                                 int hour = sc.nextInt();
                                 aux = new RestriccioGrupDiaHora(assig,grup,day,hour);
                                 aux.setHorari(C.getHorari());
-                                if (active.equals("activar")) r.add(aux);
-                                if (active.equals("desactivar")) r.remove(aux);
+                                r.add(aux);
                                 System.out.println("Restriccio Classe modificada");
                                 break;
                             case 6:
-                                active = sc.next();
                                 String aula = sc.next();
                                 String day2 = sc.next();
                                 int hour2 = sc.nextInt();
                                 aux = new RestriccioClasse(aula,day2,hour2);
                                 aux.setHorari(C.getHorari());
-                                if (active.equals("activar")) r.add(aux);
-                                if (active.equals("desactivar")) r.remove(aux);
+                                r.add(aux);
                                 System.out.println("Restriccio Classe modificada");
                                 break;
                         }
