@@ -54,7 +54,7 @@ public class HorariTest {
     }
     @AfterClass
     public static void afterClass(){
-        System.out.println("TESTOS FINALITZATS!");
+        System.out.println("TESTOS FINALITZATS OK!");
     }
     @Test
     public void constructora1() {
@@ -180,7 +180,7 @@ public class HorariTest {
         Horari horari = new Horari("H5", null, null, restriccions);
         assertNotNull(horari.getRestriccions());
         horari.remove_restriccio(new stubRestriccio());
-        assertSame("remove_restriccio incorrecte!",new ArrayList<>(), horari.getRestriccions());
+        assertEquals("remove_restriccio incorrecte!",new ArrayList<>(), horari.getRestriccions());
     }
 
 }

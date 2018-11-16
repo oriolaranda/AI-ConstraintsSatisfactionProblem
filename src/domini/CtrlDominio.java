@@ -86,4 +86,8 @@ public class CtrlDominio {
     public void generar_horari() {
         horari.generar_horari();
     }
+
+    public void print_horari() {
+        horari.printHorari();
+    }
 }

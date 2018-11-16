@@ -108,6 +108,9 @@ public class Horari {
         if (!nou.isEmpty()) Ple = true;
     }
 
+    public void printHorari() {
+        if (Ple != false) nou.forEach((x, y) -> System.out.println(x + "->" + y));
+    }
     public void add_sessio(Sessio S) {
         Sessions.add(S);
     }

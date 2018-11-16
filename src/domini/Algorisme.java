@@ -53,7 +53,7 @@ public class Algorisme {
         if (i < s.size()) {
 
             for (Classe c : prev.get(s.get(i))) {
-                System.out.println("***"+s.get(i));
+                //System.out.println("***"+s.get(i));
 
                 /*eliminem el valor de les altres variables
                 for (Sessio s1 : split(i + 1)) {
@@ -108,7 +108,7 @@ public class Algorisme {
                 return false;
             }
         }*/
-        System.out.println(sessio+" "+classe);
+        //System.out.println(sessio+" "+classe);
 
         if (nou.containsKey(classe) && nou.get(classe) != null) return false;
         nou.put(classe,sessio);
