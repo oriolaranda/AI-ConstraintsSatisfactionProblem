@@ -132,10 +132,14 @@ public class HorariTest {
         h.setPle(true);
         assertEquals("setPle incorrecte!", true,h.getPle());
     }
-    /*
+
     @Test
     public void generarHorari() {
-        assertEquals();
+        Horari horari = new Horari("H5", sessions, classes, restriccions);
+        assertEquals(false,horari.getPle());
+        horari.generar_horari();
+        assertEquals("generarHorari incorrecte!",true,horari.getPle());
     }
-*/
+
+
 }
