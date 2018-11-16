@@ -72,4 +72,9 @@ public class stubHorari extends Horari {
     public String toString() {
         return super.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

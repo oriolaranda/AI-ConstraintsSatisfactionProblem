@@ -9,7 +9,7 @@ import java.util.Map;
 public class stubRestriccio extends Restriccio {
 
     public stubRestriccio(){
-        super();
+        setHorari(new stubHorari());
     }
 
     @Override
@@ -20,5 +20,15 @@ public class stubRestriccio extends Restriccio {
     @Override
     public Boolean esCompleix(Map<Classe, Sessio> nou, Classe actualc, Sessio actuals) {
         return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

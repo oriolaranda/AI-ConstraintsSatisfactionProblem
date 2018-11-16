@@ -131,4 +131,16 @@ public class Horari {
     public void remove_restriccio(Restriccio R) {
         Restriccions.remove(R);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Horari)) return false;
+        return this.nom.equals(((Horari) obj).nom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, prev, nou);
+    }
 }

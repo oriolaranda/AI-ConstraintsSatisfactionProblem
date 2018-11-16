@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Vector;
 
 public abstract class Restriccio {
@@ -9,7 +10,7 @@ public abstract class Restriccio {
 
     //Constructoras
     public Restriccio() {
-
+        setHorari(null);
     }
 
     public void setHorari(Horari horari) {
@@ -30,4 +31,17 @@ public abstract class Restriccio {
 
     public abstract Boolean esCompleix(Map<Classe, Sessio> nou,Classe actualc, Sessio actuals);
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+
+        if (! (obj instanceof Restriccio)) return false;
+
+        return this.horari.equals(((Restriccio) obj).horari);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(horari);
+    }
 }
