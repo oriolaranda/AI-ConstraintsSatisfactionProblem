@@ -16,7 +16,11 @@ public class RestriccioTipusAula extends Restriccio{
             Vector<Classe> classes = m.get(s);
             TipusAula tas=s.getTipusSessio();
             for (int i=0;i<classes.size();++i) {
-                if(!classes.get(i).getAula().getTipus().equals(tas)) classes.removeElementAt(i);
+                if(!classes.get(i).getAula().getTipus().equals(tas)) {
+                    classes.removeElementAt(i);
+                    --i;
+                }
+
             }
         }
     }
