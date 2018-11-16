@@ -34,6 +34,8 @@ public class Horari {
         this.Classes = Classes;
         this.Restriccions = Restriccions;
         this.Ple = false;
+        this.prev = new HashMap<>();
+        this.nou = new HashMap<>();
     }
 
 
@@ -78,7 +80,7 @@ public class Horari {
     }
 
     public void setRestriccions(ArrayList<Restriccio> Restriccions) {
-        this.Restriccions = (ArrayList<Restriccio>) Restriccions.clone();
+        this.Restriccions = Restriccions;
     }
 
     public void setClasses(Vector<Classe> classes) {
@@ -93,12 +95,14 @@ public class Horari {
     //Metodes
 
     public void generar_horari() {
+
         for(int i = 0; i < Restriccions.size(); ++i) {
             Restriccions.get(i).precondicions();
         }
         for (int i = 0; i < Sessions.size(); ++i) {
             prev.put(Sessions.get(i),Classes);
         }
+
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;

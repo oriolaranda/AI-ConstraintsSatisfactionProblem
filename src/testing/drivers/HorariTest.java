@@ -21,11 +21,11 @@ import static org.junit.Assert.assertSame;
 
 public class HorariTest {
     private Horari h;
-    ArrayList<Sessio> sessions;
-    Vector<Classe> classes;
-    ArrayList<Restriccio> restriccions;
-    Map<Sessio, Vector<Classe>> prev;
-    Map<Classe, Sessio> nou;
+    private ArrayList<Sessio> sessions;
+    private Vector<Classe> classes;
+    private ArrayList<Restriccio> restriccions;
+    private Map<Sessio, Vector<Classe>> prev;
+    private Map<Classe, Sessio> nou;
 
 
     public HorariTest(){
@@ -91,12 +91,13 @@ public class HorariTest {
 
     @Test
     public void getNou() {
-
+        h.generar_horari();
         assertEquals("getNou incorrecte!",nou,h.getNou());
     }
 
     @Test
     public void getPrev() {
+        h.generar_horari();
         assertEquals("getPrev incorrecte!",prev,h.getPrev());
     }
 
@@ -116,14 +117,14 @@ public class HorariTest {
     public void setRestriccions() {
         Horari horari = new Horari("H4"); //restriccions = null
         horari.setRestriccions(restriccions);
-        assertEquals("setRestriccions incorrecte!",restriccions, horari.getSessions());
+        assertEquals("setRestriccions incorrecte!",restriccions, horari.getRestriccions());
     }
 
     @Test
     public void setClasses() {
         Horari horari = new Horari("H4"); // classes = null
         horari.setClasses(classes);
-        assertEquals("setClasses incorrecte!",classes, horari.getSessions());
+        assertEquals("setClasses incorrecte!",classes, horari.getClasses());
     }
 
     @Test
@@ -131,5 +132,10 @@ public class HorariTest {
         h.setPle(true);
         assertEquals("setPle incorrecte!", true,h.getPle());
     }
-
+    /*
+    @Test
+    public void generarHorari() {
+        assertEquals();
+    }
+*/
 }
