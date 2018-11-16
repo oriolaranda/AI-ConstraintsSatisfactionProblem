@@ -15,8 +15,8 @@ public class RestriccioTipusAula extends Restriccio{
         for (Sessio s : m.keySet()) {
             Vector<Classe> classes = m.get(s);
             TipusAula tas=s.getTipusSessio();
-            for (Classe c :classes) {
-                if(!c.getAula().getTipus().equals(tas)) classes.removeElement(c);
+            for (int i=0;i<classes.size();++i) {
+                if(!classes.get(i).getAula().getTipus().equals(tas)) classes.removeElementAt(i);
             }
         }
     }
