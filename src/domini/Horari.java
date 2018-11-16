@@ -93,7 +93,6 @@ public class Horari {
     //Metodes
 
     public void generar_horari() {
-
         for(int i = 0; i < Restriccions.size(); ++i) {
             Restriccions.get(i).precondicions();
         }
