@@ -16,7 +16,6 @@ public class Algorisme {
     }
 
     public Map<Classe, Sessio> getHorari() {
-        System.out.println(s);
         if (backtracking(0)) {
             System.out.println("S'HA TROBAT UN HORARI");
             /*for (Map.Entry<Sessio, Vector<Classe>> entry : prev.entrySet()) {
@@ -113,8 +112,12 @@ public class Algorisme {
         if (nou.containsKey(classe) && nou.get(classe) != null) return false;
         nou.put(classe,sessio);
 
-        for(Restriccio r: restriccions){
-            Boolean b = r.esCompleix(nou,classe,sessio);
+        if (restriccions != null) {
+            for (Restriccio r : restriccions) {
+                Boolean b = r.esCompleix(nou, classe, sessio);
+                if (!b) return false;
+            }
+            return true;
         }
         return true;
     }

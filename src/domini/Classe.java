@@ -2,7 +2,7 @@ package domini;
 
 import java.util.Objects;
 
-public class Classe {
+public class Classe implements Comparable<Classe> {
 
     private Aula aula;
     private DiaHora hora;
@@ -58,4 +58,11 @@ public class Classe {
         return Objects.hash(aula, hora);
     }
 
+
+    @Override
+    public int compareTo(Classe o) {
+        int diahora = this.hora.compareTo(o.hora);
+        if (diahora == 0) return this.aula.getNom().compareTo(o.aula.getNom());
+        return diahora;
+    }
 }

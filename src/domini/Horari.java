@@ -21,7 +21,7 @@ public class Horari {
         this.Sessions = new ArrayList<Sessio>();
         this.Classes = new Vector<Classe>();
         this.Restriccions = new ArrayList<Restriccio>();
-        this.prev = new HashMap<>();
+        this.prev = new LinkedHashMap<>();
         this.nou = new HashMap<>();
     }
 
@@ -34,7 +34,7 @@ public class Horari {
         this.Classes = Classes;
         this.Restriccions = Restriccions;
         this.Ple = false;
-        this.prev = new HashMap<>();
+        this.prev = new LinkedHashMap<>();
         this.nou = new HashMap<>();
     }
 
@@ -102,14 +102,28 @@ public class Horari {
         for (int i = 0; i < Sessions.size(); ++i) {
             prev.put(Sessions.get(i),Classes);
         }
-
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
     }
 
     public void printHorari() {
-        if (Ple != false) nou.forEach((x, y) -> System.out.println(x + "->" + y));
+        if (Ple != false) {
+            //nou.forEach((x, y) -> System.out.println(x + "->" + y));
+            ArrayList<Classe> classes = new ArrayList<>(nou.keySet());
+            Collections.sort(classes);
+            String s = " ";
+            for (Classe c : classes) {
+                if (!s.equals(c.getDiaClasse())) {
+                    System.out.println("---------------------");
+                    System.out.println("-> " + c.getHora() );
+                    System.out.println("---------------------");
+                }
+                System.out.println(c.getAula() + "->" + nou.get(c));
+                s = c.getDiaClasse();
+            }
+            //System.out.println(classes);
+        }
     }
     public void add_sessio(Sessio S) {
         Sessions.add(S);
