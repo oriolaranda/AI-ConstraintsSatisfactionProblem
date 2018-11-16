@@ -30,11 +30,8 @@ public class driverRestriccioClasse {
         System.out.println("\t7) Setter hora RestriccioClasse:");
         System.out.println("\t\tformat: 7 hora<Integer>");
 
-        System.out.println("\t8) precondicions//Elimina de l'estructura de dades les classes de totes les sessions que coincideixen amb la donada");
-        System.out.println("\t\tformat: 8 ");
-
-        System.out.println("\t9) Sortir:");
-        System.out.println("\t\tformat: 9");
+        System.out.println("\t8) Sortir:");
+        System.out.println("\t\tformat: 8");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
@@ -49,7 +46,7 @@ public class driverRestriccioClasse {
         menu();
         int opcio = sc.nextInt();
 
-        while (opcio != 9) {
+        while (opcio != 8) {
             try {
                 switch (opcio) {
                     case 1:
@@ -58,7 +55,7 @@ public class driverRestriccioClasse {
                         hora = sc.nextInt();
                         rc = new RestriccioClasse(nomAula, dia, hora);
 
-                        System.out.println("RestriccioClasse esperada: " + nomAula + ": " + dia + " de " + hora + ":00 a" + (hora + 1) + ":00");
+                        System.out.println("RestriccioClasse esperada: " + nomAula + ": " + dia + " de " + hora + ":00 a " + (hora + 1) + ":00");
                         System.out.println("RestriccioClasse creada: " + rc.toString());
                         break;
                     case 2:
@@ -98,10 +95,6 @@ public class driverRestriccioClasse {
                         if (hora == (rc.getHora())) System.out.println("Hora RestriccioClasse assignada correctament");
                         else System.out.println("Hora RestriccioClasse NO assignada correctament");
                         break;
-                    case 8:
-                        if (rc == null) throw new NullPointerException();
-                        rc.precondicions();
-                        System.out.println("Ja s'han eliminat els dominis de les variables que satisfeien la restriccio");
                 }
 
             } catch (NullPointerException n) {

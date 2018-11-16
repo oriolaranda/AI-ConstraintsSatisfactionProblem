@@ -35,11 +35,8 @@ public class driverRestriccioGrupDiaHora {
         System.out.println("\t9) Setter hora RestriccioGrupDiaHora:");
         System.out.println("\t\tformat: 9 hora<Integer>");
 
-        System.out.println("\t10) precondicions//Elimina de l'estructura de dades les classes de les sessions del grup especificat en un dia i hora donats");
+        System.out.println("\t10) Sortir:");
         System.out.println("\t\tformat: 10");
-
-        System.out.println("\t11) Sortir:");
-        System.out.println("\t\tformat: 11");
 
         System.out.println("Introdueix una opcio amb el seu format:");
     }
@@ -55,7 +52,7 @@ public class driverRestriccioGrupDiaHora {
         menu();
         int opcio = sc.nextInt();
 
-        while (opcio != 11) {
+        while (opcio != 10) {
             try {
                 switch (opcio) {
                     case 1:
@@ -65,7 +62,7 @@ public class driverRestriccioGrupDiaHora {
                         hora = sc.nextInt();
                         rgdh = new RestriccioGrupDiaHora(nomAssignatura, numGrup, dia, hora);
 
-                        System.out.println("RestriccioGrupDiaHora esperada: "+nomAssignatura+"-"+numGrup+" "+dia+"de "+hora+":00 a" + (hora + 1) + ":00");
+                        System.out.println("RestriccioGrupDiaHora esperada: "+nomAssignatura+"-"+numGrup+" "+dia+"de "+hora+":00 a " + (hora + 1) + ":00");
                         System.out.println("RestriccioGrupDiaHora creada: " + rgdh.toString());
                         break;
                     case 2:
@@ -117,10 +114,6 @@ public class driverRestriccioGrupDiaHora {
                         if (hora==rgdh.getHora()) System.out.println("Hora RestriccioGrupDiaHora assignat correctament");
                         else System.out.println("Hora RestriccioGrupDiaHora NO assignat correctament");
                         break;
-                    case 10:
-                        if (rgdh == null) throw new NullPointerException();
-                        rgdh.precondicions();
-                        System.out.println("Ja s'han eliminat els dominis de les variables que satisfeien la restriccio");
                 }
 
             } catch (NullPointerException n) {
