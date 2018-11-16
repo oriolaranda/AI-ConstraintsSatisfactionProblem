@@ -1,9 +1,6 @@
 package domini;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 public class Horari {
 
@@ -24,6 +21,8 @@ public class Horari {
         this.Sessions = new ArrayList<Sessio>();
         this.Classes = new Vector<Classe>();
         this.Restriccions = new ArrayList<Restriccio>();
+        this.prev = new HashMap<>();
+        this.nou = new HashMap<>();
     }
 
     /**
@@ -79,7 +78,7 @@ public class Horari {
     }
 
     public void setRestriccions(ArrayList<Restriccio> Restriccions) {
-        this.Restriccions = Restriccions;
+        this.Restriccions = (ArrayList<Restriccio>) Restriccions.clone();
     }
 
     public void setClasses(Vector<Classe> classes) {

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import static domini.TipusAula.stoTipusAula;
 
-public class DriverControlador {
+public class driverControlador {
     private static void menu() {
         System.out.println("Driver Controlador:");
         System.out.println("Opcions:");
