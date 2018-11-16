@@ -93,14 +93,12 @@ public class Horari {
     //Metodes
 
     public void generar_horari() {
-
         for(int i = 0; i < Restriccions.size(); ++i) {
             Restriccions.get(i).precondicions();
         }
         for (int i = 0; i < Sessions.size(); ++i) {
             prev.put(Sessions.get(i),Classes);
         }
-
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
