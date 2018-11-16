@@ -44,10 +44,7 @@ public class driverDiaHora {
                     case 1:
                         Dia = sc.next();
                         Hora = sc.nextInt();
-
-
                         d = new DiaHora(Dia, Hora);
-
                         System.out.println("DiaHora esperat: " + Dia + " a les " + Hora);
                         System.out.println("DiaHora creat: " + d.getDia() + " a les " + d.getHora());
                         break;

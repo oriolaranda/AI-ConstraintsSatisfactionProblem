@@ -4,6 +4,7 @@ import domini.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Vector;
 
 import static domini.TipusAula.stoTipusAula;
 
@@ -15,7 +16,7 @@ public class driverControlador {
         System.out.println("\t\tformat: 1 NomPlaEstudis<String> HoraInicial<int> HoraFinal<int>     //Valors entre 0-24 HoraInicial < HoraFinal");
 
         System.out.println("\t2) Crear Assignatura:");
-        System.out.println("\t\tformat: 2 NomAssignatura<String> Fase<String> CapacitatGrup<int> CapacitatSubgrups<int> matriculats<int> TipusAula<TipusAula> numeroSessionsPerGrup<int> duracioSessions<int>   //Fase es el nom del nivell");
+        System.out.println("\t\tformat: 2 NomAssignatura<String> Fase<String> CapacitatGrup<int> CapacitatSubgrups<int> matriculats<int> TipusAula<TipusAula> numeroSessionsPerGrup<int> duracioSessions<int>  numAssignaturesSonCorrequisit Correqusist1<String> Correquisit2<int> ... CorrequisitN<String>     //Fase es el nom del nivell");
 
         System.out.println("\t3) Crear Aula:");
         System.out.println("\t\tformat: 3 NomAula<String> Capacitat<int> TipusAula<TipusAula>");
@@ -62,7 +63,21 @@ public class driverControlador {
                         break;
                     case 2:
                         if (C == null) throw new NullPointerException();
-                        C.crear_assignatura(sc.next(), sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt(), stoTipusAula(sc.next()), sc.nextInt(), sc.nextInt());
+                        String n = sc.next();
+                        String f = sc.next();
+                        int Cap = sc.nextInt();
+                        int CapS = sc.nextInt();
+                        int mat = sc.nextInt();
+                        TipusAula t = stoTipusAula(sc.next());
+                        int num = sc.nextInt();
+                        int dur = sc.nextInt();
+                        int co = sc.nextInt();
+                        Vector<String> v = new Vector<String>();
+                        for (int i = 0; i < co; ++i) {
+                            String aux = sc.next();
+                            v.add(aux);
+                        }
+                        C.crear_assignatura(n, f, Cap, CapS, mat, t, num, dur,v);
                         //System.out.println("Assignatura: " + C.getHorari().getSessions().get(3).getNomAssignaturaSessio() + " " + C.getHorari().getSessions().get(3).getNumGrupSessio() + " " + C.getHorari().getSessions().get(3).getNum());
                         break;
                     case 3:

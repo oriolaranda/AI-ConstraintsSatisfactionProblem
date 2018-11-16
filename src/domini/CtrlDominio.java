@@ -52,8 +52,12 @@ public class CtrlDominio {
         }
     }
 
-    public void crear_assignatura(String nom, String fase,int capGrup, int capSGrup, int matric, TipusAula tipus, int numSes, int dur) {
+    public void crear_assignatura(String nom, String fase,int capGrup, int capSGrup, int matric, TipusAula tipus, int numSes, int dur,Vector<String> correquisits) {
         Assignatura aux = new Assignatura(pla.getNom(),nom,fase,capGrup,capSGrup,matric,tipus,numSes,dur);
+        int mida = correquisits.size();
+        for (int i = 0; i < mida; ++i) {
+            aux.afegirCorrequisit(correquisits.get(i));
+        }
         pla.addAssignatura(aux);
         for(int i = 0; i < aux.getGrups().size();++i) {
             Grup g = aux.getGrups().get(i);
@@ -62,7 +66,6 @@ public class CtrlDominio {
                 horari.add_sessio(s);
             }
         }
-
     }
 
     public void crear_aula(String nom, int capacitat, TipusAula tipus) {
