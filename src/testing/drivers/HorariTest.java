@@ -141,5 +141,46 @@ public class HorariTest {
         assertEquals("generarHorari incorrecte!",true,horari.getPle());
     }
 
+    @Test
+    public void add_sessio() {
+        Horari horari = new Horari("H5");
+        horari.add_sessio(new stubSessio());
+        assertEquals("add_sessio incorrecte!",new stubSessio(), horari.getSessions().get(0));
+    }
+
+    @Test
+    public void remove_sessio() {
+        Horari horari = new Horari("H5", sessions, null, null);
+        assertNotNull(horari.getSessions());
+        horari.remove_sessio(new stubSessio());
+        assertEquals("remove_sessio incorrecte!",new ArrayList<>(), horari.getSessions());
+    }
+    @Test
+    public void add_classe() {
+        Horari horari = new Horari("H5");
+        horari.add_classe(new stubClasse());
+        assertEquals("add_classe incorrecte!",new stubClasse(), horari.getClasses().get(0));
+    }
+    @Test
+    public void remove_classe() {
+        Horari horari = new Horari("H5", null, classes, null);
+        assertNotNull(horari.getClasses());
+        horari.remove_classe(new stubClasse());
+        assertEquals("remove_classe incorrecte!",new Vector<>(), horari.getClasses());
+    }
+    @Test
+    public void add_restriccio() {
+        Horari horari = new Horari("H5");
+        horari.add_restriccio(new stubRestriccio());
+        assertEquals("add_restriccio incorrecte!",new stubRestriccio(), horari.getRestriccions().get(0));
+    }
+    @Test
+    public void remove_restriccio() {
+
+        Horari horari = new Horari("H5", null, null, restriccions);
+        assertNotNull(horari.getRestriccions());
+        horari.remove_restriccio(new stubRestriccio());
+        assertSame("remove_restriccio incorrecte!",new ArrayList<>(), horari.getRestriccions());
+    }
 
 }
