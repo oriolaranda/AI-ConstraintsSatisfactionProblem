@@ -59,7 +59,10 @@ public class RestriccioGrupDiaHora extends Restriccio{
             if(s.getNomAssignaturaSessio().equals(nomAssignatura) && s.getNumGrupSessio()==numGrup) {
                 Vector<Classe> c = m.get(s);
                 for (int i = 0; i < c.size(); ++i) {
-                    if(c.get(i).getDiaClasse().equals(dia) && c.get(i).getHoraClasse()==hora) c.removeElementAt(i);
+                    if(c.get(i).getDiaClasse().equals(dia) && c.get(i).getHoraClasse()==hora) {
+                        c.removeElementAt(i);
+                        --i;
+                    }
                 }
             }
         }
