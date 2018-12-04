@@ -54,7 +54,7 @@ public class HorariTest {
     }
     @AfterClass
     public static void afterClass(){
-        System.out.println("TESTOS FINALITZATS OK!");
+        System.out.println("TESTOS FINALITZATS!");
     }
     @Test
     public void constructora1() {
