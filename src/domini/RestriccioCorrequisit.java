@@ -24,7 +24,7 @@ public class RestriccioCorrequisit extends Restriccio{
     }
 
     @Override
-    public void precondicions(){
-
+    public Boolean precondicions(Sessio s, Classe c){
+        return true;
     }
 }

@@ -27,7 +27,7 @@ public abstract class Restriccio {
         return horari.getPrev();
     }
 
-    public abstract void precondicions();
+    public abstract Boolean precondicions(Sessio s, Classe c);
 
     public abstract Boolean esCompleix(Map<Classe, Sessio> nou,Classe actualc, Sessio actuals);
 

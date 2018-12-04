@@ -44,18 +44,8 @@ public class RestriccioClasse extends Restriccio {
 
 
     @Override
-     public void precondicions() {
-        Map<Sessio, Vector<Classe>> m = super.getMap();
-        for (Sessio s : m.keySet()) {
-            Vector<Classe> c = m.get(s);
-            Boolean stop = false;
-            for (int i = 0; i < c.size() && !stop; ++i) {
-                if (c.get(i).getDiaClasse().equals(dia) && (c.get(i).getHoraClasse() == hora) && c.get(i).getNomAulaClasse().equals(nomAula)) {
-                    c.removeElementAt(i);
-                    stop = true;
-                }
-            }
-        }
+     public Boolean precondicions(Sessio s, Classe c) {
+        return !(c.getDiaClasse().equals(dia)&&(c.getHoraClasse() == hora)&&c.getNomAulaClasse().equals(nomAula));
     }
 
     @Override

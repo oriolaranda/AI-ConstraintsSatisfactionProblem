@@ -13,8 +13,8 @@ public class stubRestriccio extends Restriccio {
     }
 
     @Override
-    public void precondicions() {
-
+    public Boolean precondicions(Sessio s, Classe c) {
+        return true;
     }
 
     @Override
