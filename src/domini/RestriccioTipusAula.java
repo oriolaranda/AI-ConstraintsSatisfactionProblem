@@ -10,19 +10,8 @@ public class RestriccioTipusAula extends Restriccio{
     }
 
     @Override
-    public void precondicions() {
-        Map<Sessio, Vector<Classe>> m = super.getMap();
-        for (Sessio s : m.keySet()) {
-            Vector<Classe> classes = m.get(s);
-            TipusAula tas=s.getTipusSessio();
-            for (int i=0;i<classes.size();++i) {
-                if(!classes.get(i).getAula().getTipus().equals(tas)) {
-                    classes.removeElementAt(i);
-                    --i;
-                }
-
-            }
-        }
+    public Boolean precondicions(Sessio s, Classe c) {
+        return (s.getTipusSessio().equals(c.getTipusClasse()));
     }
 
     @Override

@@ -41,6 +41,9 @@ public class Classe implements Comparable<Classe> {
         return aula.getNom();
     }
 
+    public int getCapacitatClasse() {return aula.getCapacitat();}
+
+    public TipusAula getTipusClasse() { return aula.getTipus();}
 
     @Override
     public String toString() {

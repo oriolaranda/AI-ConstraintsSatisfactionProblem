@@ -96,12 +96,22 @@ public class Horari {
 
     public void generar_horari() {
 
-        for(int i = 0; i < Restriccions.size(); ++i) {
-            Restriccions.get(i).precondicions();
+        for (Sessio s:Sessions) {
+            Vector <Classe> Classes1=(Vector<Classe>)Classes.clone();
+            for (int j=0; j<Classes1.size();++j) {
+                Boolean bien=true;
+                Classe c=Classes1.get(j);
+                for (int k=0; k<Restriccions.size() && bien;++k) {
+                    bien=Restriccions.get(k).precondicions(s,c);
+                }
+                if(!bien) {
+                    Classes1.removeElementAt(j);
+                    --j;
+                }
+            }
+            prev.put(s,Classes1);
         }
-        for (int i = 0; i < Sessions.size(); ++i) {
-            prev.put(Sessions.get(i),Classes);
-        }
+
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
         if (!nou.isEmpty()) Ple = true;
