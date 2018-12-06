@@ -2,6 +2,7 @@ package domini;
 
 import domini.Aula;
 import domini.Horari;
+import persistencia.CtrlPersistencia;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -11,12 +12,12 @@ public class CtrlDominio {
     private Horari horari;
     private PlaEstudis pla;
     private ArrayList<DiaHora> hores;
-    private ArrayList<Aula> aules;
+    private CtrlPersistencia pers;
 
     public CtrlDominio() {
         this.horari = new Horari("Horari");
         this.hores = new ArrayList<DiaHora>();
-        this.aules = new ArrayList<Aula>();
+        this.pers = new CtrlPersistencia();
     }
 
     public PlaEstudis getPla() {
@@ -30,13 +31,10 @@ public class CtrlDominio {
         return hores;
     }
 
-    public ArrayList<Aula> getAules() {
-        return aules;
-    }
-
     public void crear_pla(String nom, int horaIni, int horaFi) {
         int[] periode = new int[] {horaIni,horaFi};
         pla = new PlaEstudis(nom,periode);
+        pers.guardar_pla(nom,horaIni,horaFi);
         for(int i = horaIni; i < horaFi;++i) {
             DiaHora aux = new DiaHora("Dilluns",i);
             hores.add(aux);
@@ -69,7 +67,7 @@ public class CtrlDominio {
 
     public void crear_aula(String nom, int capacitat, TipusAula tipus) {
         Aula aux = new Aula(nom, capacitat, tipus);
-        aules.add(aux);
+        pers.guardar_aula(nom,capacitat,String.valueOf(tipus));
         if (hores.size() > 0) {
             for (int i = 0; i < hores.size(); ++i) {
                 Classe c = new Classe(aux, hores.get(i));
@@ -84,6 +82,11 @@ public class CtrlDominio {
 
     public void generar_horari() {
         horari.generar_horari();
+        guardar_horari();
+    }
+
+    public void guardar_horari() {
+        if(horari.getPle() != false) pers.guardar_horari(horari,pla);
     }
 
     public void print_horari() {
