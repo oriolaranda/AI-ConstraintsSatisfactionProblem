@@ -19,6 +19,11 @@ public class Aula {
     /**
      Constructor for Aula
      */
+
+    public Aula() {
+    }
+
+
     public Aula(String Nom, int Capacitat, TipusAula Tipus/*ArrayList<Classe> Classes*/) {
         this.Nom = Nom;
         this.Capacitat = Capacitat;
