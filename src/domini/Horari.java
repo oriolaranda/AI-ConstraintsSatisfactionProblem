@@ -36,6 +36,19 @@ public class Horari {
         this.Ple = false;
         this.prev = new LinkedHashMap<>();
         this.nou = new HashMap<>();
+        Restriccio aux;
+        aux = new RestriccioFase();
+        add_restriccio(aux);
+        aux = new RestriccioGrupDiaHora("bd",10,"Dimarts",9);
+        add_restriccio(aux);
+        aux = new RestriccioCapacitat();
+        add_restriccio(aux);
+        aux = new RestriccioTipusAula();
+        add_restriccio(aux);
+        aux = new RestriccioCorrequisit();
+        add_restriccio(aux);
+        aux = new RestriccioClasse("A5002","Dimecres",16);
+        add_restriccio(aux);
     }
 
 
