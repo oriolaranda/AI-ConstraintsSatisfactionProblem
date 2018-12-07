@@ -38,7 +38,7 @@ public class driverControlador {
         System.out.println("Introdueix una opcio amb el seu format:");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Scanner sc = new Scanner(System.in);
         menu();
