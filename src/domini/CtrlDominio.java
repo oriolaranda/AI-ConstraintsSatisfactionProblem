@@ -21,8 +21,10 @@ public class CtrlDominio {
         this.hores = new ArrayList<DiaHora>();
         this.pers = new CtrlPersistencia();
         this.aules = new ArrayList<>();
-        carregar_all_aules();
         this.nom_plans = pers.carregar_all_plans();
+        carregar_pla(nom_plans.get(0));
+        carregar_all_aules();
+        generar_horari();
     }
 
 
@@ -97,6 +99,7 @@ public class CtrlDominio {
     public void generar_horari() {
         horari.generar_horari();
         guardar_horari();
+        horari.printHorari();
     }
 
     public void print_horari() {
@@ -122,7 +125,7 @@ public class CtrlDominio {
     }
 
 
-//CARREGAR INDIVUDUAL
+//CARREGAR
 
     public void carregar_aula(String nom) throws Exception {
         Aula a = pers.carregar_aula(nom,true);
@@ -132,8 +135,8 @@ public class CtrlDominio {
 
     public void carregar_all_aules() throws Exception {
         ArrayList<Aula> aux = pers.carregar_all_aules();
-        for(Aula a:aux) {
-            aules.add(a);
+        aules = aux;
+        for(Aula a: aux) {
             crear_classes(a);
         }
     }

@@ -99,6 +99,7 @@ public class Horari {
         for (Sessio s:Sessions) {
             Vector <Classe> Classes1=(Vector<Classe>)Classes.clone();
             for (int j=0; j<Classes1.size();++j) {
+
                 Boolean bien=true;
                 Classe c=Classes1.get(j);
                 for (int k=0; k<Restriccions.size() && bien;++k) {
@@ -113,8 +114,14 @@ public class Horari {
         }
 
         Algorisme A = new Algorisme(prev, Restriccions);
+        System.out.println("hola");
         nou = A.getHorari();
-        if (!nou.isEmpty()) Ple = true;
+
+        if (!nou.isEmpty()) {
+            Ple = true;
+            System.out.println("NO S'HA TROBAT HORARI");
+        }
+
     }
 
     public void printHorari() {
