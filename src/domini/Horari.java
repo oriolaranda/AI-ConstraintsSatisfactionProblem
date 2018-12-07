@@ -127,15 +127,13 @@ public class Horari {
         }
 
         Algorisme A = new Algorisme(prev, Restriccions);
-        System.out.println("hola");
         nou = A.getHorari();
 
         if (!nou.isEmpty()) {
             Ple = true;
-            System.out.println("NO S'HA TROBAT HORARI");
         }
-
     }
+
 
     public void printHorari() {
         if (Ple != false) {
