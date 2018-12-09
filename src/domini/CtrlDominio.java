@@ -188,4 +188,139 @@ public class CtrlDominio {
         }
 
     }
+
+   /*
+    private CtrlPresentacio cp;
+
+    public CtrlDomini(CtrlPresentacio cp){
+        this.cp=cp;
+    }
+
+    public Boolean afegirAula(String nomAula, String capacitat, String tipus) {
+        //DOMINIO SERA EL ENCARGADO DE PASAR LOS TIPOS A SUS VALORES CORRECTOS
+        //SOLO SE COMUNICACRÀ CON PRESENTACIÓN CON STRINGS
+        //devuelve true si el aula existe o alguno de los valores son incorrectos
+        //MEJORA:comprueba tambien que tipus es correcto, podria ser un int que devolviera 1 si existe, 2 si tipo incorrecto 0 si bien
+        return false;
+    }
+
+    void esborrarAula(String nomAula) {
+        System.out.println("Aula: "+nomAula+" eliminada correctament");
+    }
+
+    ArrayList<ArrayList<String>> getAules() {
+        ArrayList<String> a= new ArrayList<String>();
+        a.add("A5202");
+        a.add("20");
+        a.add("TEORIA");
+        ArrayList<String> b= new ArrayList<String>();
+        b.add("A6E01");
+        b.add("60");
+        b.add("PROBLEMES");
+        ArrayList<ArrayList<String>> c = new ArrayList<ArrayList<String>>();
+        c.add(a);
+        c.add(b);
+        return c;
+    }
+
+    ArrayList<ArrayList<String>> getPlaEstudis(){
+        ArrayList<String> a= new ArrayList<String>();
+        a.add("INFO");
+        a.add("8:00");
+        a.add("21:00");
+        ArrayList<String> b= new ArrayList<String>();
+        b.add("ADE");
+        b.add("10:30");
+        b.add("13:30");
+        ArrayList<ArrayList<String>> c = new ArrayList<ArrayList<String>>();
+        c.add(a);
+        c.add(b);
+        return c;
+    }
+
+    Boolean afegirPlaEstudis(String nomPlaEstudis, String horaInici, String horaFinal) {
+        return false;
+    }
+
+    void esborrarPlaEstudis(String nomPlaEstudis) {
+        System.out.println("PlaEstudis: "+nomPlaEstudis+" eliminat correctament");
+    }
+
+    ArrayList<ArrayList<String>> getAssignatures(String nomPlaEstudis) {
+        //retorna les assignatures d'un pla d'estudis indicat
+        ArrayList<String> a= new ArrayList<String>();
+        a.add("FM");
+        a.add("INICIAL");
+        a.add("60");
+        a.add("20");
+        a.add("120");
+        a.add("PROBLEMES");
+        a.add("2");
+        a.add("2");
+
+        ArrayList<String> b= new ArrayList<String>();
+        b.add("ER");
+        b.add("SOFTWARE");
+        b.add("50");
+        b.add("20");
+        b.add("130");
+        b.add("LABORATORI");
+        b.add("2");
+        b.add("2");
+
+        ArrayList<ArrayList<String>> c = new ArrayList<ArrayList<String>>();
+        c.add(a);
+        c.add(b);
+        return c;
+    }
+
+    void esborrarAssignatura(String nomAssignatura, String nomPlaEstudis) {
+        //esborra l'assignatura indicada del pla d'estudis indicat
+        System.out.println("Assignatura: "+nomAssignatura+" ("+ nomPlaEstudis+")" +" eliminada correctament");
+    }
+
+    Boolean afegirAssignatura(String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio, String nomPlaEstudis) {
+        //retorna true si l'assignatura ja existeix o algun dels valors introduits son incorrectes
+        return false;
+    }
+
+    ArrayList<ArrayList<String>> getCorrequisitsAssignatura(String nomAssignatura, String nomPlaEstudis) {
+        ArrayList<String> a= new ArrayList<String>();
+        a.add("M1");
+        a.add("SEGONCURS");
+        a.add("60");
+        a.add("20");
+        a.add("120");
+        a.add("PROBLEMES");
+        a.add("2");
+        a.add("2");
+
+        ArrayList<String> b= new ArrayList<String>();
+        b.add("M2");
+        b.add("SOFTWARE");
+        b.add("50");
+        b.add("20");
+        b.add("130");
+        b.add("LABORATORI");
+        b.add("2");
+        b.add("2");
+
+        ArrayList<ArrayList<String>> c = new ArrayList<ArrayList<String>>();
+        c.add(a);
+        c.add(b);
+        return c;
+    }
+
+    Boolean afegirCorrequisit(String nomAssignaturaEscollida, String nomAssignaturaActual, String nomPlaEstudis) {
+        //retorna si les assignatures son correquisits entre elles
+        //si no ho son, crea les associacions perque ho siguin
+        //tb comprova que no sigui correquisit de si mateixa i coses aixi
+        return false;
+    }
+
+    void esborrarAssignatura(String nomAssignaturaEscollida, String nomAssignaturaActual, String nomPlaEstudis) {
+        //s'esborra el la relacio de correquits en els dos sentits
+        System.out.println("Correquisit entre: "+nomAssignaturaEscollida+" i "+nomAssignaturaActual+" eliminat correctament");
+    }
+    */
 }

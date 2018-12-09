@@ -97,6 +97,7 @@ public class Assignatura implements Comparable<Assignatura> {
     public Boolean esCorrequisit(String nom){
         return correquisits.contains(nom);
     }
+    //igual hay que hacer check del valor de nom para ver si es posible o no
 
     private Boolean existeixGrup(int num) {
         for (int i = 0; i < grups.size(); ++i) if (grups.get(i).getNum() == num) return true;
