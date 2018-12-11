@@ -130,9 +130,8 @@ public class Horari {
         Algorisme A = new Algorisme(prev, Restriccions);
         nou = A.getHorari();
 
-        if (!nou.isEmpty()) {
-            Ple = true;
-        }
+        if (nou != null) Ple = true;
+
     }
 
 

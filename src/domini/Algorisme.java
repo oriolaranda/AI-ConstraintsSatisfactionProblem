@@ -51,9 +51,9 @@ public class Algorisme {
     public boolean backtracking(int i) {
         if (i < s.size()) {
 
-            for (Classe c : prev.get(s.get(i))) {
+            for (int j = 0; j < prev.get(s.get(i)).size();++j){
+                Classe c = prev.get(s.get(i)).get(j);
                 //System.out.println("***"+s.get(i));
-
 
 
                 //System.out.println(s.get(i)+" "+ prev.get(s.get(i)));
@@ -61,22 +61,26 @@ public class Algorisme {
 
                 boolean correcte = comprovarRestriccions(c,s.get(i));
 
-                //eliminem el valor de les altres variables
-                for (Sessio s1 : split(i + 1)) {
-                    prev.put(s1, supr(prev.get(s1), c));
-                    //System.out.println(s1+" "+prev.get(s1));
-                }
+
 
                 if (correcte) {
+                    nou.put(c,s.get(i));
+                    //eliminem el valor de les altres variables
+                    for (Sessio s1 : split(i + 1)) {
+                        prev.put(s1, supr(prev.get(s1), c));
+                        //System.out.println(s1+" "+prev.get(s1));
+                    }
+
                     if (backtracking(i+1)) return true;
-                    else nou.remove(c);
+                    else {
+                        nou.remove(c);
+                        for (Sessio s1 : split(i + 1)) {
+                            prev.put(s1, add(prev.get(s1), c));
+                            //System.out.println(s1+" "+prev.get(s1));
+                        }
+                    }
                 } else {
 
-                    //tornem a posar el valor a la resta de variables
-                    /*for (Sessio s1 : split(i + 1)) {
-                        prev.put(s1, add(prev.get(s1), c));
-                        //System.out.println(s1+" "+prev.get(s1));
-                    }*/
                 }
 
             }
@@ -92,17 +96,12 @@ public class Algorisme {
 
 
     private boolean comprovarRestriccions(Classe classe, Sessio sessio) {
-        /*for (Sessio s : prev.keySet()) {
-            if (prev.get(s).isEmpty()) {
-                System.out.println("No queden valors disponibles per a la variable " + s);
+        for (Sessio s1 : split(s.indexOf(sessio)+1)) {
+            if (prev.get(s1).isEmpty()) {
                 return false;
             }
-        }*/
-        //System.out.println(sessio+" "+classe);
+        }
 
-        if (nou.containsKey(classe) && nou.get(classe) != null) return false;
-
-        nou.put(classe,sessio);
 
         if (restriccions != null) {
             for (Restriccio r : restriccions) {
