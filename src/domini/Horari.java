@@ -36,7 +36,7 @@ public class Horari {
         this.Ple = false;
         this.prev = new LinkedHashMap<>();
         this.nou = new HashMap<>();
-        Restriccio aux;
+     /*   Restriccio aux;
         aux = new RestriccioFase();
         add_restriccio(aux);
         aux = new RestriccioGrupDiaHora("bd",10,"Dimarts",9);
@@ -48,7 +48,7 @@ public class Horari {
         aux = new RestriccioCorrequisit();
         add_restriccio(aux);
         aux = new RestriccioClasse("A5002","Dimecres",16);
-        add_restriccio(aux);
+        add_restriccio(aux);*/
     }
 
 
@@ -108,6 +108,13 @@ public class Horari {
     //Metodes
 
     public void generar_horari() {
+
+        for(Sessio s: Sessions) {
+            System.out.println(s.getId());
+        }
+        for(Classe c:Classes) {
+            System.out.println(c.getNomAulaClasse() + " " + c.getDiaClasse() + " "+ c.getHoraClasse());
+        }
 
         for (Sessio s:Sessions) {
             Vector <Classe> Classes1=(Vector<Classe>)Classes.clone();

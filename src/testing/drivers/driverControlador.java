@@ -50,6 +50,7 @@ public class driverControlador {
             try {
                 switch (opcio) {
                     case 1:
+                        /*
                         String nom = sc.next();
                         int horaIni = sc.nextInt();
                         int horaFi = sc.nextInt();
@@ -59,9 +60,14 @@ public class driverControlador {
                             C.crear_pla(nom, horaIni, horaFi);
                             System.out.println("Pla Esperat: " + nom + " comença a les " + horaIni + " i acaba a les " + horaFi);
                             System.out.println("Pla Obtingut: " + C.getPla().getNom() + " comença a les " + C.getPla().getPeriodeLectiu()[0] + " i acaba a les " + C.getPla().getPeriodeLectiu()[1]);
+                        }*/
+                        ArrayList<String> ax = C.getNom_plans();
+                        for(int i = 0; i< ax.size(); ++i) {
+                            System.out.println("Pla " + ax.get(i));
                         }
                         break;
                     case 2:
+                        /*
                         if (C == null) throw new NullPointerException();
                         String n = sc.next();
                         String f = sc.next();
@@ -79,12 +85,21 @@ public class driverControlador {
                         }
                         C.crear_assignatura(n, f, Cap, CapS, mat, t, num, dur,v);
                         //System.out.println("Assignatura: " + C.getHorari().getSessions().get(3).getNomAssignaturaSessio() + " " + C.getHorari().getSessions().get(3).getNumGrupSessio() + " " + C.getHorari().getSessions().get(3).getNum());
+                       */
+                        for(Aula a:C.getAules()) {
+                            System.out.println(a.getNom());
+                        }
                         break;
                     case 3:
+                        /*
                         if (C == null) throw new NullPointerException();
                         C.crear_aula(sc.next(), sc.nextInt(), stoTipusAula(sc.next()));
                        // System.out.println("Classe: " + C.getHorari().getClasses().get(3).getNomAulaClasse() + " " + C.getHorari().getClasses().get(3).getDiaClasse() + " " + C.getHorari().getClasses().get(3).getHoraClasse());
-
+                        */
+                        C.carregar_pla(sc.next());
+                        for(Assignatura a: C.getPla().getAssignatures()) {
+                            System.out.println(a.getNom() + " " + a.getFase());
+                        }
                         break;
                     case 4:
                         if (C == null) throw new NullPointerException();

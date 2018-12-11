@@ -4,6 +4,7 @@ import domini.*;
 
 import java.io.File;
 
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -69,23 +70,28 @@ public class CtrlPersistencia {
         }
     }
 
-    public PlaEstudis carregar_pla(String nom) throws Exception {
+  //  public Horari carregar_horari(String nomPla,String nom) {}
+
+    public ArrayList<ArrayList<String> > carregar_pla(String nom) throws Exception {                    //OK
 
         Path path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/info_pla.txt");
         File f = new File(String.valueOf(path));
         Scanner sc = new Scanner(f);
         String n = sc.next();
         int[] periode = new int[]{sc.nextInt(), sc.nextInt()};
-        PlaEstudis p = new PlaEstudis(n, periode);
+        ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
+        ArrayList<String> aux = new ArrayList<String>();
+        aux.addAll(Arrays.asList(n,String.valueOf(periode[0]),String.valueOf(periode[1])));
+        result.add(aux);
         path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/Assignatures");
         File[] files = new File(String.valueOf(path)).listFiles();
         for (File file : files) {
-            p.addAssignatura(carregar_assignatura(file.getName(), nom, false));
+            result.add(carregar_assignatura(file.getName(), nom, false));
         }
-        return p;
+        return result;
     }
 
-    public Aula carregar_aula(String nom,Boolean sola) throws Exception {
+    public ArrayList<String> carregar_aula(String nom,Boolean sola) throws Exception {                          //OK
         Path path;
         if (sola) {
             path = Paths.get("src/persistencia/Aules/" + nom + ".txt");
@@ -94,11 +100,12 @@ public class CtrlPersistencia {
         }
         File f = new File(String.valueOf(path));
         Scanner sc = new Scanner(f);
-        Aula a = new Aula(sc.next(), sc.nextInt(), stoTipusAula(sc.next()));
+        ArrayList<String> a = new ArrayList<String>();
+        a.addAll(Arrays.asList(sc.next(), String.valueOf(sc.nextInt()), sc.next()));
         return a;
     }
 
-    public Assignatura carregar_assignatura(String nom, String nomPla, Boolean sola) throws Exception {
+    public ArrayList<String> carregar_assignatura(String nom, String nomPla, Boolean sola) throws Exception {        //OK
         Path path;
         if (sola) {
             path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Assignatures/" + nom + ".txt");
@@ -107,24 +114,26 @@ public class CtrlPersistencia {
         }
         File f = new File(String.valueOf(path));
         Scanner sc = new Scanner(f);
-        Assignatura a = new Assignatura(nomPla, sc.next(), sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt(), stoTipusAula(sc.next()), sc.nextInt(), sc.nextInt());
+        ArrayList<String> a = new ArrayList<>();
+        a.addAll(Arrays.asList(nomPla, sc.next(), sc.next(), String.valueOf(sc.nextInt()), String.valueOf(sc.nextInt()), String.valueOf(sc.nextInt()), sc.next(), String.valueOf(sc.nextInt()), String.valueOf(sc.nextInt())));
         int num_co = sc.nextInt();
-        for (int i = 0; i < num_co; ++i) a.afegirCorrequisit(sc.next());
+        a.add(String.valueOf(num_co));
+        for (int i = 0; i < num_co; ++i) a.add(sc.next());
         return a;
     }
 
-    public ArrayList<Aula> carregar_all_aules() throws Exception {
+    public ArrayList<ArrayList<String> > carregar_all_aules() throws Exception {                                //OK
         Path path;
         path = Paths.get("src/persistencia/Aules");
         File[] files = new File(String.valueOf(path)).listFiles();
-        ArrayList<Aula> result = new ArrayList<>();
+        ArrayList<ArrayList<String> > result = new ArrayList<>();
         for (File file : files) {
             result.add(carregar_aula(file.getName(),false));
         }
         return result;
     }
 
-    public ArrayList<Assignatura> carregar_all_assignatures(String nomPla) throws Exception {
+   /* public ArrayList<Assignatura> carregar_all_assignatures(String nomPla) throws Exception {
         Path path;
         path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Assignatures/");
         File[] files = new File(String.valueOf(path)).listFiles();
@@ -133,16 +142,28 @@ public class CtrlPersistencia {
             result.add(carregar_assignatura(file.getName(),nomPla,false));
         }
         return result;
-    }
+    }*/
 
-    public ArrayList<String> carregar_all_plans() throws Exception {
+    public ArrayList<String> carregar_all_noms_plans() throws Exception {                       //OK
         Path path;
         path = Paths.get("src/persistencia/PlaEstudis");
         File[] files = new File(String.valueOf(path)).listFiles();
         ArrayList<String> result = new ArrayList<>();
         for (File file : files) {
-            result.add(carregar_pla(file.getName()).getNom());
+            result.add(carregar_pla(file.getName()).get(0).get(0));
         }
         return result;
+    }
+
+    public boolean borrar_aula(String nom) {
+        Path path = Paths.get("src/persistencia/Aules/" + nom + ".txt");
+        File f = new File(String.valueOf(path));
+        boolean correct = false;
+        if(f.delete()){
+            correct = true;
+        }else{
+            correct = false;
+        }
+        return correct;
     }
 }
