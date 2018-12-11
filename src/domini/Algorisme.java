@@ -102,7 +102,6 @@ public class Algorisme {
             }
         }
 
-
         if (restriccions != null) {
             for (Restriccio r : restriccions) {
                 Boolean b = r.esCompleix(nou, classe, sessio);
@@ -114,11 +113,33 @@ public class Algorisme {
     }
 
 
-    private Stack<Classe> forwardChecking(int i, Classe c) {
+    /**
+     *
+     *
+     * @param sessio
+     * @param classe
+     * @return stack<classe>
+     */
+    private Stack<Classe> forwardChecking(Sessio sessio, Classe classe) {
         Stack<Classe> poda = new Stack<>();
-        for (Sessio sessio : s.subList(i+1, s.size()-1)) {
-            prev.put(sessio, supr(prev.get(sessio), c));
+        for (Sessio s1 : split(s.indexOf(sessio) + 1)) {
+            Vector<Classe> v = supr(prev.get(s1), classe);
+
+            prev.put(s1,v);
+
+            for(Restriccio r: restriccions) {
+                if(r instanceof RestriccioFase) { //Restriccio fase
+                    for(Classe c: v) {
+                        if(c.getDiaClasse() == classe.getDiaClasse()) {
+
+                        }
+                    }
+                }
+
+            }
+
         }
+
         return poda;
     }
 
