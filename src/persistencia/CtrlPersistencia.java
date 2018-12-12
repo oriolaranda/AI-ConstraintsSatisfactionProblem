@@ -147,10 +147,14 @@ public class CtrlPersistencia {
     public ArrayList<String> carregar_all_noms_plans() throws Exception {                       //OK
         Path path;
         path = Paths.get("src/persistencia/PlaEstudis");
+        File f = new File(String.valueOf(path));
         File[] files = new File(String.valueOf(path)).listFiles();
         ArrayList<String> result = new ArrayList<>();
-        for (File file : files) {
-            result.add(carregar_pla(file.getName()).get(0).get(0));
+
+        if(files.length > 0) {
+            for (File file : files) {
+                result.add(carregar_pla(file.getName()).get(0).get(0));
+            }
         }
         return result;
     }

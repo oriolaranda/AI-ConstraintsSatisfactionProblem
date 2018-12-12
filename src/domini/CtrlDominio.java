@@ -5,6 +5,7 @@ import domini.Horari;
 import persistencia.CtrlPersistencia;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class CtrlDominio {
@@ -26,8 +27,8 @@ public class CtrlDominio {
         this.aules = new ArrayList<>();
         this.classes = new Vector<>();
         this.sessions = new ArrayList<>();
-        this.nom_plans = pers.carregar_all_noms_plans();
-        carregar_all_aules();
+       //  this.nom_plans = pers.carregar_all_noms_plans();
+      // carregar_all_aules();
     }
 
 
@@ -40,18 +41,30 @@ public class CtrlDominio {
         return horari;
     }
 
-    public ArrayList<Aula> getAules() {
-        return aules;
+    public ArrayList<Aula> getaules() { return aules; }
+
+    public ArrayList<ArrayList<String>> getAules() {
+        ArrayList<ArrayList<String> > result = new ArrayList<>();
+        for (Aula a : aules) {
+            ArrayList<String> aux = new ArrayList<>();
+            aux.addAll(Arrays.asList(a.getNom(), String.valueOf(a.getCapacitat()), String.valueOf(a.getTipus())));
+            result.add(aux);
+        }
+        return result;
     }
 
     public ArrayList<String> getNom_plans() { return nom_plans;}
+
+    public Vector<Classe> getclasses() { return classes;}
+
+    public ArrayList<Sessio> getsessions() {return sessions;}
 
 
 //CREADORES INDIVIDUALS
 
     public boolean afegirPlaEstudis(String nom, String horaIni, String horaFi) {           //OK
-        if(nom_plans.contains(nom)) return true;
-        else {
+      //  if(nom_plans.contains(nom)) return true;
+      //  else {
             int horai = Integer.valueOf(horaIni);
             int horaf = Integer.valueOf(horaFi);
             int[] periode = new int[]{horai, horaf};
@@ -78,13 +91,13 @@ public class CtrlDominio {
                 crear_classes_per_hora(aux);
             }
             return false;
-        }
+      //  }
     }
 
     public int afegirAssignatura(String nomPla, String nom, String fase, String capG, String capSG, String mat, String tip, String nSes, String d, Vector<String> correquisits) throws Exception {      //OK
-        if(!nomPla.equals(pla.getNom())) return 1;      //Si el pla actiu no es el mateix en el que volem introduir la assignatura
-        if(pla.getAssignatures().contains(nom)) return 2;       //L'assignatura ja existeix en el pla
-        else {
+       // if(!nomPla.equals(pla.getNom())) return 1;      //Si el pla actiu no es el mateix en el que volem introduir la assignatura
+       // if(pla.getAssignatures().contains(nom)) return 2;       //L'assignatura ja existeix en el pla
+       // else {
             int capGrup = Integer.valueOf(capG);
             int capSGrup = Integer.valueOf(capSG);
             int matric = Integer.valueOf(mat);
@@ -100,7 +113,7 @@ public class CtrlDominio {
             guardar_assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, String.valueOf(tipus), numSes, dur, correquisits);
             crear_sessions(aux);
             return 0;               //correcte
-        }
+      //  }
     }
 
     public boolean afegirAula(String nom, String capacitat, String  tipus) throws Exception {
@@ -114,8 +127,8 @@ public class CtrlDominio {
         }
     }
 
-    public void crear_restriccions(ArrayList<Restriccio> R) {
-        horari.setRestriccions(R);
+    public void crear_restriccions(Restriccio R) {
+        horari.add_restriccio(R);
     }
 
 
@@ -126,7 +139,7 @@ public class CtrlDominio {
         horari.setSessions(sessions);
         horari.generar_horari();
         guardar_horari();
-        //horari.printHorari();
+        horari.printHorari();
     }
 
     public void print_horari() {
@@ -138,8 +151,20 @@ public class CtrlDominio {
 //BORRAR
 
     public boolean esborrarAula(String nomAula) {
-        boolean correct = pers.borrar_aula(nomAula);
-
+        boolean correct = true;
+        for(int i = 0; i < aules.size() && correct;++i) {
+            if(aules.get(i).getNom().equals(nomAula)) {
+                correct = false;
+                if(!pers.borrar_aula(nomAula)) return true;
+                aules.remove(i);
+                for(int j = 0; j < classes.size();++j) {
+                    if(classes.get(j).getNomAulaClasse().equals(nomAula)) {
+                        classes.removeElementAt(j);
+                        --j;
+                    }
+                }
+            }
+        }
         return correct;
 
     }
@@ -267,38 +292,12 @@ public class CtrlDominio {
     }
 
    /*
-    private CtrlPresentacio cp;
 
-    public CtrlDomini(CtrlPresentacio cp){
-        this.cp=cp;
-    }
-
-    public Boolean afegirAula(String nomAula, String capacitat, String tipus) {
-        //DOMINIO SERA EL ENCARGADO DE PASAR LOS TIPOS A SUS VALORES CORRECTOS
-        //SOLO SE COMUNICACRÀ CON PRESENTACIÓN CON STRINGS
-        //devuelve true si el aula existe o alguno de los valores son incorrectos
-        //MEJORA:comprueba tambien que tipus es correcto, podria ser un int que devolviera 1 si existe, 2 si tipo incorrecto 0 si bien
-        return false;
-    }
 
     void esborrarAula(String nomAula) {
         System.out.println("Aula: "+nomAula+" eliminada correctament");
     }
 
-    ArrayList<ArrayList<String>> getAules() {
-        ArrayList<String> a= new ArrayList<String>();
-        a.add("A5202");
-        a.add("20");
-        a.add("TEORIA");
-        ArrayList<String> b= new ArrayList<String>();
-        b.add("A6E01");
-        b.add("60");
-        b.add("PROBLEMES");
-        ArrayList<ArrayList<String>> c = new ArrayList<ArrayList<String>>();
-        c.add(a);
-        c.add(b);
-        return c;
-    }
 
     ArrayList<ArrayList<String>> getPlaEstudis(){
         ArrayList<String> a= new ArrayList<String>();
