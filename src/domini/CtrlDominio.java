@@ -27,7 +27,7 @@ public class CtrlDominio {
         this.aules = new ArrayList<>();
         this.classes = new Vector<>();
         this.sessions = new ArrayList<>();
-       //  this.nom_plans = pers.carregar_all_noms_plans();
+        this.nom_plans = pers.carregar_all_noms_plans();
       // carregar_all_aules();
     }
 
