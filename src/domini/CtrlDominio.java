@@ -102,7 +102,7 @@ public class CtrlDominio {
 
     public String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis) {
 
-        return horari.getNou().get();
+        //return horari.getNou().get();
     }
 
 
