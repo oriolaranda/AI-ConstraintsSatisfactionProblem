@@ -12,6 +12,7 @@ public class Horari {
     private Map<Sessio, Vector<Classe>> prev;
     private Map<Classe, Sessio> nou;
     private boolean Ple;
+    private String nomPla;
 
     //Constructors
 
@@ -82,8 +83,16 @@ public class Horari {
         return prev;
     }
 
+    public String getNomPla() {
+        return nomPla;
+    }
+
 
     //Setters
+
+    public void setNomPla(String nomPla) {
+        this.nomPla = nomPla;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -188,4 +197,6 @@ public class Horari {
     public int hashCode() {
         return Objects.hash(nom, prev, nou);
     }
+
+
 }

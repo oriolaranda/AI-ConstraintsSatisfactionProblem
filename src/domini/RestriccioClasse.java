@@ -4,12 +4,14 @@ import java.util.Map;
 import java.util.Vector;
 
 public class RestriccioClasse extends Restriccio {
+    private String id;
     private String nomAula;
     private String dia;
     private int hora;
 
     //Constructoras
-    public RestriccioClasse(String nomAula, String dia, int hora) {
+    public RestriccioClasse(String id, String nomAula, String dia, int hora) {
+        this.id = id;
         this.nomAula = nomAula;
         this.dia = dia;
         this.hora = hora;
@@ -60,4 +62,11 @@ public class RestriccioClasse extends Restriccio {
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

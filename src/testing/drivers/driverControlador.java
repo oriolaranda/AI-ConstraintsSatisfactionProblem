@@ -164,7 +164,8 @@ public class driverControlador {
                         break;
                     case 5:
                         if (C == null) throw new NullPointerException();
-                        C.generar_horari();
+
+                        C.crearHorari("Horari1",false, false, false, false, null,  "FIB");
                         break;
                 }
 

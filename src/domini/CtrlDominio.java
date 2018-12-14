@@ -30,8 +30,9 @@ public class CtrlDominio {
         this.classes = new Vector<>();                                      //Classes actives
         this.sessions = new ArrayList<>();                                  //Sessions actives
         this.nom_plans = pers.carregar_all_noms_plans();
-      //  this.nom_horaris_pla = pers.carregar_noms_horaris(pla.getNom());
-      // carregar_all_aules();
+      // this.nom_horaris_pla = pers.carregar_noms_horaris(pla.getNom());
+      carregar_all_aules();
+      carregar_pla("FIB");
       //  this.pres = new CtrlPresentacio();
     }
 
@@ -97,6 +98,11 @@ public class CtrlDominio {
             else hores.add(i + ":00");
         }
         return hores;
+    }
+
+    public String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis) {
+
+        return horari.getNou().get();
     }
 
 
@@ -174,9 +180,21 @@ public class CtrlDominio {
 
 //GENERACIO HORARI
 
-    public void generar_horari() {                              //omple horari amb les classes i les sessions actives i genera
+    public void crearHorari(String nomHorari, Boolean restriccioCapacitat, Boolean restriccioCorrequisit, Boolean restriccioFase, Boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions,String nomPlaEstudis) {                              //omple horari amb les classes i les sessions actives i genera
+        horari.setNom(nomHorari);
+        horari.setNomPla(nomPlaEstudis);
         horari.setClasses(classes);
         horari.setSessions(sessions);
+        ArrayList<Restriccio> res = new ArrayList<>();
+        if(restriccioCapacitat) res.add(new RestriccioCapacitat());
+        if(restriccioCorrequisit) res.add(new RestriccioCorrequisit());
+        if(restriccioFase) res.add(new RestriccioFase());
+        if(restriccioTipusAula) res.add(new RestriccioTipusAula());
+        for(ArrayList<String> as: restriccions) {
+            if (as.get(1).equals("")) res.add(new RestriccioGrupDiaHora(as.get(0), as.get(4),Integer.valueOf(as.get(5)),as.get(2),Integer.valueOf(as.get(3))));
+            else res.add(new RestriccioClasse(as.get(0), as.get(1), as.get(2), Integer.valueOf(as.get(3))));
+        }
+        horari.setRestriccions(res);
         horari.generar_horari();
         guardar_horari();
         horari.printHorari();
@@ -278,7 +296,7 @@ public class CtrlDominio {
     }
 
     public void carregar_all_aules() throws Exception {                                //OK     //Cal fer-la nomes començar pero primer s ha de carregar pla sino no tira
-        ArrayList<ArrayList<String> > aux = pers.carregar_all_aules();
+        ArrayList<ArrayList<String> > aux = pers.carregar_all_aules()ArrayList<Restriccio> res;;
         for(ArrayList<String> s: aux) {
             Aula a = new Aula(s.get(0),Integer.valueOf(s.get(1)),TipusAula.stoTipusAula(s.get(2)));
             aules.add(a);

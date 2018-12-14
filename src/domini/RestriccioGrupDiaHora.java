@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Vector;
 
 public class RestriccioGrupDiaHora extends Restriccio{
+
+    private String id;
     private String nomAssignatura;
     private int numGrup;
 
@@ -13,7 +15,8 @@ public class RestriccioGrupDiaHora extends Restriccio{
 
 
     //Constructora
-    public RestriccioGrupDiaHora(String nomAssignatura, int numGrup, String dia, int hora){
+    public RestriccioGrupDiaHora(String id, String nomAssignatura, int numGrup, String dia, int hora){
+        this.id = id;
         this.nomAssignatura=nomAssignatura;
         this.numGrup=numGrup;
         this.dia=dia;
@@ -68,4 +71,11 @@ public class RestriccioGrupDiaHora extends Restriccio{
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
