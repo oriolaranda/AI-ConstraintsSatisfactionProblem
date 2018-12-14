@@ -125,18 +125,30 @@ public class Algorisme {
         for (Sessio s1 : split(s.indexOf(sessio) + 1)) {
             Vector<Classe> v = supr(prev.get(s1), classe);
 
-            prev.put(s1,v);
+
 
             for(Restriccio r: restriccions) {
                 if(r instanceof RestriccioFase) { //Restriccio fase
-                    for(Classe c: v) {
-                        if(c.getDiaClasse() == classe.getDiaClasse()) {
+                    for(int i = 0;  i < v.size(); ++i) {
+                        Classe c = v.get(i);
+                        if(c.getDiaClasse().equals(classe.getDiaClasse()) && c.getHoraClasse() == c.getHoraClasse()) {
+                            v.remove(i);
+
+                        }
+                    }
+                } else if(r instanceof RestriccioCorrequisit) { //Restriccio Correquisit
+                    for (int i = 0; i < v.size(); ++i) {
+                        Classe c = v.get(i);
+                        if (c.getDiaClasse().equals(classe.getDiaClasse()) && c.getHoraClasse() == c.getHoraClasse()) {
+                            v.remove(i);
 
                         }
                     }
                 }
 
             }
+
+            prev.put(s1,v);
 
         }
 

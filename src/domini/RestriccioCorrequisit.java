@@ -11,7 +11,7 @@ public class RestriccioCorrequisit extends Restriccio{
 
     @Override
     public Boolean esCompleix(Map<Classe, Sessio> nou, Classe actualc, Sessio actuals) {
-        String dca= actualc.getDiaClasse();
+        String dca = actualc.getDiaClasse();
         int hca= actualc.getHoraClasse();
         String ns = actuals.getNomAssignaturaSessio();
         for(Classe c: nou.keySet()) {
