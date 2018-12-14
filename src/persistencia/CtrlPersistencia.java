@@ -84,9 +84,11 @@ public class CtrlPersistencia {
         aux.addAll(Arrays.asList(n,String.valueOf(periode[0]),String.valueOf(periode[1])));
         result.add(aux);
         path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/Assignatures");
-        File[] files = new File(String.valueOf(path)).listFiles();
-        for (File file : files) {
-            result.add(carregar_assignatura(file.getName(), nom, false));
+        if(Files.exists(path)) {
+            File[] files = new File(String.valueOf(path)).listFiles();
+            for (File file : files) {
+                result.add(carregar_assignatura(file.getName(), nom, false));
+            }
         }
         return result;
     }
@@ -149,21 +151,80 @@ public class CtrlPersistencia {
         path = Paths.get("src/persistencia/PlaEstudis");
         File[] files = new File(String.valueOf(path)).listFiles();
         ArrayList<String> result = new ArrayList<>();
-        for (File file : files) {
-            result.add(carregar_pla(file.getName()).get(0).get(0));
+
+        if(files.length > 0) {
+            for (File file : files) {
+                result.add(carregar_pla(file.getName()).get(0).get(0));
+            }
         }
         return result;
     }
-
+/*
+    public ArrayList<String> carregar_noms_horaris(String nomPla) throws Exception {
+        ArrayList<String> result = new ArrayList<>();
+        Path path;
+        path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Horaris");
+        if(Files.exists(path)) {
+            File[] files = new File(String.valueOf(path)).listFiles();
+            if (files.length > 0) {
+                for (File file : files) {
+                    result.add(//carregar_horari(().getnom()))));
+                }
+            }
+        }
+        return result;
+    }
+*/
     public boolean borrar_aula(String nom) {
         Path path = Paths.get("src/persistencia/Aules/" + nom + ".txt");
         File f = new File(String.valueOf(path));
-        boolean correct = false;
+        boolean correct;
         if(f.delete()){
             correct = true;
         }else{
             correct = false;
         }
+        return correct;
+    }
+
+    public boolean borrar_assignatura(String nom, String nomPla) {
+        Path path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Assignatures/" + nom + ".txt");
+        File f = new File(String.valueOf(path));
+        boolean correct;
+        if(f.delete()){
+            correct = true;
+        }else{
+            correct = false;
+        }
+        return correct;
+    }
+
+    public boolean borrar_pla(String nom) {
+        boolean correct = true;
+        Path path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/Assignatures");
+        File[] files = new File(String.valueOf(path)).listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (!file.delete()) correct = false;
+            }
+            File f = new File(String.valueOf(path));
+            if (!f.delete()) correct = false;
+        }
+        path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/Horaris");
+        files = new File(String.valueOf(path)).listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (!file.delete()) correct = false;
+            }
+            File f = new File(String.valueOf(path));
+            if (!f.delete()) correct = false;
+        }
+        path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/info_pla.txt");
+        File f = new File(String.valueOf(path));
+        if(!f.delete()) correct = false;
+        path = Paths.get("src/persistencia/PlaEstudis/" + nom);
+        f = new File(String.valueOf(path));
+        if(!f.delete()) correct = false;
         return correct;
     }
 }

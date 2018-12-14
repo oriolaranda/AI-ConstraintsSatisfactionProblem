@@ -50,24 +50,24 @@ public class driverControlador {
             try {
                 switch (opcio) {
                     case 1:
-                        /*
+
                         String nom = sc.next();
                         int horaIni = sc.nextInt();
                         int horaFi = sc.nextInt();
                         if (horaIni >= horaFi || horaFi > 24 || horaIni < 0 || horaFi < 0 || horaIni > 24)
                             System.out.println("Valors entre 0-24 i HoraInicial < HoraFinal");
                         else {
-                            C.crear_pla(nom, horaIni, horaFi);
+                            C.afegirPlaEstudis(nom, String.valueOf(horaIni), String.valueOf(horaFi));
                             System.out.println("Pla Esperat: " + nom + " comença a les " + horaIni + " i acaba a les " + horaFi);
                             System.out.println("Pla Obtingut: " + C.getPla().getNom() + " comença a les " + C.getPla().getPeriodeLectiu()[0] + " i acaba a les " + C.getPla().getPeriodeLectiu()[1]);
-                        }*/
-                        ArrayList<String> ax = C.getNom_plans();
+                        }
+                     /*   ArrayList<String> ax = C.getNom_plans();
                         for(int i = 0; i< ax.size(); ++i) {
                             System.out.println("Pla " + ax.get(i));
-                        }
+                        }*/
                         break;
                     case 2:
-                        /*
+
                         if (C == null) throw new NullPointerException();
                         String n = sc.next();
                         String f = sc.next();
@@ -83,53 +83,62 @@ public class driverControlador {
                             String aux = sc.next();
                             v.add(aux);
                         }
-                        C.crear_assignatura(n, f, Cap, CapS, mat, t, num, dur,v);
-                        //System.out.println("Assignatura: " + C.getHorari().getSessions().get(3).getNomAssignaturaSessio() + " " + C.getHorari().getSessions().get(3).getNumGrupSessio() + " " + C.getHorari().getSessions().get(3).getNum());
-                       */
-                        for(Aula a:C.getAules()) {
+                        int rsd = C.afegirAssignatura(C.getPla().getNom(),n, f,String.valueOf(Cap), String.valueOf(CapS), String.valueOf(mat), String.valueOf(t), String.valueOf(num), String.valueOf(dur),v);
+                       // System.out.println("Assignatura: " + C.getsessions().get(3).getNomAssignaturaSessio() + " " + C.getsessions().get(3).getNumGrupSessio() + " " + C.getsessions().get(3).getNum());
+                       /*
+                        for(Aula a:C.getaules()) {
                             System.out.println(a.getNom());
-                        }
+                        }*/
                         break;
                     case 3:
-                        /*
+
                         if (C == null) throw new NullPointerException();
-                        C.crear_aula(sc.next(), sc.nextInt(), stoTipusAula(sc.next()));
-                       // System.out.println("Classe: " + C.getHorari().getClasses().get(3).getNomAulaClasse() + " " + C.getHorari().getClasses().get(3).getDiaClasse() + " " + C.getHorari().getClasses().get(3).getHoraClasse());
-                        */
+                        C.afegirAula(sc.next(), String.valueOf(sc.nextInt()), sc.next());
+                        /*
                         C.carregar_pla(sc.next());
                         for(Assignatura a: C.getPla().getAssignatures()) {
                             System.out.println(a.getNom() + " " + a.getFase());
-                        }
+                        }*/
                         break;
                     case 4:
+                        String hda = sc.next();
+                        C.esborrarPlaEstudis(hda);
+                        for(String j:C.getNom_plans()) {
+                            System.out.println(j);
+                        }
+                       /* C.esborrarAssignatura(hda);
+                        for(Assignatura aux: C.getPla().getAssignatures()) {
+                            System.out.println(aux.getNom());
+                        }
+                        for(int j = 0; j < C.getsessions().size();++j) {
+                            if (C.getsessions().get(j).getNomAssignaturaSessio().equals(hda)) {
+                                System.out.println(C.getsessions().get(j).getId());
+                            }
+                        }
+                        /*
                         if (C == null) throw new NullPointerException();
                         opcio2 = sc.nextInt();
                         String active;
-                        Restriccio aux;
-                        ArrayList<Restriccio> r = new ArrayList<Restriccio>();
+                        Restriccio aux = new RestriccioFase();
                         switch (opcio2) {
                             case 1:
                                 aux = new RestriccioFase();
                                 aux.setHorari(C.getHorari());
-                                r.add(aux);
                                 System.out.println("Restriccio Fase modificada");
                                 break;
                             case 2:
                                 aux = new RestriccioCorrequisit();
                                 aux.setHorari(C.getHorari());
-                                r.add(aux);
                                 System.out.println("Restriccio Correquisit modificada");
                                 break;
                             case 3:
                                 aux = new RestriccioTipusAula();
                                 aux.setHorari(C.getHorari());
-                                r.add(aux);
                                 System.out.println("Restriccio TipusAula modificada");
                                 break;
                             case 4:
                                 aux = new RestriccioCapacitat();
                                 aux.setHorari(C.getHorari());
-                                r.add(aux);
                                 System.out.println("Restriccio Capacitat modificada");
                                 break;
                             case 5:
@@ -139,7 +148,6 @@ public class driverControlador {
                                 int hour = sc.nextInt();
                                 aux = new RestriccioGrupDiaHora(assig,grup,day,hour);
                                 aux.setHorari(C.getHorari());
-                                r.add(aux);
                                 System.out.println("Restriccio Classe modificada");
                                 break;
                             case 6:
@@ -148,16 +156,15 @@ public class driverControlador {
                                 int hour2 = sc.nextInt();
                                 aux = new RestriccioClasse(aula,day2,hour2);
                                 aux.setHorari(C.getHorari());
-                                r.add(aux);
                                 System.out.println("Restriccio Classe modificada");
                                 break;
                         }
-                        C.crear_restriccions(r);
+                        C.crear_restriccions(aux);
+                        */
                         break;
                     case 5:
                         if (C == null) throw new NullPointerException();
                         C.generar_horari();
-                        C.print_horari();
                         break;
                 }
 
