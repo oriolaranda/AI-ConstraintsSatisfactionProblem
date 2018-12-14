@@ -23,7 +23,7 @@ public class Horari {
         this.Restriccions = new ArrayList<Restriccio>();
         this.prev = new LinkedHashMap<>();
         this.nou = new HashMap<>();
-        Restriccio aux;
+        /*Restriccio aux;
         aux = new RestriccioFase();
         add_restriccio(aux);
         aux = new RestriccioGrupDiaHora("ec",10,"Dilluns",8);
@@ -35,7 +35,7 @@ public class Horari {
         aux = new RestriccioCorrequisit();
         add_restriccio(aux);
         aux = new RestriccioClasse("A6204","Dimarts",8);
-        add_restriccio(aux);
+        add_restriccio(aux);*/
     }
 
     /**

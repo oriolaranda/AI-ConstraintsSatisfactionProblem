@@ -7,6 +7,12 @@ public class Assignatura implements Comparable<Assignatura> {
     private String nomPlaEstudis;
     private String nom;
     private String fase;
+    private int capacitatGrup;
+    private int capacitatSubgrup;
+    private int matriculats;
+    private TipusAula tupusAulaSubgrup;
+    private int numSessions;
+    private int duracio;
     private ArrayList<Grup> grups;
     private ArrayList<String> correquisits;
 
@@ -32,6 +38,12 @@ public class Assignatura implements Comparable<Assignatura> {
         this.nomPlaEstudis = nomPlaEstudis;
         this.nom = nom;
         this.fase = fase;
+        this.capacitatGrup = capacitatGrup;
+        this.capacitatSubgrup = capacitatSubGrups;
+        this.matriculats = matriculats;
+        this.tupusAulaSubgrup = tipusSubgrup;
+        this.numSessions = numSessions;
+        this.duracio = duracio;
         this.grups = new ArrayList<Grup>();
         for (int i = 0; i < matriculats/capacitatGrup; ++i) {
             crearGrup((i + 1) * 10, TipusAula.TEORIA, capacitatGrup, numSessions, duracio);
@@ -56,6 +68,18 @@ public class Assignatura implements Comparable<Assignatura> {
         return fase;
     }
 
+    public int getCapacitatGrup() { return capacitatGrup; }
+
+    public int getCapacitatSubgrup() { return capacitatSubgrup; }
+
+    public int getMatriculats() { return matriculats; }
+
+    public TipusAula getTupusAulaSubgrup() { return tupusAulaSubgrup; }
+
+    public int getNumSessions() { return numSessions; }
+
+    public int getDuracio() { return duracio; }
+
     public ArrayList<Grup> getGrups() {
         return grups;
     }
@@ -77,6 +101,32 @@ public class Assignatura implements Comparable<Assignatura> {
     public void setFase(String f) {
         fase = f;
     }
+
+    public void setCapacitatGrup(int capacitatGrup) {
+        this.capacitatGrup = capacitatGrup;
+    }
+
+    public void setCapacitatSubgrup(int capacitatSubgrup) {
+        this.capacitatSubgrup = capacitatSubgrup;
+    }
+
+    public void setMatriculats(int matriculats) {
+        this.matriculats = matriculats;
+    }
+
+    public void setTupusAulaSubgrup(TipusAula tupusAulaSubgrup) {
+        this.tupusAulaSubgrup = tupusAulaSubgrup;
+    }
+
+    public void setNumSessions(int numSessions) {
+        this.numSessions = numSessions;
+    }
+
+    public void setDuracio(int duracio) {
+        this.duracio = duracio;
+    }
+
+
 
     private void crearGrup(int num, TipusAula tipus, int capacitat, int numSessions, int duracio) {
         if (!existeixGrup(num)) {
@@ -127,4 +177,5 @@ public class Assignatura implements Comparable<Assignatura> {
     public int compareTo(Assignatura o) {
         return this.nom.compareTo(o.nom);
     }
+
 }

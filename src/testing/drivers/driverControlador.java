@@ -101,8 +101,20 @@ public class driverControlador {
                         }*/
                         break;
                     case 4:
-                        C.esborrarAula(sc.next());
-
+                        String hda = sc.next();
+                        C.esborrarPlaEstudis(hda);
+                        for(String j:C.getNom_plans()) {
+                            System.out.println(j);
+                        }
+                       /* C.esborrarAssignatura(hda);
+                        for(Assignatura aux: C.getPla().getAssignatures()) {
+                            System.out.println(aux.getNom());
+                        }
+                        for(int j = 0; j < C.getsessions().size();++j) {
+                            if (C.getsessions().get(j).getNomAssignaturaSessio().equals(hda)) {
+                                System.out.println(C.getsessions().get(j).getId());
+                            }
+                        }
                         /*
                         if (C == null) throw new NullPointerException();
                         opcio2 = sc.nextInt();
