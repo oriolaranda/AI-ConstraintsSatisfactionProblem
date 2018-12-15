@@ -9,7 +9,7 @@ public class driverRestriccioGrupDiaHora {
         System.out.println("Driver RestriccioGrupDiaHora:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 nomAssignatura<String> numGrup<Integer> dia<String> hora<Integer>");
+        System.out.println("\t\tformat: 1 id<String> nomAssignatura<String> numGrup<Integer> dia<String> hora<Integer>");
 
         System.out.println("\t2) Getter nomAssignatura RestriccioGrupDiaHora:");
         System.out.println("\t\tformat: 2");
@@ -44,6 +44,7 @@ public class driverRestriccioGrupDiaHora {
     public static void main(String[] args) {
         RestriccioGrupDiaHora rgdh = null;
         String nomAssignatura = null;
+        String id= null;
         int numGrup = -1;
         String dia = null;
         int hora = -1;
@@ -56,11 +57,12 @@ public class driverRestriccioGrupDiaHora {
             try {
                 switch (opcio) {
                     case 1:
+                        id = sc.next();
                         nomAssignatura = sc.next();
                         numGrup =sc.nextInt();
                         dia = sc.next();
                         hora = sc.nextInt();
-                        rgdh = new RestriccioGrupDiaHora(nomAssignatura, numGrup, dia, hora);
+                        rgdh = new RestriccioGrupDiaHora(id,nomAssignatura, numGrup, dia, hora);
 
                         System.out.println("RestriccioGrupDiaHora esperada: "+nomAssignatura+"-"+numGrup+" "+dia+"de "+hora+":00 a " + (hora + 1) + ":00");
                         System.out.println("RestriccioGrupDiaHora creada: " + rgdh.toString());

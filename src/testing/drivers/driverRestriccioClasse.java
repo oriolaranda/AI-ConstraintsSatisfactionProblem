@@ -9,7 +9,7 @@ public class driverRestriccioClasse {
         System.out.println("Driver RestriccioClasse:");
         System.out.println("Opcions:");
         System.out.println("\t1) Constructora:");
-        System.out.println("\t\tformat: 1 nomaAula<String> dia<String> hora<Integer>");
+        System.out.println("\t\tformat: 1 id<String> nomaAula<String> dia<String> hora<Integer>");
 
         System.out.println("\t2) Getter nomAula RestriccioClasse:");
         System.out.println("\t\tformat: 2");
@@ -40,6 +40,7 @@ public class driverRestriccioClasse {
         RestriccioClasse rc = null;
         String nomAula = null;
         String dia = null;
+        String id = null;
         int hora = -1;
 
         Scanner sc = new Scanner(System.in);
@@ -50,10 +51,11 @@ public class driverRestriccioClasse {
             try {
                 switch (opcio) {
                     case 1:
+                        id = sc.next();
                         nomAula = sc.next();
                         dia = sc.next();
                         hora = sc.nextInt();
-                        rc = new RestriccioClasse(nomAula, dia, hora);
+                        rc = new RestriccioClasse(id,nomAula, dia, hora);
 
                         System.out.println("RestriccioClasse esperada: " + nomAula + ": " + dia + " de " + hora + ":00 a " + (hora + 1) + ":00");
                         System.out.println("RestriccioClasse creada: " + rc.toString());
