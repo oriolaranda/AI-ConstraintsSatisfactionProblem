@@ -215,7 +215,7 @@ public class CtrlPresentacio {
     }
     
     void afegirCorrequisit(String nomAssignaturaEscollida,String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio,String nomAssignaturaActual, String nomPlaEstudis) {
-        Boolean jahoes=cd.afegirCorrequisit(nomAssignaturaEscollida,nomAssignaturaActual,nomPlaEstudis);    
+        boolean jahoes=cd.afegirCorrequisit(nomAssignaturaEscollida,nomAssignaturaActual,nomPlaEstudis);
         if(!jahoes){
             vc.afegirAssignaturaCorrequisit(nomAssignaturaEscollida, fase, capacitatGrup, capacitatSubGrup, matriculats, tipusSubGrup, numSessions, duracio);
         }
@@ -243,8 +243,8 @@ public class CtrlPresentacio {
         ih.afegirRestriccioTaula(idRestriccio,nomAula,dia,hora,nomAssignatura,numGrup);
     }
 
-    void crearHorari(String nomHorari, Boolean restriccioCapacitat, Boolean restriccioCorrequisit, Boolean restriccioFase, Boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions, String nomPlaEstudis) {
-        Boolean existeix=cd.crearHorari(nomHorari,restriccioCapacitat,restriccioCorrequisit,restriccioFase,restriccioTipusAula,restriccions,nomPlaEstudis);
+    void crearHorari(String nomHorari, boolean restriccioCapacitat, boolean restriccioCorrequisit, boolean restriccioFase, boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions, String nomPlaEstudis) {
+        boolean existeix=cd.crearHorari(nomHorari,restriccioCapacitat,restriccioCorrequisit,restriccioFase,restriccioTipusAula,restriccions,nomPlaEstudis);
         if(!existeix){
             vh.afegirHorari(nomHorari);
         }
@@ -267,7 +267,7 @@ public class CtrlPresentacio {
         return cd.getSessio(dia, hora, nomAula, capacitat, tipus , nomHorari, nomPlaEstudis);
     }
 
-    Boolean intecanviar(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) {
+    boolean intecanviar(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) {
         return cd.intercanviar( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);
     }
 

@@ -238,6 +238,7 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
                 e.setVisible(true);
                 if(e.getReturnStatus()==1){
                     cp.intercanviarObligat(classe1[0],classe1[1],classe1[2],classe2[0],classe2[1],classe2[2]);
+                    update();
                 }
             }
         }
