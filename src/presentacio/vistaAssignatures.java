@@ -225,7 +225,8 @@ public class vistaAssignatures extends javax.swing.JPanel {
     private javax.swing.JButton modificarCorrequisitsAssignaturaButton;
     // End of variables declaration//GEN-END:variables
 
-    void inicia() {
+    void inicia() throws Exception {
+        cp.carregar_pla(nomPlaEstudis);
         cp.getAssignaturesVistaAssignatures(nomPlaEstudis);
     }
 

@@ -24,14 +24,14 @@ public class CtrlDominio {
 
     public CtrlDominio() throws Exception {
         this.horari = new Horari("Horari");
-        this.hores = new ArrayList<DiaHora>();
+        this.hores = new ArrayList<>();
         this.pers = new CtrlPersistencia();
         this.aules = new ArrayList<>();
         this.classes = new Vector<>();                                      //Classes actives
         this.sessions = new ArrayList<>();                                  //Sessions actives
         this.info_plans = pers.carregar_all_plans();
         carregar_all_aules();
-        carregar_pla("FIB");
+      //  carregar_pla("FIB");
       //  this.pres = new CtrlPresentacio();
     }
 
@@ -72,6 +72,7 @@ public class CtrlDominio {
         }
         return aux;
     }
+
     public ArrayList<ArrayList<String>> getAssignatures(String nomPlaEstudis) {             //OK
 
         ArrayList<ArrayList<String>> c = new ArrayList<>();
@@ -113,8 +114,12 @@ public class CtrlDominio {
     }
 
     public ArrayList<String> getHorarisPlaEstudis(String nomPla) {
-        ArrayList<String> r = new ArrayList<>();
-        return r;
+        ArrayList<String> aux = new ArrayList<>();
+        for(Horari as: pla.getHoraris()) {
+            String s = as.getNom();
+            aux.add(s);
+        }
+        return aux;
     }
 
     public ArrayList<ArrayList<String>> getAll_plans() { return info_plans;}

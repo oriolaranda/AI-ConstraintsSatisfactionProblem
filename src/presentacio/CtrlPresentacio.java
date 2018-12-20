@@ -62,7 +62,7 @@ public class CtrlPresentacio {
         w.setVisible(true);
     }
     
-    public void creaVistaAssignatures(String nomPlaEstudis){
+    public void creaVistaAssignatures(String nomPlaEstudis) throws Exception {
         vas=new vistaAssignatures(this, nomPlaEstudis);
         vas.inicia();
         w.setContentPane(vas);
@@ -76,7 +76,7 @@ public class CtrlPresentacio {
         w.setVisible(true);
     }
     
-    public void creaVistaHoraris(String nomPlaEstudis) {
+    public void creaVistaHoraris(String nomPlaEstudis) throws Exception {
         vh=new vistaHoraris(this,nomPlaEstudis);
         vh.inicia();
         w.setContentPane(vh);
@@ -283,7 +283,7 @@ public class CtrlPresentacio {
     void intercanviarObligat(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2){
         cd.intercanviarObligat( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);    
     }
-   
+
     void carregar_pla(String nom) throws Exception {
         cd.carregar_pla(nom);
     }

@@ -81,7 +81,11 @@ public class vistaPlaEstudis extends javax.swing.JPanel {
         consultarPlaEstudisButton.setText("Gestió Assignatures Pla Estudis");
         consultarPlaEstudisButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarPlaEstudisButtonActionPerformed(evt);
+                try {
+                    consultarPlaEstudisButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -109,7 +113,11 @@ public class vistaPlaEstudis extends javax.swing.JPanel {
         consultarHorariButton.setText("Consultar Horari");
         consultarHorariButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarHorariButtonActionPerformed(evt);
+                try {
+                    consultarHorariButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -159,7 +167,7 @@ public class vistaPlaEstudis extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void consultarPlaEstudisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarPlaEstudisButtonActionPerformed
+    private void consultarPlaEstudisButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_consultarPlaEstudisButtonActionPerformed
         int col=jTable1.getSelectedColumn();
         int row=jTable1.getSelectedRow();
         if (col != -1){
@@ -196,7 +204,7 @@ public class vistaPlaEstudis extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_eliminarPlaEstudisButtonActionPerformed
 
-    private void consultarHorariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarHorariButtonActionPerformed
+    private void consultarHorariButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_consultarHorariButtonActionPerformed
         int col=jTable1.getSelectedColumn();
         int row=jTable1.getSelectedRow();
         if (col != -1){
