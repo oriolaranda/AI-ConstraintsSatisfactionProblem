@@ -251,7 +251,7 @@ public class CtrlPresentacio {
         ih.afegirRestriccioTaula(idRestriccio,nomAula,dia,hora,nomAssignatura,numGrup);
     }
 
-    void crearHorari(String nomHorari, boolean restriccioCapacitat, boolean restriccioCorrequisit, boolean restriccioFase, boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions, String nomPlaEstudis) {
+    void crearHorari(String nomHorari, boolean restriccioCapacitat, boolean restriccioCorrequisit, boolean restriccioFase, boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions, String nomPlaEstudis) throws Exception {
         boolean existeix=cd.crearHorari(nomHorari,restriccioCapacitat,restriccioCorrequisit,restriccioFase,restriccioTipusAula,restriccions,nomPlaEstudis);
         if(!existeix){
             vh.afegirHorari(nomHorari);

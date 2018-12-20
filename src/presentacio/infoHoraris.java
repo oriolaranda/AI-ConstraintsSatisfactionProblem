@@ -94,7 +94,11 @@ public class infoHoraris extends javax.swing.JPanel {
         crearHorariButton.setText("Crear Horari");
         crearHorariButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearHorariButtonActionPerformed(evt);
+                try {
+                    crearHorariButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -191,7 +195,7 @@ public class infoHoraris extends javax.swing.JPanel {
         i.setVisible(true);
     }//GEN-LAST:event_afegirRestriccioClasseButtonActionPerformed
 
-    private void crearHorariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearHorariButtonActionPerformed
+    private void crearHorariButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_crearHorariButtonActionPerformed
         String nomHorari=nomHorariText.getText();
         Boolean restriccioCapacitat=restriccioCapacitatCheckBox.isSelected();
         Boolean restriccioCorrequisit=restriccioCorrequisitCheckBox.isSelected();

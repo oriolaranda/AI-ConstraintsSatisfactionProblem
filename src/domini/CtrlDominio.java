@@ -4,10 +4,7 @@ import domini.Aula;
 import domini.Horari;
 import persistencia.CtrlPersistencia;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 public class CtrlDominio {
 
@@ -18,7 +15,6 @@ public class CtrlDominio {
     private Vector<Classe> classes;
     private ArrayList<Sessio> sessions;
     private ArrayList<ArrayList<String>> info_plans;
-    private Vector<String> nom_horaris_pla;
     private CtrlPersistencia pers;
     //private CtrlPresentacio pres;
 
@@ -233,7 +229,7 @@ public class CtrlDominio {
 
 //GENERACIO HORARI
 
-    public boolean crearHorari(String nomHorari, Boolean restriccioCapacitat, Boolean restriccioCorrequisit, Boolean restriccioFase, Boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions,String nomPlaEstudis) {                              //omple horari amb les classes i les sessions actives i genera
+    public boolean crearHorari(String nomHorari, Boolean restriccioCapacitat, Boolean restriccioCorrequisit, Boolean restriccioFase, Boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions,String nomPlaEstudis) throws Exception {                              //omple horari amb les classes i les sessions actives i genera
 //        if(nom_horaris_pla.contains(nomHorari)) return true;
         horari.setNom(nomHorari);
         horari.setNomPla(nomPlaEstudis);
@@ -428,8 +424,10 @@ public class CtrlDominio {
             System.out.println("borrat");
         }
     }
-    public void esborrarHorari(String nomHorari,String nomPlaEstudis) {
-
+    public boolean esborrarHorari(String nomHorari,String nomPlaEstudis) {
+        boolean correct = false;
+        if(!pers.borrar_horari(nomHorari,nomPlaEstudis)) return false;
+        return correct;
     }
 
 
@@ -447,9 +445,69 @@ public class CtrlDominio {
         pers.guardar_pla(nom,horaIni,horaFi);
     }
 
-    public void guardar_horari() {
-        if(horari.getPle() != false) pers.guardar_horari(horari,pla.getNom());
-    }
+    public void guardar_horari() throws Exception {
+        if (horari.getPle() != false) {
+            ArrayList<ArrayList<String>> p = new ArrayList<>();
+            ArrayList<String> aux = new ArrayList<>();
+            aux.add(horari.getNom());
+            aux.add(pla.getNom());
+            aux.add(String.valueOf(horari.getRestriccions().size()));
+            aux.add(String.valueOf(pla.getAssignatures().size()));
+            aux.add(String.valueOf(horari.getNou().size()));
+            p.add(aux);
+            ArrayList<String> aux2 = new ArrayList<>();
+            for (Restriccio r : horari.getRestriccions()) {
+                if (r instanceof RestriccioFase) aux2.add("RF");
+                if (r instanceof RestriccioCorrequisit) aux2.add("RC");
+                if (r instanceof RestriccioTipusAula) aux2.add("RT");
+                if (r instanceof RestriccioCapacitat) aux2.add("RCP");
+                if (r instanceof RestriccioClasse) {
+                    aux2.add("RCL");
+                    aux2.add(((RestriccioClasse) r).getId());
+                    aux2.add(((RestriccioClasse) r).getNomAula());
+                    aux2.add(((RestriccioClasse) r).getDia());
+                    aux2.add(String.valueOf(((RestriccioClasse) r).getHora()));
+                }
+                if (r instanceof RestriccioGrupDiaHora) {
+                    aux2.add("RG");
+                    aux2.add(((RestriccioGrupDiaHora) r).getId());
+                    aux2.add(((RestriccioGrupDiaHora) r).getNomAssignatura());
+                    aux2.add(String.valueOf(((RestriccioGrupDiaHora) r).getNumGrup()));
+                    aux2.add(((RestriccioGrupDiaHora) r).getDia());
+                    aux2.add(String.valueOf(((RestriccioGrupDiaHora) r).getHora()));
+                }
+            }
+            p.add(aux2);
+            for (Assignatura a : pla.getAssignatures()) {
+                ArrayList<String> aux3 = new ArrayList<>();
+                aux3.add(a.getNom());
+                aux3.add(a.getFase());
+                aux3.add(String.valueOf(a.getCapacitatGrup()));
+                aux3.add(String.valueOf(a.getCapacitatSubgrup()));
+                aux3.add(String.valueOf(a.getMatriculats()));
+                aux3.add(String.valueOf(a.getTupusAulaSubgrup()));
+                aux3.add(String.valueOf(a.getNumSessions()));
+                aux3.add(String.valueOf(a.getDuracio()));
+                aux3.add(String.valueOf(a.getCorrequisits().size()));
+                for (int i = 0; i < a.getCorrequisits().size(); ++i) {
+                    aux3.add(a.getCorrequisits().get(i));
+                }
+                p.add(aux3);
+            }
+            for (Map.Entry<Classe, Sessio> entry : horari.getNou().entrySet()) {
+                ArrayList<String> aux4 = new ArrayList<>();
+                aux4.add(entry.getKey().getAula().getNom());
+                aux4.add(String.valueOf(entry.getKey().getAula().getCapacitat()));
+                aux4.add(String.valueOf(entry.getKey().getAula().getTipus()));
+                aux4.add(entry.getKey().getDiaClasse());
+                aux4.add(String.valueOf(entry.getKey().getHoraClasse()));
+                aux4.add(entry.getValue().getId());
+                aux4.add(String.valueOf(entry.getValue().getNum()));
+                p.add(aux4);
+            }
+            pers.guardar_horari(p);
+            }
+        }
 
 
 //CARREGAR
@@ -514,9 +572,23 @@ public class CtrlDominio {
         }
     }
 
-    public void carregar_horari(String nom) {
-
-
+    public void carregar_horari(String nom) throws Exception {
+      /*  Horari nou = new Horari("");
+        ArrayList<ArrayList<String> > dades = pers.carregar_horari(nom,pla.getNom());
+        ArrayList<String> aux = dades.get(0);
+        horari.setNom(aux.get(0));
+        horari.setNomPla(aux.get(1));
+        int res = Integer.valueOf(aux.get(2));
+        int as = Integer.valueOf(aux.get(3));
+        int cl = Integer.valueOf(aux.get(4));
+        ArrayList<String> aux2 = dades.get(1);
+        for(int i = 0; i < res; ++i) {
+            if(aux2.get(i).equals("RF")) {
+                RestriccioFase r = new RestriccioFase();
+                horari.add_restriccio(r);
+            }
+        }
+        for(int i = 0; )*/
     }
 
 //AUXILIARS

@@ -4,6 +4,8 @@ import domini.*;
 
 import java.io.File;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -39,7 +41,6 @@ public class CtrlPersistencia {
             String aux = nom + " " + fase + " " + capacitatGrup + " " + capacitatSubGrups + " " + matriculats + " " + tipusSubgrup + " " + numSessions + " " + duracio + " " + correquisits.size();
             for (int i = 0; i < correquisits.size(); ++i) {
                 aux += " " + correquisits.get(i);
-                System.out.println(aux);
             }
             List<String> assig = Arrays.asList(aux);
             Path file = Paths.get("src/persistencia/PlaEstudis/" + nomPlaEstudis + "/Assignatures/" + nom + ".txt");
@@ -65,21 +66,22 @@ public class CtrlPersistencia {
         }
     }
 
-    public void guardar_horari(Horari horari, String pla) {
-        try {
-            Path file = Paths.get("src/persistencia/PlaEstudis/" + pla + "/Horaris/" + horari.getNom() + ".txt");
+    public void guardar_horari(ArrayList<ArrayList<String>> p) throws Exception {
+            Path file = Paths.get("src/persistencia/PlaEstudis/" + p.get(0).get(1) + "/Horaris/" + p.get(0).get(0) + ".txt");
             if(!Files.exists(file)) {
                 Files.createDirectories(file.getParent());
                 Files.createFile(file);
             }
-            List<String> sessio = new ArrayList<>();
-            for (Map.Entry<Classe, Sessio> entry : horari.getNou().entrySet()) {
-                sessio.add(entry.getKey().getAula().getNom() + " " + entry.getKey().getHora().getDia() + " " + entry.getKey().getHora().getHora() + " / " + entry.getValue().getId() + " " + entry.getValue().getNum());
-                Files.write(file, sessio, Charset.forName("UTF-8"));
+            List<String> linia = new ArrayList<>();
+            for(int i = 0; i < p.size(); ++i) {
+                String s = new String();
+                for(int j = 0; j < p.get(i).size();++j) {
+                    s += p.get(i).get(j) + " ";
+                }
+                linia.add(s);
+                Files.write(file,linia,Charset.forName("UTF-8"));
             }
-        } catch (Exception e) {
         }
-    }
 
   //  public Horari carregar_horari(String nomPla,String nom) {}
 
@@ -193,6 +195,48 @@ public class CtrlPersistencia {
         }
         return result;
     }
+
+    public ArrayList<ArrayList<String>> carregar_horari(String nom, String pla) throws Exception {
+        Path path = Paths.get("src/persistencia/PlaEstudis/" + pla + "/Assignatures/" + nom + ".txt");
+        File f = new File(String.valueOf(path));
+        Scanner sc = new Scanner(f);
+        ArrayList<ArrayList<String> > result = new ArrayList<>();
+        ArrayList<String> aux = new ArrayList<>();
+        aux.add(sc.next());
+        aux.add(sc.next());
+        int res = sc.nextInt();
+        int as = sc.nextInt();
+        int cl = sc.nextInt();
+        aux.add(String.valueOf(res));
+        aux.add(String.valueOf(as));
+        aux.add(String.valueOf(cl));
+        result.add(aux);
+        ArrayList<String> aux2 = new ArrayList<>();
+        for(int i = 0; i < res; ++i) {
+            String t = sc.next();
+            aux2.add(t);
+            if(t.equals("RCL")) {
+                for(int j = 0; j < 4; ++j) {
+                    aux2.add(sc.next());
+                }
+            }
+        }
+        result.add(aux2);
+        for(int i = 0; i < as; ++i) {
+            ArrayList<String> aux3 = new ArrayList<>();
+            aux3.addAll(Arrays.asList(sc.next(), sc.next(), String.valueOf(sc.nextInt()), String.valueOf(sc.nextInt()), String.valueOf(sc.nextInt()), sc.next(), String.valueOf(sc.nextInt()), String.valueOf(sc.nextInt())));
+            int num_co = sc.nextInt();
+            aux3.add(String.valueOf(num_co));
+            for (int j = 0; j < num_co; ++j) aux.add(sc.next());
+            result.add(aux3);
+        }
+        for(int i = 0; i < cl; ++i) {
+            ArrayList<String> aux4 = new ArrayList<>();
+            aux4.addAll(Arrays.asList(sc.next(),String.valueOf(sc.next()),sc.next(),sc.next(),String.valueOf(sc.nextInt()),sc.next(), String.valueOf(sc.nextInt())));
+            result.add(aux4);
+        }
+        return result;
+    }
 /*
     public ArrayList<String> carregar_noms_horaris(String nomPla) throws Exception {
         ArrayList<String> result = new ArrayList<>();
@@ -261,4 +305,17 @@ public class CtrlPersistencia {
         if(!f.delete()) correct = false;
         return correct;
     }
+
+    public boolean borrar_horari(String nom, String nomPla) {
+        Path path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Horaris/" + nom + ".txt");
+        File f = new File(String.valueOf(path));
+        boolean correct;
+        if (f.delete()) {
+            correct = true;
+        } else {
+            correct = false;
+        }
+        return correct;
+    }
+
 }
