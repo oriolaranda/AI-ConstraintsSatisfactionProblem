@@ -189,22 +189,22 @@ public class CtrlDominio {
     }
 
     public boolean afegirAssignatura(String nomPla, String nom, String fase, String capG, String capSG, String mat, String tip, String nSes, String d) throws Exception {      //OK
-       // if(!nomPla.equals(pla.getNom())) return 1;      //Si el pla actiu no es el mateix en el que volem introduir la assignatura
-       // if(pla.getAssignatures().contains(nom)) return 2;       //L'assignatura ja existeix en el pla
-       // else {
-            int capGrup = Integer.valueOf(capG);
-            int capSGrup = Integer.valueOf(capSG);
-            int matric = Integer.valueOf(mat);
-            TipusAula tipus = TipusAula.stoTipusAula(tip);
-            int numSes = Integer.valueOf(nSes);
-            int dur = Integer.valueOf(d);
-            Assignatura aux = new Assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, tipus, numSes, dur);
-            ArrayList<String> correquisits = new ArrayList<>();
-            pla.addAssignatura(aux);
-            guardar_assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, String.valueOf(tipus), numSes, dur, correquisits);
-            crear_sessions(aux);
-            return false;               //correcte
-      //  }
+        if(!nomPla.equals(pla.getNom())) return true;      //Si el pla actiu no es el mateix en el que volem introduir la assignatura
+        for(Assignatura a: pla.getAssignatures()) {
+            if(a.getNom().equals(nom)) return true; //Ja existeix una assignatura amb aquest nom
+        }
+        int capGrup = Integer.valueOf(capG);
+        int capSGrup = Integer.valueOf(capSG);
+        int matric = Integer.valueOf(mat);
+        TipusAula tipus = TipusAula.stoTipusAula(tip);
+        int numSes = Integer.valueOf(nSes);
+        int dur = Integer.valueOf(d);
+        Assignatura aux = new Assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, tipus, numSes, dur);
+        ArrayList<String> correquisits = new ArrayList<>();
+        pla.addAssignatura(aux);
+        guardar_assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, String.valueOf(tipus), numSes, dur, correquisits);
+        crear_sessions(aux);
+        return false;               //correcte
     }
 
     public boolean afegirCorrequisit(String Escollida, String Actual, String nomPla) {
@@ -216,14 +216,14 @@ public class CtrlDominio {
     }
 
     public boolean afegirAula(String nom, String capacitat, String  tipus) throws Exception {       //OK
-        if(aules.contains(nom)) return true;
-        else {
-            Aula aux = new Aula(nom, Integer.valueOf(capacitat), TipusAula.stoTipusAula(tipus));
-            guardar_aula(nom, Integer.valueOf(capacitat), tipus);
-            aules.add(aux);
-            crear_classes_per_aula(aux);
-            return false;
+        for( Aula a:aules) {
+            if (a.getNom().equals(nom)) return true;
         }
+        Aula aux = new Aula(nom, Integer.valueOf(capacitat), TipusAula.stoTipusAula(tipus));
+        guardar_aula(nom, Integer.valueOf(capacitat), tipus);
+        aules.add(aux);
+        crear_classes_per_aula(aux);
+        return false;
     }
 /*
     public void crear_restriccions(Restriccio R) {
@@ -261,7 +261,7 @@ public class CtrlDominio {
 */
 //MODIFICAR
 
-
+    //FALTA MODIFICAR CLASSES!!!!!!!!!!!!
    public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) throws Exception { //OK
 
        for (Aula aula: aules) {
@@ -300,7 +300,7 @@ public class CtrlDominio {
        info_plans = pers.carregar_all_plans();      //Deixa aquesta linia i si la toques no la posis abans de guardar
         return true;
    }
-
+    //FALTA MODIFICAR SESSIONS!!!!!!!
    public boolean modificarAssignatura(String nomAssignaturaAntic,String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio) throws Exception { //OK
         for (Assignatura assig: pla.getAssignatures()) {
             if(assig.getNom().equals(nomAssignaturaAntic)) {
