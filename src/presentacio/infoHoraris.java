@@ -55,7 +55,6 @@ public class infoHoraris extends javax.swing.JPanel {
 
         restriccioCapacitatCheckBox.setText("Restriccio Capacitat");
 
-
         restriccioCorrequisitCheckBox.setText("Restriccio Correquisit");
 
         afegirRestriccioClasseButton.setText("Afegir Restriccio Classe");
@@ -117,7 +116,6 @@ public class infoHoraris extends javax.swing.JPanel {
 
         restriccioTipusAulaCheckBox.setText("Restriccio TipusAula");
 
-
         eliminarRestriccioButton.setText("Eliminar Restriccio");
         eliminarRestriccioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +146,7 @@ public class infoHoraris extends javax.swing.JPanel {
                             .addComponent(restriccioFaseCheckBox)
                             .addComponent(restriccioTipusAulaCheckBox))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(crearHorariButton)))
@@ -174,16 +172,15 @@ public class infoHoraris extends javax.swing.JPanel {
                 .addComponent(afegirRestriccioGrupDiaHoraButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eliminarRestriccioButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(crearHorariButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(crearHorariButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         cp.horaris();
