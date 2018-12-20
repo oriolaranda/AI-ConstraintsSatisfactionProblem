@@ -145,9 +145,11 @@ public class CtrlDominio {
         for (DiaHora diahora: hores) {
             if (diahora.getDia().equals(dia) && diahora.getHora() == Integer.valueOf(hora)) dh = diahora;
         }
+        if(a == null | dh == null) return "";
         Classe c = new Classe(a, dh);
-
-        return horari.getNou().get(c).toString();
+        if (c==null) return "";
+        if (horari.getNou().containsKey(c)) return horari.getNou().get(c).toString();
+        return "";
     }
 
 
@@ -260,11 +262,17 @@ public class CtrlDominio {
 //MODIFICAR
 
 
-   public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) throws Exception {
+   public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) throws Exception { //OK
 
        for (Aula aula: aules) {
            if(aula.getNom().equals(nomAulaAntic)) {
-               aula.setNom(nomAula); //en principi es modifica l'objecte aula, per tant al vector classe també hauria d'estar actualitzat.
+               if(!nomAulaAntic.equals(nomAula)) {
+                   for (Aula a: aules) {
+                       if(a.getNom().equals(nomAula)) return false; //comprovar que no hi ha aula amb el mateix nom nou.
+                   }
+                   aula.setNom(nomAula); //en principi es modifica l'objecte aula, per tant al vector classe també hauria d'estar actualitzat.
+                   pers.borrar_aula(nomAulaAntic);
+               }
                aula.setCapacitat(Integer.valueOf(capacitat));
                aula.setTipus(TipusAula.stoTipusAula(tipus));
                guardar_aula(nomAula,Integer.valueOf(capacitat),tipus);
@@ -286,12 +294,35 @@ public class CtrlDominio {
        //Modificar el vector hores on hi ha els dies i hores actius pel pla
        //Modificar classes segons si canvien les hores del pla en que estem
        //guardar_pla(nom, horai, horaf);
+       for (ArrayList<String> pla:info_plans) {
+
+       }
        info_plans = pers.carregar_all_plans();      //Deixa aquesta linia i si la toques no la posis abans de guardar
         return true;
    }
 
-   public boolean modificarAssignatura(String nomAssignaturaAntic,String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio) {
-        //Si nom antic no esta en les assigs del pla return false
+   public boolean modificarAssignatura(String nomAssignaturaAntic,String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio) throws Exception { //OK
+        for (Assignatura assig: pla.getAssignatures()) {
+            if(assig.getNom().equals(nomAssignaturaAntic)) {
+                if(!nomAssignaturaAntic.equals(nomAssignatura)) {
+                    for (Assignatura as: pla.getAssignatures()) {
+                        if(as.getNom().equals(nomAssignatura)) return false; //comprovar que no hi ha assig amb mateix nom nou
+                    }
+                    assig.setNom(nomAssignatura);
+                    pers.borrar_assignatura(nomAssignaturaAntic,pla.getNom());
+                }
+                assig.setFase(fase);
+                assig.setCapacitatGrup(Integer.valueOf(capacitatGrup));
+                assig.setCapacitatSubgrup(Integer.valueOf(capacitatSubGrup));
+                assig.setMatriculats(Integer.valueOf(matriculats));
+                assig.setTupusAulaSubgrup(TipusAula.stoTipusAula(tipusSubGrup));
+                assig.setNumSessions(Integer.valueOf(numSessions));
+                assig.setDuracio(Integer.valueOf(duracio));
+                guardar_assignatura(pla.getNom(),nomAssignatura,fase,Integer.valueOf(capacitatGrup),Integer.valueOf(capacitatSubGrup),Integer.valueOf(matriculats),tipusSubGrup,Integer.valueOf(numSessions),Integer.valueOf(duracio),assig.getCorrequisits());
+                return true;
+            }
+        }
+       //Si nom antic no esta en les assigs del pla return false
        //Modificar sessions segons els canvis
        //guardar_assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, String.valueOf(tipus), numSes, dur, correquisits);    el vector correquisits posa el mateix vector que hi havia, ja que no es modifca aqui
        return true;

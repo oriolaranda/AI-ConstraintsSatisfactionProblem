@@ -10,7 +10,8 @@ public class Assignatura implements Comparable<Assignatura> {
     private int capacitatGrup;
     private int capacitatSubgrup;
     private int matriculats;
-    private TipusAula tupusAulaSubgrup;
+    private TipusAula tipusAulaSubgrup;
+
     private int numSessions;
     private int duracio;
     private ArrayList<Grup> grups;
@@ -41,7 +42,7 @@ public class Assignatura implements Comparable<Assignatura> {
         this.capacitatGrup = capacitatGrup;
         this.capacitatSubgrup = capacitatSubGrups;
         this.matriculats = matriculats;
-        this.tupusAulaSubgrup = tipusSubgrup;
+        this.tipusAulaSubgrup = tipusSubgrup;
         this.numSessions = numSessions;
         this.duracio = duracio;
         this.grups = new ArrayList<Grup>();
@@ -74,7 +75,7 @@ public class Assignatura implements Comparable<Assignatura> {
 
     public int getMatriculats() { return matriculats; }
 
-    public TipusAula getTupusAulaSubgrup() { return tupusAulaSubgrup; }
+    public TipusAula getTupusAulaSubgrup() { return tipusAulaSubgrup; }
 
     public int getNumSessions() { return numSessions; }
 
@@ -115,7 +116,7 @@ public class Assignatura implements Comparable<Assignatura> {
     }
 
     public void setTupusAulaSubgrup(TipusAula tupusAulaSubgrup) {
-        this.tupusAulaSubgrup = tupusAulaSubgrup;
+        this.tipusAulaSubgrup = tupusAulaSubgrup;
     }
 
     public void setNumSessions(int numSessions) {

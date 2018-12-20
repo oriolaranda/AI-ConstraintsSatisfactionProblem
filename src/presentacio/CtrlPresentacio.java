@@ -205,7 +205,7 @@ public class CtrlPresentacio {
         vas.afegirAssignatura(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
     }
 
-    boolean modificarAssignatura(String nomAssignaturaAntic, String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) {
+    boolean modificarAssignatura(String nomAssignaturaAntic, String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) throws Exception {
         boolean modificada=cd.modificarAssignatura(nomAssignaturaAntic,nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         if(modificada) afegirAssignaturaTaula(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         return modificada;
