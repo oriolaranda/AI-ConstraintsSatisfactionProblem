@@ -284,6 +284,8 @@ public class CtrlPresentacio {
         cd.intercanviarObligat( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);    
     }
    
-
+    void carregar_pla(String nom) throws Exception {
+        cd.carregar_pla(nom);
+    }
     
 }

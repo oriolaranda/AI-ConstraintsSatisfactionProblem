@@ -64,6 +64,14 @@ public class CtrlDominio {
         return c;
     }
 */
+
+    public Assignatura getAssignatura(String nom) {
+        Assignatura aux = new Assignatura();
+        for(Assignatura as: pla.getAssignatures()) {
+            if(as.getNom().equals(nom)) aux = as;
+        }
+        return aux;
+    }
     public ArrayList<ArrayList<String>> getAssignatures(String nomPlaEstudis) {             //OK
 
         ArrayList<ArrayList<String>> c = new ArrayList<>();
@@ -85,23 +93,21 @@ public class CtrlDominio {
     }
 
     public ArrayList<ArrayList<String>> getCorrequisitsAssignatura(String nomAssig, String nomPla) {
-        int index = pla.getAssignatures().indexOf(nomAssig);
-        Assignatura aux = pla.getAssignatures().get(index);
+        Assignatura aux = getAssignatura(nomAssig);
         ArrayList<String> co = aux.getCorrequisits();
         ArrayList<ArrayList<String>> c = new ArrayList<>();
         for(String s: co) {
-            int index2 = pla.getAssignatures().indexOf(s);
-            Assignatura aux2 = pla.getAssignatures().get(index2);
-                ArrayList<String> a = new ArrayList<>();
-                a.add(aux2.getNom());
-                a.add(aux2.getFase());
-                a.add(String.valueOf(aux2.getCapacitatGrup()));
-                a.add(String.valueOf(aux2.getCapacitatSubgrup()));
-                a.add(String.valueOf(aux2.getMatriculats()));
-                a.add(String.valueOf(aux2.getTupusAulaSubgrup()));
-                a.add(String.valueOf(aux2.getNumSessions()));
-                a.add(String.valueOf(aux2.getDuracio()));
-                c.add(a);
+            Assignatura aux2 = getAssignatura(s);
+            ArrayList<String> a = new ArrayList<>();
+            a.add(aux2.getNom());
+            a.add(aux2.getFase());
+            a.add(String.valueOf(aux2.getCapacitatGrup()));
+            a.add(String.valueOf(aux2.getCapacitatSubgrup()));
+            a.add(String.valueOf(aux2.getMatriculats()));
+            a.add(String.valueOf(aux2.getTupusAulaSubgrup()));
+            a.add(String.valueOf(aux2.getNumSessions()));
+            a.add(String.valueOf(aux2.getDuracio()));
+            c.add(a);
             }
         return c;
     }
@@ -185,11 +191,10 @@ public class CtrlDominio {
     }
 
     public boolean afegirCorrequisit(String Escollida, String Actual, String nomPla) {
-        int index = pla.getAssignatures().indexOf(Actual);
-        if(pla.getAssignatures().get(index).getCorrequisits().contains(Escollida)) return true;
-        pla.getAssignatures().get(index).afegirCorrequisit(Escollida);
-        Assignatura aux = pla.getAssignatures().get(index);
-        guardar_assignatura(nomPla,aux.getNom(),aux.getFase(),aux.getCapacitatGrup(),aux.getCapacitatSubgrup(),aux.getMatriculats(),String.valueOf(aux.getTupusAulaSubgrup()),aux.getNumSessions(),aux.getDuracio(),aux.getCorrequisits());
+        Assignatura aux = getAssignatura(Actual);
+        if(aux.getCorrequisits().contains(Escollida)) return true;
+        aux.afegirCorrequisit(Escollida);
+        guardar_assignatura(pla.getNom(),aux.getNom(),aux.getFase(),aux.getCapacitatGrup(),aux.getCapacitatSubgrup(),aux.getMatriculats(),String.valueOf(aux.getTupusAulaSubgrup()),aux.getNumSessions(),aux.getDuracio(),aux.getCorrequisits());
         return false;
     }
 
@@ -334,12 +339,14 @@ public class CtrlDominio {
 
 
     public void esborrarCorrequisit(String Escollida, String Actual, String nomPla) {
-        int index = pla.getAssignatures().indexOf(Actual);
-        pla.getAssignatures().get(index).eliminarCorrequisit(Escollida);
-        Assignatura aux = pla.getAssignatures().get(index);
-        guardar_assignatura(nomPla,aux.getNom(),aux.getFase(),aux.getCapacitatGrup(),aux.getCapacitatSubgrup(),aux.getMatriculats(),String.valueOf(aux.getTupusAulaSubgrup()),aux.getNumSessions(),aux.getDuracio(),aux.getCorrequisits());
+        Assignatura aux = getAssignatura(Actual);
+        if (aux.getCorrequisits().contains(Escollida)) {
+            aux.eliminarCorrequisit(Escollida);
+            System.out.println("vaig a esborrar");
+            guardar_assignatura(pla.getNom(), aux.getNom(), aux.getFase(), aux.getCapacitatGrup(), aux.getCapacitatSubgrup(), aux.getMatriculats(), String.valueOf(aux.getTupusAulaSubgrup()), aux.getNumSessions(), aux.getDuracio(), aux.getCorrequisits());
+            System.out.println("borrat");
+        }
     }
-
     public void esborrarHorari(String nomHorari,String nomPlaEstudis) {
 
     }
