@@ -55,7 +55,11 @@ public class infoAulesDialog extends javax.swing.JDialog {
         guardarButton.setText("Guardar");
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarButtonActionPerformed(evt);
+                try {
+                    guardarButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -116,7 +120,7 @@ public class infoAulesDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_guardarButtonActionPerformed
         String nomAula=this.nomAulaText.getText();
         String capacitat = this.capacitatText.getText();
         String tipus = this.tipusText.getText();

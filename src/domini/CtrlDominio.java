@@ -30,9 +30,8 @@ public class CtrlDominio {
         this.classes = new Vector<>();                                      //Classes actives
         this.sessions = new ArrayList<>();                                  //Sessions actives
         this.info_plans = pers.carregar_all_plans();
-      // this.nom_horaris_pla = pers.carregar_noms_horaris(pla.getNom());
-      carregar_all_aules();
-      carregar_pla("FIB");
+        carregar_all_aules();
+        carregar_pla("FIB");
       //  this.pres = new CtrlPresentacio();
     }
 
@@ -44,9 +43,9 @@ public class CtrlDominio {
         return horari;
     }
 
-    public ArrayList<Aula> getaules() { return aules; }
+    //public ArrayList<Aula> getaules() { return aules; }
 
-    public ArrayList<ArrayList<String>> getAules() {
+    public ArrayList<ArrayList<String>> getAules() {                                //OK
         ArrayList<ArrayList<String> > result = new ArrayList<>();
         for (Aula a : aules) {
             ArrayList<String> aux = new ArrayList<>();
@@ -55,7 +54,7 @@ public class CtrlDominio {
         }
         return result;
     }
-
+/*
     public ArrayList<String> getPlaEstudis(){               //Retornara les dades del pla estudis actiu
 
         ArrayList<String> c = new ArrayList<>();
@@ -64,8 +63,8 @@ public class CtrlDominio {
         c.add(String.valueOf(pla.getPeriodeLectiu()[1]));
         return c;
     }
-
-    public ArrayList<ArrayList<String>> getAssignatures(String nomPlaEstudis) {
+*/
+    public ArrayList<ArrayList<String>> getAssignatures(String nomPlaEstudis) {             //OK
 
         ArrayList<ArrayList<String>> c = new ArrayList<>();
 
@@ -106,31 +105,31 @@ public class CtrlDominio {
             }
         return c;
     }
-/*
+
     public ArrayList<String> getHorarisPlaEstudis(String nomPla) {
-
+        ArrayList<String> r = new ArrayList<>();
+        return r;
     }
-*/
-    public ArrayList<ArrayList<String>> getAll_plans() { return info_plans;}
 
+    public ArrayList<ArrayList<String>> getAll_plans() { return info_plans;}
+/*
     public Vector<Classe> getclasses() { return classes;}
 
     public ArrayList<Sessio> getsessions() {return sessions;}
-
+*/
     public ArrayList<String> getHores(String nomPla) {
         ArrayList<String> hores = new ArrayList<>();
         for(int i = pla.getPeriodeLectiu()[0]; i < pla.getPeriodeLectiu()[1];++i) {
-            if(i < 10) hores.add("0" + i + ":00");
-            else hores.add(i + ":00");
+          hores.add(String.valueOf(i));
         }
         return hores;
     }
-/*
-    public String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis) {
 
-        //return horari.getNou().get();
+    public String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis, String x, String y) {
+
+        return "x";
     }
-*/
+
 
 //CREADORES
 
@@ -194,7 +193,7 @@ public class CtrlDominio {
         return false;
     }
 
-    public boolean afegirAula(String nom, String capacitat, String  tipus) throws Exception {
+    public boolean afegirAula(String nom, String capacitat, String  tipus) throws Exception {       //OK
         if(aules.contains(nom)) return true;
         else {
             Aula aux = new Aula(nom, Integer.valueOf(capacitat), TipusAula.stoTipusAula(tipus));
@@ -204,16 +203,16 @@ public class CtrlDominio {
             return false;
         }
     }
-
+/*
     public void crear_restriccions(Restriccio R) {
         horari.add_restriccio(R);
     }
-
+*/
 
 //GENERACIO HORARI
 
     public boolean crearHorari(String nomHorari, Boolean restriccioCapacitat, Boolean restriccioCorrequisit, Boolean restriccioFase, Boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions,String nomPlaEstudis) {                              //omple horari amb les classes i les sessions actives i genera
-        if(nom_horaris_pla.contains(nomHorari)) return true;
+//        if(nom_horaris_pla.contains(nomHorari)) return true;
         horari.setNom(nomHorari);
         horari.setNomPla(nomPlaEstudis);
         horari.setClasses(classes);
@@ -233,11 +232,11 @@ public class CtrlDominio {
         horari.printHorari();
         return false;
     }
-
+/*
     public void print_horari() {
         horari.printHorari();
     }
-
+*/
 //MODIFICAR
 
 
@@ -277,7 +276,7 @@ public class CtrlDominio {
 
 //BORRAR
 
-    public boolean esborrarAula(String nomAula) {
+    public boolean esborrarAula(String nomAula) {                       //OK
         boolean correct = false;
         for(int i = 0; i < aules.size() && !correct;++i) {
             if(aules.get(i).getNom().equals(nomAula)) {
@@ -339,6 +338,10 @@ public class CtrlDominio {
         pla.getAssignatures().get(index).eliminarCorrequisit(Escollida);
         Assignatura aux = pla.getAssignatures().get(index);
         guardar_assignatura(nomPla,aux.getNom(),aux.getFase(),aux.getCapacitatGrup(),aux.getCapacitatSubgrup(),aux.getMatriculats(),String.valueOf(aux.getTupusAulaSubgrup()),aux.getNumSessions(),aux.getDuracio(),aux.getCorrequisits());
+    }
+
+    public void esborrarHorari(String nomHorari,String nomPlaEstudis) {
+
     }
 
 
@@ -426,12 +429,11 @@ public class CtrlDominio {
     public void carregar_horari(String nom) {
 
 
-
     }
 
 //AUXILIARS
 
-    public void crear_sessions(Assignatura a) {
+    public void crear_sessions(Assignatura a) {                 //OK
         for (int i = 0; i < a.getGrups().size(); ++i) {
             Grup g = a.getGrups().get(i);
             for (int j = 0; j < g.getSessions().size(); ++j) {
@@ -458,77 +460,4 @@ public class CtrlDominio {
             }
         }
     }
-
-   /*
-
-     ArrayList<ArrayList<String>> getCorrequisitsAssignatura(String nomAssignatura, String nomPlaEstudis) {
-        ArrayList<String> a= new ArrayList<>();
-        a.add("M1");
-        a.add("SEGONCURS");
-        a.add("60");
-        a.add("20");
-        a.add("120");
-        a.add("PROBLEMES");
-        a.add("2");
-        a.add("2");
-
-        ArrayList<String> b= new ArrayList<>();
-        b.add("M2");
-        b.add("SOFTWARE");
-        b.add("50");
-        b.add("20");
-        b.add("130");
-        b.add("LABORATORI");
-        b.add("2");
-        b.add("2");
-
-        ArrayList<ArrayList<String>> c = new ArrayList<>();
-        c.add(a);
-        c.add(b);
-        return c;
-    }
-
-    Boolean afegirCorrequisit(String nomAssignaturaEscollida, String nomAssignaturaActual, String nomPlaEstudis) {
-        //retorna si les assignatures son correquisits entre elles
-        //si no ho son, crea les associacions perque ho siguin
-        //tb comprova que no sigui correquisit de si mateixa i coses aixi
-        return false;
-    }
-
-    Boolean esborrarCorrequisit(String nomAssignaturaEscollida, String nomAssignaturaActual, String nomPlaEstudis) {
-        //s'esborra el la relacio de correquits en els dos sentits
-        System.out.println("Correquisit entre: "+nomAssignaturaEscollida+" i "+nomAssignaturaActual+" eliminat correctament");
-        return true;
-    }
-
-    ArrayList<String> getHorarisPlaEstudis(String nomPlaEstudis) {
-        //retorna els horaris que tenen com atribut l'string nomplaestudis indicat
-        ArrayList<String> horaris = new ArrayList<>();
-        horaris.add("Horari1");
-        horaris.add("Horari2");
-        return horaris;
-    }
-
-    Boolean esborrarHorari(String nomHorari, String nomPlaEstudis) {
-        //tb esborra les seves restriccions associades i tal
-        System.out.println("Horari: "+nomHorari+" ("+nomPlaEstudis+") "+"eliminat correctament");
-        return true;
-    }
-
-    Boolean crearHorari(String nomHorari, Boolean restriccioCapacitat, Boolean restriccioCorrequisit, Boolean restriccioFase, Boolean restriccioTipusAula, ArrayList<ArrayList<String>> restriccions,String nomPlaEstudis) {
-        //retorna true si l'horari ja existeix o alguna de les restriccions té parametres incorrectes
-        //et podria passar dos vectors "restriccions" un amb les de classe i un altre amb les de grupdiahora o comprovar tu si restriccions.get(i).get(2) que es nomaula té un valor o es ""
-        //crea l'horari, amb les sessions del pla d'estudis indicat (que tb associa l'string a l'horari com a atribut), totes les aules del sistema i unes restriccions que crea segons les indicades.
-        return false;
-    }
-
-    String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis) {
-        //retorna la sessio (String constituit per nomAssig+numGrup+numSessio en un String) format possible= "PROP 11 (1)"
-        //la sessio es del horari del pla d'estudis indicat en la Classe indicada
-        //si no hi ha sessio assignada per aquesta Classe retorna un String "";
-        return "AS 11 (2)";
-    }
-
-
-    */
 }

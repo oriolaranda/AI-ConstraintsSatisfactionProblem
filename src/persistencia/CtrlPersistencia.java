@@ -171,13 +171,13 @@ public class CtrlPersistencia {
         ArrayList<ArrayList<String>> result = new ArrayList<>();
 
         if(files.length > 0) {
-            int i = 0;
             for (File file : files) {
                 ArrayList<String> aux = carregar_pla(file.getName()).get(0);
-                result.get(i).add(aux.get(0));
-                result.get(i).add(aux.get(1));
-                result.get(i).add(aux.get(2));
-                ++i;
+                ArrayList<String> aux2 = new ArrayList<>();
+                aux2.add(aux.get(0));
+                aux2.add(aux.get(1));
+                aux2.add(aux.get(2));
+                result.add(aux2);
             }
         }
         return result;

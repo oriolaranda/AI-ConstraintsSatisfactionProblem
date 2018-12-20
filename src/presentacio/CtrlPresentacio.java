@@ -227,7 +227,7 @@ public class CtrlPresentacio {
         }
     }
 
-    /*
+
     void getHorarisPlaEstudis(String nomPlaEstudis) {
         ArrayList<String> horaris= cd.getHorarisPlaEstudis(nomPlaEstudis);
         if(horaris!=null && !horaris.isEmpty()){
@@ -236,12 +236,12 @@ public class CtrlPresentacio {
             }
         }
     }
-*/
-    /*
+
+
     void esborrarHorari(String nomHorari, String nomPlaEstudis) {
         cd.esborrarHorari(nomHorari,nomPlaEstudis);
     }
-*/
+
     void horaris() {
         w.setContentPane(vh);
         w.setVisible(true);
@@ -271,11 +271,11 @@ public class CtrlPresentacio {
         return cd.getHores(nomPla);
     }
 
-/*
+
     String getSessio(String dia, String hora, String nomAula, String capacitat, String tipus, String nomHorari, String nomPlaEstudis) {
         return cd.getSessio(dia, hora, nomAula, capacitat, tipus , nomHorari, nomPlaEstudis);
     }
-*/
+
     boolean intecanviar(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) {
         return cd.intercanviar( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);
     }

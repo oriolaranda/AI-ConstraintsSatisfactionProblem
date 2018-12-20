@@ -58,7 +58,11 @@ public class infoPlaEstudisDialog extends javax.swing.JDialog {
         guardarButton.setText("Guardar");
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarButtonActionPerformed(evt);
+                try {
+                    guardarButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -118,7 +122,7 @@ public class infoPlaEstudisDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_guardarButtonActionPerformed
 
             String nomPlaEstudis=this.nomPlaEstudisTextReal.getText();
             String horaInici = this.horaIniciText.getText();

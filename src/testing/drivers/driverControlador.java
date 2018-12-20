@@ -101,12 +101,11 @@ public class driverControlador {
                         }*/
                         break;
                     case 4:
-                            ArrayList<ArrayList<String>> aux= C.getAll_plans();
+                            ArrayList<ArrayList<String>> aux= C.getCorrequisitsAssignatura(sc.next(),sc.next());
                             for(int i = 0; i < aux.size();++i) {
                                 for(int j = 0; j < aux.get(i).size(); ++j) {
-                                    System.out.println(aux.get(i).get(j) + " ");
+                                    System.out.println(aux.get(i).get(j));
                                 }
-
                             }
                        /* C.esborrarAssignatura(hda);
                         for(Assignatura aux: C.getPla().getAssignatures()) {
