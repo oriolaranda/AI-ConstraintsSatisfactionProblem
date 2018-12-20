@@ -157,35 +157,35 @@ public class CtrlDominio {
 //CREADORES
 
     public boolean afegirPlaEstudis(String nom, String horaIni, String horaFi) {           //OK
-      //  if(nom_plans.contains(nom)) return true;
-      //  else {
-            int horai = Integer.valueOf(horaIni);
-            int horaf = Integer.valueOf(horaFi);
-            int[] periode = new int[]{horai, horaf};
-            pla = new PlaEstudis(nom, periode);
-            guardar_pla(nom, horai, horaf);
-            hores.clear();
-            sessions.clear();
-            classes.clear();
-            for (int i = horai; i < horaf; ++i) {
-                DiaHora aux = new DiaHora("Dilluns", i);
-                hores.add(aux);
-                crear_classes_per_hora(aux);
-                aux = new DiaHora("Dimarts", i);
-                hores.add(aux);
-                crear_classes_per_hora(aux);
-                aux = new DiaHora("Dimecres", i);
-                hores.add(aux);
-                crear_classes_per_hora(aux);
-                aux = new DiaHora("Dijous", i);
-                hores.add(aux);
-                crear_classes_per_hora(aux);
-                aux = new DiaHora("Divendres", i);
-                hores.add(aux);
-                crear_classes_per_hora(aux);
-            }
-            return false;
-      //  }
+      for(ArrayList<String> s: info_plans) {
+          if(s.get(0).equals(nom)) return true;
+      }
+      int horai = Integer.valueOf(horaIni);
+      int horaf = Integer.valueOf(horaFi);
+      int[] periode = new int[]{horai, horaf};
+      pla = new PlaEstudis(nom, periode);
+      guardar_pla(nom, horai, horaf);
+      hores.clear();
+      sessions.clear();
+      classes.clear();
+      for (int i = horai; i < horaf; ++i) {
+          DiaHora aux = new DiaHora("Dilluns", i);
+          hores.add(aux);
+          crear_classes_per_hora(aux);
+          aux = new DiaHora("Dimarts", i);
+          hores.add(aux);
+          crear_classes_per_hora(aux);
+          aux = new DiaHora("Dimecres", i);
+          hores.add(aux);
+          crear_classes_per_hora(aux);
+          aux = new DiaHora("Dijous", i);
+          hores.add(aux);
+          crear_classes_per_hora(aux);
+          aux = new DiaHora("Divendres", i);
+          hores.add(aux);
+          crear_classes_per_hora(aux);
+      }
+      return false;
     }
 
     public boolean afegirAssignatura(String nomPla, String nom, String fase, String capG, String capSG, String mat, String tip, String nSes, String d) throws Exception {      //OK
@@ -270,12 +270,12 @@ public class CtrlDominio {
                    for (Aula a: aules) {
                        if(a.getNom().equals(nomAula)) return false; //comprovar que no hi ha aula amb el mateix nom nou.
                    }
-                   aula.setNom(nomAula); //en principi es modifica l'objecte aula, per tant al vector classe també hauria d'estar actualitzat.
                    pers.borrar_aula(nomAulaAntic);
                }
-               aula.setCapacitat(Integer.valueOf(capacitat));
-               aula.setTipus(TipusAula.stoTipusAula(tipus));
+               boolean b = afegirAula(nomAula,capacitat,tipus);
                guardar_aula(nomAula,Integer.valueOf(capacitat),tipus);
+               esborrarAula(nomAulaAntic);
+               crear_classes_per_aula(new Aula(nomAula,Integer.valueOf(capacitat),TipusAula.stoTipusAula(tipus)));
                return true;
            }
        }
@@ -286,7 +286,7 @@ public class CtrlDominio {
        //Cridar guardar_aula(nom, Integer.valueOf(capacitat), tipus) amb parametres nous
        return false;
    }
-
+    //REVISAR!!!!!!!!!!!!!!
    public boolean modificarPlaEstudis( String nomPlaEstudisAntic,String nomPlaEstudis,String horaInici,String horaFinal) throws Exception {
 
        //Si nomantic no esta en info_plans return false
@@ -294,11 +294,35 @@ public class CtrlDominio {
        //Modificar el vector hores on hi ha els dies i hores actius pel pla
        //Modificar classes segons si canvien les hores del pla en que estem
        //guardar_pla(nom, horai, horaf);
-       for (ArrayList<String> pla:info_plans) {
+       if (pla == null || !pla.getNom().equals(nomPlaEstudisAntic)) {
 
+           for (ArrayList<String> pla : info_plans) {
+               if (pla.get(0).equals(nomPlaEstudisAntic)) {
+                   if (!nomPlaEstudisAntic.equals(nomPlaEstudis)) {
+                       for (ArrayList<String> s: info_plans) {
+                           if(s.get(0).equals(nomPlaEstudis)) return false;
+                       }
+                       pers.borrar_pla(nomPlaEstudisAntic);
+                   }
+                   guardar_pla(nomPlaEstudis,Integer.valueOf(horaInici),Integer.valueOf(horaFinal));
+                   info_plans = pers.carregar_all_plans();
+                   return true;
+               }
+           }
+           return false;
+       } else {
+           if(!nomPlaEstudisAntic.equals(nomPlaEstudis)) {
+               for (ArrayList<String> s: info_plans) {
+                   if(s.get(0).equals(nomPlaEstudis)) return false;
+               }
+               pla.setNom(nomPlaEstudis);
+               pers.borrar_pla(nomPlaEstudisAntic);
+           }
+           pla.setPeriodeLectiu(Integer.valueOf(horaInici),Integer.valueOf(horaFinal));
+           guardar_pla(nomPlaEstudis,Integer.valueOf(horaInici),Integer.valueOf(horaFinal));
        }
        info_plans = pers.carregar_all_plans();      //Deixa aquesta linia i si la toques no la posis abans de guardar
-        return true;
+       return true;
    }
     //FALTA MODIFICAR SESSIONS!!!!!!!
    public boolean modificarAssignatura(String nomAssignaturaAntic,String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio) throws Exception { //OK
@@ -325,7 +349,7 @@ public class CtrlDominio {
        //Si nom antic no esta en les assigs del pla return false
        //Modificar sessions segons els canvis
        //guardar_assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, String.valueOf(tipus), numSes, dur, correquisits);    el vector correquisits posa el mateix vector que hi havia, ja que no es modifca aqui
-       return true;
+       return false;
    }
 
     public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
@@ -361,9 +385,8 @@ public class CtrlDominio {
     public boolean esborrarPlaEstudis(String nomPlaEstudis) {
         boolean correct = false;
         for(int i = 0; i < info_plans.size(); ++i) {
-            if (info_plans.get(i).equals(nomPlaEstudis)) {
+            if (info_plans.get(i).get(0).equals(nomPlaEstudis)) {
                 if (!pers.borrar_pla(nomPlaEstudis)) return false;
-                System.out.println("patata");
                 info_plans.remove(i);
                 /* si eliminem pla quan esta carregat
                 hores.clear();
