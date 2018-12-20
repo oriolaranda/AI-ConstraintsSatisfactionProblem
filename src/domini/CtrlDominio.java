@@ -101,9 +101,19 @@ public class CtrlDominio {
     }
 
     public String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis) {
+        Aula a = null;
+        for (Aula aula: aules) {
+            if (aula.getNom().equals(nomAula)) a = aula;
+        }
+        DiaHora dh = null;
+        for (DiaHora diahora: hores) {
+            if (diahora.getDia().equals(dia) && diahora.getHora() == Integer.valueOf(hora)) dh = diahora;
+        }
+        Classe c = new Classe(a, dh);
 
-        //return horari.getNou().get();
+        return horari.getNou().get(c).toString();
     }
+
 
 
 //CREADORES
@@ -296,7 +306,8 @@ public class CtrlDominio {
     }
 
     public void carregar_all_aules() throws Exception {                                //OK     //Cal fer-la nomes començar pero primer s ha de carregar pla sino no tira
-        ArrayList<ArrayList<String> > aux = pers.carregar_all_aules()ArrayList<Restriccio> res;;
+        ArrayList<ArrayList<String> > aux = pers.carregar_all_aules() ;
+        ArrayList<Restriccio> res;;
         for(ArrayList<String> s: aux) {
             Aula a = new Aula(s.get(0),Integer.valueOf(s.get(1)),TipusAula.stoTipusAula(s.get(2)));
             aules.add(a);
