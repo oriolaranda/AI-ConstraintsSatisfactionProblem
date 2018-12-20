@@ -16,7 +16,7 @@ public class Prop {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+    public static void main(String[] args) throws Exception {
         CtrlPresentacio cp=new CtrlPresentacio();
     }
     

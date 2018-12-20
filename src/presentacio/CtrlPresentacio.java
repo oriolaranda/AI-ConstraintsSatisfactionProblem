@@ -5,6 +5,8 @@
  */
 package presentacio;
 
+import domini.*;
+
 import java.util.ArrayList;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -14,7 +16,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Daniel
  */
 public class CtrlPresentacio {
-    private CtrlDomini cd;
+    private CtrlDominio cd;
     private vistaMenu vm;
     private vistaAules va;
     private vistaAssignatures vas;
@@ -27,9 +29,9 @@ public class CtrlPresentacio {
     
     
     
-    public CtrlPresentacio() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+    public CtrlPresentacio() throws Exception {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-      cd=new CtrlDomini(this);
+      cd= new CtrlDominio();
       vm=new vistaMenu(this);
       w=new window(this);
       w.setContentPane(vm);
@@ -90,18 +92,18 @@ public class CtrlPresentacio {
         va.afegirAula(nomAula,capacitat,tipus);
     }
 
-    boolean afegirAula(String nomAula, String capacitat, String tipus) {
+    boolean afegirAula(String nomAula, String capacitat, String tipus) throws Exception {
         boolean existia=cd.afegirAula(nomAula,capacitat,tipus);
         if(!existia) afegirAulaTaula(nomAula,capacitat,tipus);
         return existia;
     }
-    
+
     boolean modificarAula(String nomAulaAntic, String nomAula, String capacitat, String tipus) {
         boolean modificada=cd.modificarAula(nomAulaAntic,nomAula,capacitat,tipus);
         if(modificada)afegirAulaTaula(nomAula,capacitat,tipus);
         return modificada;
     }
-    
+
     boolean esborrarAula(String nomAula){
         return cd.esborrarAula(nomAula);
     }
@@ -119,26 +121,26 @@ public class CtrlPresentacio {
             }
         }
     }
-    
+
     void getPlaEstudis() {
-        ArrayList<ArrayList<String>> plans=cd.getPlaEstudis();
+        ArrayList<ArrayList<String>> plans=cd.getAll_plans();
         if(plans!=null && !plans.isEmpty()){
             for (ArrayList<String> p : plans) {  
                 vpe.afegirPlaEstudis(p.get(0),p.get(1),p.get(2));
             }
         }
     }
-    
+
      ArrayList<ArrayList<String>> getAssignaturesPlaEstudis(String nomPlaEstudis) {
         ArrayList<ArrayList<String>> assig=cd.getAssignatures(nomPlaEstudis);
         return assig;
     }
-     
+
      ArrayList<ArrayList<String>> getCorrequisitsAssignatura(String nomAssignatura, String nomPlaEstudis) {
         ArrayList<ArrayList<String>> assig=cd.getCorrequisitsAssignatura(nomAssignatura,nomPlaEstudis);
         return assig;
     }
-     
+
     void getAssignaturesVistaAssignatures(String nomPlaEstudis) {
         ArrayList<ArrayList<String>> assig=getAssignaturesPlaEstudis(nomPlaEstudis);
         if(assig!=null && !assig.isEmpty()){
@@ -147,6 +149,7 @@ public class CtrlPresentacio {
             }
         }
     }
+
     void getAssignaturesVistaCorrequisits(String nomAssignatura, String nomPlaEstudis) {
         ArrayList<ArrayList<String>> assig=getAssignaturesPlaEstudis(nomPlaEstudis);
         if(assig!=null && !assig.isEmpty()){
@@ -161,7 +164,7 @@ public class CtrlPresentacio {
             }
         }
     }
-    
+
     
     void afegirPlaEstudisTaula(String nomPlaEstudis,String horaInici,String horaFinal){
         vpe.afegirPlaEstudis(nomPlaEstudis,horaInici,horaFinal);
@@ -173,8 +176,8 @@ public class CtrlPresentacio {
         if(!existia) afegirPlaEstudisTaula(nomPlaEstudis,horaInici,horaFinal);
         return existia;
     }
-    
-    boolean modificarPlaEstudis(String nomPlaEstudisAntic, String nomPlaEstudis, String horaInici, String horaFinal) {
+
+    boolean modificarPlaEstudis(String nomPlaEstudisAntic, String nomPlaEstudis, String horaInici, String horaFinal) throws Exception {
         boolean modificat=cd.modificarPlaEstudis(nomPlaEstudisAntic,nomPlaEstudis,horaInici,horaFinal);
         if(modificat) afegirPlaEstudisTaula(nomPlaEstudis,horaInici,horaFinal);
         return modificat;
@@ -192,34 +195,38 @@ public class CtrlPresentacio {
     void esborrarAssignatura(String nomAssignatura, String nomPlaEstudis) {
         cd.esborrarAssignatura(nomAssignatura,nomPlaEstudis);
     }
-    
+
+
     void esborrarCorrequisit(String nomAssignaturaEscollida, String nomAssignaturaActual, String nomPlaEstudis) {
         cd.esborrarCorrequisit(nomAssignaturaEscollida,nomAssignaturaActual,nomPlaEstudis);
     }
-    
+
     void afegirAssignaturaTaula(String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio){
         vas.afegirAssignatura(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
     }
-    
+
     boolean modificarAssignatura(String nomAssignaturaAntic, String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) {
         boolean modificada=cd.modificarAssignatura(nomAssignaturaAntic,nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         if(modificada) afegirAssignaturaTaula(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         return modificada;
     }
 
-    boolean afegirAssignatura(String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) {
+
+    boolean afegirAssignatura(String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) throws Exception {
         String nomPlaEstudis=vas.getNomPlaEstudis();
-        boolean existia=cd.afegirAssignatura(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio,nomPlaEstudis);    
+        boolean existia=cd.afegirAssignatura(nomPlaEstudis,nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         if(!existia) afegirAssignaturaTaula(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         return existia;
     }
-    
+
+
     void afegirCorrequisit(String nomAssignaturaEscollida,String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio,String nomAssignaturaActual, String nomPlaEstudis) {
         boolean jahoes=cd.afegirCorrequisit(nomAssignaturaEscollida,nomAssignaturaActual,nomPlaEstudis);
         if(!jahoes){
             vc.afegirAssignaturaCorrequisit(nomAssignaturaEscollida, fase, capacitatGrup, capacitatSubGrup, matriculats, tipusSubGrup, numSessions, duracio);
         }
     }
+
 
     void getHorarisPlaEstudis(String nomPlaEstudis) {
         ArrayList<String> horaris= cd.getHorarisPlaEstudis(nomPlaEstudis);
@@ -229,6 +236,7 @@ public class CtrlPresentacio {
             }
         }
     }
+
 
     void esborrarHorari(String nomHorari, String nomPlaEstudis) {
         cd.esborrarHorari(nomHorari,nomPlaEstudis);
@@ -259,9 +267,10 @@ public class CtrlPresentacio {
         w.setVisible(true);
     }
 
-    ArrayList<String> getHores(String nomPlaEstudis) {
-        return cd.getHores(nomPlaEstudis);
+    ArrayList<String> getHores(String nomPla) {
+        return cd.getHores(nomPla);
     }
+
 
     String getSessio(String dia, String hora, String nomAula, String capacitat, String tipus, String nomHorari, String nomPlaEstudis) {
         return cd.getSessio(dia, hora, nomAula, capacitat, tipus , nomHorari, nomPlaEstudis);
@@ -275,6 +284,8 @@ public class CtrlPresentacio {
         cd.intercanviarObligat( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);    
     }
    
-
+    void carregar_pla(String nom) throws Exception {
+        cd.carregar_pla(nom);
+    }
     
 }

@@ -32,7 +32,7 @@ public class CtrlPersistencia {
         }
     }
 
-    public void guardar_assignatura(String nomPlaEstudis, String nom, String fase, int capacitatGrup, int capacitatSubGrups, int matriculats, String tipusSubgrup, int numSessions, int duracio, Vector<String> correquisits) {
+    public void guardar_assignatura(String nomPlaEstudis, String nom, String fase, int capacitatGrup, int capacitatSubGrups, int matriculats, String tipusSubgrup, int numSessions, int duracio, ArrayList<String> correquisits) {
         try {
             String aux = nom + " " + fase + " " + capacitatGrup + " " + capacitatSubGrups + " " + matriculats + " " + tipusSubgrup + " " + numSessions + " " + duracio + " " + correquisits.size();
             for (int i = 0; i < correquisits.size(); ++i) aux += " " + correquisits.get(i);
@@ -135,7 +135,7 @@ public class CtrlPersistencia {
         return result;
     }
 
-   /* public ArrayList<Assignatura> carregar_all_assignatures(String nomPla) throws Exception {
+    /*public ArrayList<Assignatura> carregar_all_assignatures(String nomPla) throws Exception {
         Path path;
         path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Assignatures/");
         File[] files = new File(String.valueOf(path)).listFiles();
@@ -145,16 +145,39 @@ public class CtrlPersistencia {
         }
         return result;
     }*/
-
-    public ArrayList<String> carregar_all_noms_plans() throws Exception {                       //OK
+/*
+    public ArrayList<String> carregar_noms_horaris(String nomPla) {
         Path path;
-        path = Paths.get("src/persistencia/PlaEstudis");
+        path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Horaris");
         File[] files = new File(String.valueOf(path)).listFiles();
         ArrayList<String> result = new ArrayList<>();
 
         if(files.length > 0) {
             for (File file : files) {
-                result.add(carregar_pla(file.getName()).get(0).get(0));
+                ArrayList<String> aux = carregar_horari(file.getName()).get(0);
+                result.add(aux.get(0));
+                result.add(aux.get(1));
+                result.add(aux.get(2));
+            }
+        }
+        return result;
+    }
+    */
+
+    public ArrayList<ArrayList<String>> carregar_all_plans() throws Exception {                       //OK
+        Path path;
+        path = Paths.get("src/persistencia/PlaEstudis");
+        File[] files = new File(String.valueOf(path)).listFiles();
+        ArrayList<ArrayList<String>> result = new ArrayList<>();
+
+        if(files.length > 0) {
+            for (File file : files) {
+                ArrayList<String> aux = carregar_pla(file.getName()).get(0);
+                ArrayList<String> aux2 = new ArrayList<>();
+                aux2.add(aux.get(0));
+                aux2.add(aux.get(1));
+                aux2.add(aux.get(2));
+                result.add(aux2);
             }
         }
         return result;
