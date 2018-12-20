@@ -131,7 +131,7 @@ public class CtrlDominio {
         return hores;
     }
 
-    public String getSessio(String dia, String hora, String nomAula, String nomHorari, String nomPlaEstudis) {
+    public String getSessio(String dia, String hora, String nomAula, String capacitat, String tipus, String nomHorari, String nomPlaEstudis) {
         Aula a = null;
         for (Aula aula: aules) {
             if (aula.getNom().equals(nomAula)) a = aula;
@@ -255,16 +255,28 @@ public class CtrlDominio {
 //MODIFICAR
 
 
-   public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) {
-        //Si aula antiga no extisteix en aules retornes false
+   public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) throws Exception {
+
+       for (Aula aula: aules) {
+           if(aula.getNom().equals(nomAulaAntic)) {
+               aula.setNom(nomAula); //en principi es modifica l'objecte aula, per tant al vector classe també hauria d'estar actualitzat.
+               aula.setCapacitat(Integer.valueOf(capacitat));
+               aula.setTipus(TipusAula.stoTipusAula(tipus));
+               guardar_aula(nomAula,Integer.valueOf(capacitat),tipus);
+               return true;
+           }
+       }
+
+       //Si aula antiga no extisteix en aules retornes false
        //Modificar el vector aules
         //Modificar el vector de classes segons Aula modificada
        //Cridar guardar_aula(nom, Integer.valueOf(capacitat), tipus) amb parametres nous
-       return true;
+       return false;
    }
 
    public boolean modificarPlaEstudis( String nomPlaEstudisAntic,String nomPlaEstudis,String horaInici,String horaFinal) throws Exception {
-        //Si nomantic no esta en info_plans return false
+
+       //Si nomantic no esta en info_plans return false
        //Modificar variable pla si el nom del pla que modifiques es el mateix del que tenim actiu
        //Modificar el vector hores on hi ha els dies i hores actius pel pla
        //Modificar classes segons si canvien les hores del pla en que estem

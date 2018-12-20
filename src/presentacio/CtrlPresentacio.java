@@ -98,7 +98,7 @@ public class CtrlPresentacio {
         return existia;
     }
 
-    boolean modificarAula(String nomAulaAntic, String nomAula, String capacitat, String tipus) {
+    boolean modificarAula(String nomAulaAntic, String nomAula, String capacitat, String tipus) throws Exception {
         boolean modificada=cd.modificarAula(nomAulaAntic,nomAula,capacitat,tipus);
         if(modificada)afegirAulaTaula(nomAula,capacitat,tipus);
         return modificada;
