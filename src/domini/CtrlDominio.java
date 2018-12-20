@@ -238,7 +238,42 @@ public class CtrlDominio {
         horari.printHorari();
     }
 
+//MODIFICAR
 
+
+   public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) {
+        //Si aula antiga no extisteix en aules retornes false
+       //Modificar el vector aules
+        //Modificar el vector de classes segons Aula modificada
+       //Cridar guardar_aula(nom, Integer.valueOf(capacitat), tipus) amb parametres nous
+       return true;
+   }
+
+   public boolean modificarPlaEstudis( String nomPlaEstudisAntic,String nomPlaEstudis,String horaInici,String horaFinal) throws Exception {
+        //Si nomantic no esta en info_plans return false
+       //Modificar variable pla si el nom del pla que modifiques es el mateix del que tenim actiu
+       //Modificar el vector hores on hi ha els dies i hores actius pel pla
+       //Modificar classes segons si canvien les hores del pla en que estem
+       //guardar_pla(nom, horai, horaf);
+       info_plans = pers.carregar_all_plans();      //Deixa aquesta linia i si la toques no la posis abans de guardar
+        return true;
+   }
+
+   public boolean modificarAssignatura(String nomAssignaturaAntic,String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio) {
+        //Si nom antic no esta en les assigs del pla return false
+       //Modificar sessions segons els canvis
+       //guardar_assignatura(pla.getNom(), nom, fase, capGrup, capSGrup, matric, String.valueOf(tipus), numSes, dur, correquisits);    el vector correquisits posa el mateix vector que hi havia, ja que no es modifca aqui
+       return true;
+   }
+
+    public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
+        //Modificar horari pero no se la dif entre els 2 intercanviars
+        return true;
+    }
+
+    public void intercanviarObligat(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
+
+    }
 
 //BORRAR
 

@@ -97,13 +97,13 @@ public class CtrlPresentacio {
         if(!existia) afegirAulaTaula(nomAula,capacitat,tipus);
         return existia;
     }
-    /*
+
     boolean modificarAula(String nomAulaAntic, String nomAula, String capacitat, String tipus) {
         boolean modificada=cd.modificarAula(nomAulaAntic,nomAula,capacitat,tipus);
         if(modificada)afegirAulaTaula(nomAula,capacitat,tipus);
         return modificada;
     }
-    */
+
     boolean esborrarAula(String nomAula){
         return cd.esborrarAula(nomAula);
     }
@@ -176,13 +176,13 @@ public class CtrlPresentacio {
         if(!existia) afegirPlaEstudisTaula(nomPlaEstudis,horaInici,horaFinal);
         return existia;
     }
-    /*
-    boolean modificarPlaEstudis(String nomPlaEstudisAntic, String nomPlaEstudis, String horaInici, String horaFinal) {
+
+    boolean modificarPlaEstudis(String nomPlaEstudisAntic, String nomPlaEstudis, String horaInici, String horaFinal) throws Exception {
         boolean modificat=cd.modificarPlaEstudis(nomPlaEstudisAntic,nomPlaEstudis,horaInici,horaFinal);
         if(modificat) afegirPlaEstudisTaula(nomPlaEstudis,horaInici,horaFinal);
         return modificat;
     }
-*/
+
     boolean esborrarPlaEstudis(String nomPlaEstudis) {
         return cd.esborrarPlaEstudis(nomPlaEstudis);
     }
@@ -204,13 +204,13 @@ public class CtrlPresentacio {
     void afegirAssignaturaTaula(String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio){
         vas.afegirAssignatura(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
     }
-    /*
+
     boolean modificarAssignatura(String nomAssignaturaAntic, String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) {
         boolean modificada=cd.modificarAssignatura(nomAssignaturaAntic,nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         if(modificada) afegirAssignaturaTaula(nomAssignatura,fase,capacitatGrup,capacitatSubGrup,matriculats,tipusSubGrup,numSessions,duracio);
         return modificada;
     }
-*/
+
 
     boolean afegirAssignatura(String nomAssignatura, String fase, String capacitatGrup, String capacitatSubGrup, String matriculats, String tipusSubGrup, String numSessions, String duracio) throws Exception {
         String nomPlaEstudis=vas.getNomPlaEstudis();
@@ -275,7 +275,7 @@ public class CtrlPresentacio {
     String getSessio(String dia, String hora, String nomAula, String capacitat, String tipus, String nomHorari, String nomPlaEstudis) {
         return cd.getSessio(dia, hora, nomAula, capacitat, tipus , nomHorari, nomPlaEstudis);
     }
-
+*/
     boolean intecanviar(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) {
         return cd.intercanviar( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);
     }
@@ -284,6 +284,6 @@ public class CtrlPresentacio {
         cd.intercanviarObligat( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);    
     }
    
-*/
+
     
 }
