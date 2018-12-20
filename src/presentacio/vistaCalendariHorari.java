@@ -86,7 +86,11 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         dillunsRadioButton.setText("Dilluns");
         dillunsRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dillunsRadioButtonActionPerformed(evt);
+                try {
+                    dillunsRadioButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -94,7 +98,11 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         dimartsRadioButton.setText("Dimarts");
         dimartsRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dimartsRadioButtonActionPerformed(evt);
+                try {
+                    dimartsRadioButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -102,7 +110,11 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         dimecresRadioButton.setText("Dimecres");
         dimecresRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dimecresRadioButtonActionPerformed(evt);
+                try {
+                    dimecresRadioButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -110,7 +122,11 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         dijousRadioButton.setText("Dijous");
         dijousRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dijousRadioButtonActionPerformed(evt);
+                try {
+                    dijousRadioButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -118,7 +134,11 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         divendresRadioButton.setText("Divendres");
         divendresRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                divendresRadioButtonActionPerformed(evt);
+                try {
+                    divendresRadioButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -129,7 +149,11 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         intercanviarButton.setText("Intercanviar");
         intercanviarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                intercanviarButtonActionPerformed(evt);
+                try {
+                    intercanviarButtonActionPerformed(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -202,34 +226,34 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         cp.horaris();
     }//GEN-LAST:event_cancelButton1ActionPerformed
 
-    private void dillunsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dillunsRadioButtonActionPerformed
+    private void dillunsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_dillunsRadioButtonActionPerformed
         dia="Dilluns";
         update();
     }//GEN-LAST:event_dillunsRadioButtonActionPerformed
 
-    private void dimartsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimartsRadioButtonActionPerformed
+    private void dimartsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_dimartsRadioButtonActionPerformed
         dia="Dimarts";
         jTable1.clearSelection();
         update();
     }//GEN-LAST:event_dimartsRadioButtonActionPerformed
 
-    private void dimecresRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimecresRadioButtonActionPerformed
+    private void dimecresRadioButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_dimecresRadioButtonActionPerformed
         dia="Dimecres";
         update();
     }//GEN-LAST:event_dimecresRadioButtonActionPerformed
 
-    private void dijousRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dijousRadioButtonActionPerformed
+    private void dijousRadioButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_dijousRadioButtonActionPerformed
         dia="Dijous";
         update();
     }//GEN-LAST:event_dijousRadioButtonActionPerformed
 
-    private void divendresRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divendresRadioButtonActionPerformed
+    private void divendresRadioButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_divendresRadioButtonActionPerformed
         dia="Divendres";
         update();
     }//GEN-LAST:event_divendresRadioButtonActionPerformed
 
 
-    private void intercanviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intercanviarButtonActionPerformed
+    private void intercanviarButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_intercanviarButtonActionPerformed
         if(classe1[0]!=null && classe2[0]!=null){
             Boolean fet=cp.intecanviar(classe1[0],classe1[1],classe1[2],classe2[0],classe2[1],classe2[2]);
             if(fet) update();
@@ -243,7 +267,7 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_intercanviarButtonActionPerformed
-    void update(){
+    void update() throws Exception {
         ArrayList<ArrayList<String>> aules=cp.getAules();
         ArrayList<String> hores=cp.getHores(nomPlaEstudis);
         

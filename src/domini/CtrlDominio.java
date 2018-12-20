@@ -136,17 +136,12 @@ public class CtrlDominio {
         return hores;
     }
 
-    public String getSessio(String dia, String hora, String nomAula, String capacitat, String tipus, String nomHorari, String nomPlaEstudis) {
-        Aula a = null;
-        for (Aula aula: aules) {
-            if (aula.getNom().equals(nomAula)) a = aula;
-        }
-        DiaHora dh = null;
-        for (DiaHora diahora: hores) {
-            if (diahora.getDia().equals(dia) && diahora.getHora() == Integer.valueOf(hora)) dh = diahora;
-        }
-        if(a == null | dh == null) return "";
-        Classe c = new Classe(a, dh);
+    public String getSessio(String dia, String hora, String nomAula, String capacitat, String tipus, String nomHorari, String nomPlaEstudis) throws Exception {
+        Aula aula = new Aula(nomAula, Integer.valueOf(capacitat),TipusAula.stoTipusAula(tipus));
+        DiaHora dh = new DiaHora(dia,Integer.valueOf(hora));
+
+        if(aula == null | dh == null) return "";
+        Classe c = new Classe(aula, dh);
         if (c==null) return "";
         if (horari.getNou().containsKey(c)) return horari.getNou().get(c).toString();
         return "";
@@ -261,7 +256,6 @@ public class CtrlDominio {
 */
 //MODIFICAR
 
-    //FALTA MODIFICAR CLASSES!!!!!!!!!!!!
    public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) throws Exception { //OK
 
        for (Aula aula: aules) {
@@ -270,12 +264,10 @@ public class CtrlDominio {
                    for (Aula a: aules) {
                        if(a.getNom().equals(nomAula)) return false; //comprovar que no hi ha aula amb el mateix nom nou.
                    }
-                   pers.borrar_aula(nomAulaAntic);
                }
-               boolean b = afegirAula(nomAula,capacitat,tipus);
-               guardar_aula(nomAula,Integer.valueOf(capacitat),tipus);
                esborrarAula(nomAulaAntic);
-               crear_classes_per_aula(new Aula(nomAula,Integer.valueOf(capacitat),TipusAula.stoTipusAula(tipus)));
+               afegirAula(nomAula,capacitat,tipus);
+               guardar_aula(nomAula,Integer.valueOf(capacitat),tipus);
                return true;
            }
        }
@@ -354,6 +346,7 @@ public class CtrlDominio {
 
     public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
         //Modificar horari pero no se la dif entre els 2 intercanviars
+        horari.getNou();
         return true;
     }
 
