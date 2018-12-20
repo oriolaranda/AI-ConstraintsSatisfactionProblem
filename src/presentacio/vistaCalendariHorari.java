@@ -74,7 +74,6 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         nomText.setEditable(false);
         nomText.setBackground(new java.awt.Color(250, 250, 250));
 
-
         cancelButton1.setText("Cancel");
         cancelButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +124,6 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         sessio1.setEditable(false);
         sessio1.setBackground(new java.awt.Color(250, 250, 250));
 
-
         intercanviarButton.setText("Intercanviar");
         intercanviarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +133,6 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
 
         sessio2.setEditable(false);
         sessio2.setBackground(new java.awt.Color(250, 250, 250));
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,20 +147,16 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
                     .addComponent(nomText, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(intercanviarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sessio2))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(sessio1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dillunsRadioButton)
-                                .addComponent(dimartsRadioButton)
-                                .addComponent(dimecresRadioButton)
-                                .addComponent(dijousRadioButton)
-                                .addComponent(divendresRadioButton)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(dillunsRadioButton)
+                        .addComponent(dimartsRadioButton)
+                        .addComponent(dimecresRadioButton)
+                        .addComponent(dijousRadioButton)
+                        .addComponent(divendresRadioButton))
+                    .addComponent(intercanviarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(sessio1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sessio2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -228,7 +221,6 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         update();
     }//GEN-LAST:event_divendresRadioButtonActionPerformed
 
-
     private void intercanviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intercanviarButtonActionPerformed
         if(classe1[0]!=null && classe2[0]!=null){
             Boolean fet=cp.intecanviar(classe1[0],classe1[1],classe1[2],classe2[0],classe2[1],classe2[2]);
@@ -238,7 +230,7 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
                 e.setVisible(true);
                 if(e.getReturnStatus()==1){
                     cp.intercanviarObligat(classe1[0],classe1[1],classe1[2],classe2[0],classe2[1],classe2[2]);
-                    update();
+                    
                 }
             }
         }

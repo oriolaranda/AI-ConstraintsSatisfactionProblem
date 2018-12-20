@@ -1,4 +1,4 @@
-package testing.drivers;
+/*package testing.drivers;
 
 import domini.*;
 import org.junit.AfterClass;
@@ -184,3 +184,4 @@ public class HorariTest {
     }
 
 }
+*/
