@@ -8,20 +8,20 @@ public class PlaEstudis {
     private String nom;
     private int[] periodeLectiu;
     private ArrayList<Assignatura> assignatures;
-    private Horari horari;
+    private ArrayList<Horari> horaris;
 
     //Constructora
     public PlaEstudis(String nom, int[] periodeLectiu) {
         this.nom = nom;
         this.periodeLectiu = periodeLectiu;
-        horari = null;
-        assignatures = new ArrayList<Assignatura>();
+        horaris = new ArrayList<>();
+        assignatures = new ArrayList<>();
     }
 
     public PlaEstudis(String nom, int[] periodeLectiu, ArrayList<Assignatura> assignatures) {
         this.nom = nom;
         this.periodeLectiu = periodeLectiu;
-        horari = null;
+        horaris = new ArrayList<>();
         this.assignatures = (ArrayList<Assignatura>) assignatures.clone();
     }
 
@@ -38,8 +38,8 @@ public class PlaEstudis {
         return assignatures;
     }
 
-    public Horari getHorari() {
-        return horari;
+    public ArrayList<Horari> getHoraris() {
+        return horaris;
     }
 
     public int[] getPeriodeLectiu() {
@@ -77,8 +77,10 @@ public class PlaEstudis {
     }
 
     public void addHorari(Horari horari) {
-        this.horari = horari;
+        this.horaris.add(horari);
     }
+
+    public void removeHorari(Horari horari) {this.horaris.remove(horari);}
 
     @Override
     public String toString() {

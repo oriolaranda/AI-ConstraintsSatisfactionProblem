@@ -96,7 +96,7 @@ public class driverPlaEstudis {
                     case 5:
                         if (pe == null) throw new NullPointerException();
                         System.out.println("Horari esperat: " + horari);
-                        System.out.println("Horari obtingut: " + pe.getHorari());
+                        System.out.println("Horari obtingut: " + pe.getHoraris());
                         break;
                     case 6:
                         nom = sc.next();
@@ -129,8 +129,8 @@ public class driverPlaEstudis {
                         break;
                     case 10:
                         if (pe == null) throw new NullPointerException();
-                        if (pe.getHorari() == null) pe.addHorari(new stubHorari());
-                        if (pe.getHorari() != null) System.out.println("Horari afegit correctament");
+                        if (pe.getHoraris() == null) pe.addHorari(new stubHorari());
+                        if (pe.getHoraris() != null) System.out.println("Horari afegit correctament");
                         else System.out.println("Horari NO afegit correctament");
                         break;
 
