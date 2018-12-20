@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *
  * @author Daniel
  */
+
 public class CtrlDomini {
     private CtrlPresentacio cp;
     

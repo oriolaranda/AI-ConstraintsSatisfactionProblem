@@ -83,7 +83,7 @@ public class driverControlador {
                             String aux = sc.next();
                             v.add(aux);
                         }
-                        int rsd = C.afegirAssignatura(C.getPla().getNom(),n, f,String.valueOf(Cap), String.valueOf(CapS), String.valueOf(mat), String.valueOf(t), String.valueOf(num), String.valueOf(dur),v);
+                        //int rsd = C.afegirAssignatura(C.getPla().getNom(),n, f,String.valueOf(Cap), String.valueOf(CapS), String.valueOf(mat), String.valueOf(t), String.valueOf(num), String.valueOf(dur),v);
                        // System.out.println("Assignatura: " + C.getsessions().get(3).getNomAssignaturaSessio() + " " + C.getsessions().get(3).getNumGrupSessio() + " " + C.getsessions().get(3).getNum());
                        /*
                         for(Aula a:C.getaules()) {
@@ -101,11 +101,13 @@ public class driverControlador {
                         }*/
                         break;
                     case 4:
-                        String hda = sc.next();
-                        C.esborrarPlaEstudis(hda);
-                        for(String j:C.getNom_plans()) {
-                            System.out.println(j);
-                        }
+                            ArrayList<ArrayList<String>> aux= C.getAll_plans();
+                            for(int i = 0; i < aux.size();++i) {
+                                for(int j = 0; j < aux.get(i).size(); ++j) {
+                                    System.out.println(aux.get(i).get(j) + " ");
+                                }
+
+                            }
                        /* C.esborrarAssignatura(hda);
                         for(Assignatura aux: C.getPla().getAssignatures()) {
                             System.out.println(aux.getNom());
