@@ -1,20 +1,12 @@
 package persistencia;
 
-import domini.*;
-
 import java.io.File;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-
-
-import static domini.TipusAula.stoTipusAula;
 
 public class CtrlPersistencia {
 
@@ -83,9 +75,9 @@ public class CtrlPersistencia {
             }
         }
 
-  //  public Horari carregar_horari(String nomPla,String nom) {}
+//CARREGAR
 
-    public ArrayList<ArrayList<String> > carregar_pla(String nom) throws Exception {                    //OK
+    public ArrayList<ArrayList<String> > carregar_pla(String nom) throws Exception {
 
         Path path = Paths.get("src/persistencia/PlaEstudis/" + nom + "/info_pla.txt");
         ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
@@ -108,7 +100,7 @@ public class CtrlPersistencia {
         return result;
     }
 
-    public ArrayList<String> carregar_aula(String nom,Boolean sola) throws Exception {                          //OK
+    public ArrayList<String> carregar_aula(String nom,Boolean sola) throws Exception {
         Path path;
         if (sola) {
             path = Paths.get("src/persistencia/Aules/" + nom + ".txt");
@@ -124,7 +116,7 @@ public class CtrlPersistencia {
         return a;
     }
 
-    public ArrayList<String> carregar_assignatura(String nom, String nomPla, Boolean sola) throws Exception {        //OK
+    public ArrayList<String> carregar_assignatura(String nom, String nomPla, Boolean sola) throws Exception {
         Path path;
         if (sola) {
             path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Assignatures/" + nom + ".txt");
@@ -143,7 +135,7 @@ public class CtrlPersistencia {
         return a;
     }
 
-    public ArrayList<ArrayList<String> > carregar_all_aules() throws Exception {                                //OK
+    public ArrayList<ArrayList<String> > carregar_all_aules() throws Exception {
         Path path;
         path = Paths.get("src/persistencia/Aules");
         ArrayList<ArrayList<String>> result = new ArrayList<>();
@@ -156,36 +148,7 @@ public class CtrlPersistencia {
         return result;
     }
 
-    /*public ArrayList<Assignatura> carregar_all_assignatures(String nomPla) throws Exception {
-        Path path;
-        path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Assignatures/");
-        File[] files = new File(String.valueOf(path)).listFiles();
-        ArrayList<Assignatura> result = new ArrayList<>();
-        for (File file : files) {
-            result.add(carregar_assignatura(file.getName(),nomPla,false));
-        }
-        return result;
-    }*/
-/*
-    public ArrayList<String> carregar_noms_horaris(String nomPla) {
-        Path path;
-        path = Paths.get("src/persistencia/PlaEstudis/" + nomPla + "/Horaris");
-        File[] files = new File(String.valueOf(path)).listFiles();
-        ArrayList<String> result = new ArrayList<>();
-
-        if(files.length > 0) {
-            for (File file : files) {
-                ArrayList<String> aux = carregar_horari(file.getName()).get(0);
-                result.add(aux.get(0));
-                result.add(aux.get(1));
-                result.add(aux.get(2));
-            }
-        }
-        return result;
-    }
-    */
-
-    public ArrayList<ArrayList<String>> carregar_all_plans() throws Exception {                       //OK
+    public ArrayList<ArrayList<String>> carregar_all_plans() throws Exception {
         Path path;
         path = Paths.get("src/persistencia/PlaEstudis");
         ArrayList<ArrayList<String>> result = new ArrayList<>();
@@ -275,6 +238,8 @@ public class CtrlPersistencia {
         return result;
     }
 
+//BORRAR
+
     public boolean borrar_aula(String nom) {
         Path path = Paths.get("src/persistencia/Aules/" + nom + ".txt");
         File f = new File(String.valueOf(path));
@@ -339,5 +304,4 @@ public class CtrlPersistencia {
         }
         return correct;
     }
-
 }
