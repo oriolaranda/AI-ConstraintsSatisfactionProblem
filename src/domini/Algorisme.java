@@ -17,13 +17,9 @@ public class Algorisme {
 
     public Map<Classe, Sessio> getHorari() {
         if (backtracking(0)) {
-            System.out.println("S'HA TROBAT UN HORARI");
-            /*for (Map.Entry<Sessio, Vector<Classe>> entry : prev.entrySet()) {
-                nou.put(entry.getValue().firstElement(), entry.getKey());
-            }*/
+
             return nou;
         }
-        System.out.println("NO S'HA TROBAT UN HORARI");
         return null;
     }
 

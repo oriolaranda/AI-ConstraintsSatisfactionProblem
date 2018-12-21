@@ -4,10 +4,7 @@ import domini.Aula;
 import domini.Horari;
 import persistencia.CtrlPersistencia;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 public class CtrlDominio {
 
@@ -346,12 +343,59 @@ public class CtrlDominio {
 
     public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
         //Modificar horari pero no se la dif entre els 2 intercanviars
-        horari.getNou();
+        Map<Classe,Sessio> h = horari.getNou();
+        DiaHora d1 = new DiaHora(dia1,Integer.valueOf(hora1));
+        DiaHora d2 = new DiaHora(dia2,Integer.valueOf(hora2));
+        Aula a1 = null;
+        Aula a2 = null;
+        for (Aula a: aules) {
+            if(a.getNom().equals(nomAula1)) a1 = a;
+            if (a.getNom().equals(nomAula2)) a2 = a;
+        }
+        if(a1 == null || a2 == null) return false;
+        Classe c1 = new Classe(a1,d1);
+        Classe c2 = new Classe(a2,d2);
+        if(!h.containsKey(c1) || !h.containsKey(c2)) return false;
+        Sessio s1 = h.get(c1);
+        Sessio s2 = h.get(c2);
+        ArrayList<Restriccio> restriccions = horari.getRestriccions();
+        h.put(c1,s2);
+        h.put(c2,s1);
+        if (restriccions != null) {
+            for (Restriccio r : restriccions) {
+                boolean b = r.esCompleix(h, c1, s2);
+                boolean c = r.esCompleix(h, c2,s1);
+                if (!b || !c) {
+                    h.put(c1,s1);
+                    h.put(c2,s2);
+                    return false;
+                }
+            }
+            return true;
+        }
         return true;
     }
 
     public void intercanviarObligat(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
-
+        Map<Classe,Sessio> h = horari.getNou();
+        DiaHora d1 = new DiaHora(dia1,Integer.valueOf(hora1));
+        DiaHora d2 = new DiaHora(dia2,Integer.valueOf(hora2));
+        Aula a1 = null;
+        Aula a2 = null;
+        for (Aula a: aules) {
+            if(a.getNom().equals(nomAula1)) a1 = a;
+            if (a.getNom().equals(nomAula2)) a2 = a;
+        }
+        if(a1 != null && a2 != null) {
+            Classe c1 = new Classe(a1, d1);
+            Classe c2 = new Classe(a2, d2);
+            if (!h.containsKey(c1) || !h.containsKey(c2)) {
+                Sessio s1 = h.get(c1);
+                Sessio s2 = h.get(c2);
+                h.put(c1, s2);
+                h.put(c2, s1);
+            }
+        }
     }
 
 //BORRAR
