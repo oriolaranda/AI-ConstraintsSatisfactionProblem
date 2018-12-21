@@ -27,7 +27,7 @@ public class CtrlDominio {
         this.sessions = new ArrayList<>();                                  //Sessions actives
         this.info_plans = pers.carregar_all_plans();
         carregar_all_aules();
-      //  carregar_pla("FIB");
+        //carregar_pla("FIB");
       //  this.pres = new CtrlPresentacio();
     }
 
@@ -119,11 +119,9 @@ public class CtrlDominio {
     }
 
     public ArrayList<ArrayList<String>> getAll_plans() { return info_plans;}
-/*
     public Vector<Classe> getclasses() { return classes;}
 
     public ArrayList<Sessio> getsessions() {return sessions;}
-*/
     public ArrayList<String> getHores(String nomPla) {
         ArrayList<String> hores = new ArrayList<>();
         for(int i = pla.getPeriodeLectiu()[0]; i < pla.getPeriodeLectiu()[1];++i) {
@@ -312,7 +310,7 @@ public class CtrlDominio {
        info_plans = pers.carregar_all_plans();      //Deixa aquesta linia i si la toques no la posis abans de guardar
        return true;
    }
-    //FALTA MODIFICAR SESSIONS!!!!!!!
+   //OK
    public boolean modificarAssignatura(String nomAssignaturaAntic,String nomAssignatura,String fase,String capacitatGrup,String capacitatSubGrup,String matriculats,String tipusSubGrup,String numSessions,String duracio) throws Exception { //OK
         for (Assignatura assig: pla.getAssignatures()) {
             if(assig.getNom().equals(nomAssignaturaAntic)) {
@@ -320,16 +318,9 @@ public class CtrlDominio {
                     for (Assignatura as: pla.getAssignatures()) {
                         if(as.getNom().equals(nomAssignatura)) return false; //comprovar que no hi ha assig amb mateix nom nou
                     }
-                    assig.setNom(nomAssignatura);
-                    pers.borrar_assignatura(nomAssignaturaAntic,pla.getNom());
                 }
-                assig.setFase(fase);
-                assig.setCapacitatGrup(Integer.valueOf(capacitatGrup));
-                assig.setCapacitatSubgrup(Integer.valueOf(capacitatSubGrup));
-                assig.setMatriculats(Integer.valueOf(matriculats));
-                assig.setTupusAulaSubgrup(TipusAula.stoTipusAula(tipusSubGrup));
-                assig.setNumSessions(Integer.valueOf(numSessions));
-                assig.setDuracio(Integer.valueOf(duracio));
+                esborrarAssignatura(nomAssignaturaAntic,pla.getNom());
+                afegirAssignatura(pla.getNom(),nomAssignatura,fase,capacitatGrup,capacitatSubGrup, matriculats,tipusSubGrup,numSessions,duracio);
                 guardar_assignatura(pla.getNom(),nomAssignatura,fase,Integer.valueOf(capacitatGrup),Integer.valueOf(capacitatSubGrup),Integer.valueOf(matriculats),tipusSubGrup,Integer.valueOf(numSessions),Integer.valueOf(duracio),assig.getCorrequisits());
                 return true;
             }
@@ -340,7 +331,7 @@ public class CtrlDominio {
        return false;
    }
 
-    public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
+    public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) { //OK
         //Modificar horari pero no se la dif entre els 2 intercanviars
         Map<Classe,Sessio> h = horari.getNou();
         DiaHora d1 = new DiaHora(dia1,Integer.valueOf(hora1));
@@ -375,7 +366,7 @@ public class CtrlDominio {
         return true;
     }
 
-    public void intercanviarObligat(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) {
+    public void intercanviarObligat(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) { //OK
         Map<Classe,Sessio> h = horari.getNou();
         DiaHora d1 = new DiaHora(dia1,Integer.valueOf(hora1));
         DiaHora d2 = new DiaHora(dia2,Integer.valueOf(hora2));
@@ -388,13 +379,13 @@ public class CtrlDominio {
         if(a1 != null && a2 != null) {
             Classe c1 = new Classe(a1, d1);
             Classe c2 = new Classe(a2, d2);
-            if (!h.containsKey(c1) || !h.containsKey(c2)) {
+           if ( h.containsKey(c1) && h.containsKey(c2)) {
                 Sessio s1 = h.get(c1);
                 Sessio s2 = h.get(c2);
                 h.put(c1, s2);
                 h.put(c2, s1);
 
-            }
+           }
         }
     }
 
@@ -436,17 +427,18 @@ public class CtrlDominio {
         return correct;
     }
 
-    public boolean esborrarAssignatura(String nomAssignatura, String nomPla) {
+    public boolean esborrarAssignatura(String nomAssignatura, String nomPla) { //OK
 
         boolean correct = false;
         for(int i = 0; i < pla.getAssignatures().size() && !correct;++i) {
             if(pla.getAssignatures().get(i).getNom().equals(nomAssignatura)) {
                 if(!pers.borrar_assignatura(nomAssignatura,pla.getNom())) return false;
                 pla.getAssignatures().remove(i);
-                for(Iterator<Sessio> it = sessions.iterator(); it.hasNext();) {
-                    Sessio aux = it.next();
-                    if(aux.getNomAssignaturaSessio().equals(nomAssignatura)) {
-                        it.remove();
+                for(int j = 0; j < sessions.size(); ++j) {
+                    Sessio s = sessions.get(j);
+                    if(s.getNomAssignaturaSessio().equals(nomAssignatura)) {
+                        sessions.remove(j);
+                        --j;
                     }
                 }
                 correct = true;

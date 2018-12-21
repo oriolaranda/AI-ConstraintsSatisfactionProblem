@@ -15,9 +15,10 @@ public class RestriccioFase extends Restriccio {
     public Boolean esCompleix(Map<Classe, Sessio> nou, Classe actualc, Sessio actuals) {
         String dca= actualc.getDiaClasse();
         int hca= actualc.getHoraClasse();
+        String nomAula = actualc.getAula().getNom();
         String fase=actuals.getFaseSessio();
         for(Classe c: nou.keySet()) {
-            if(c.getDiaClasse().equals(dca) && c.getHoraClasse()==hca){
+            if(c.getDiaClasse().equals(dca) && c.getHoraClasse()==hca && c.getAula().getNom() != nomAula){
                 Sessio s=nou.get(c);
                 if(s.getFaseSessio().equals(fase)) return false;
             }

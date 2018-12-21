@@ -101,21 +101,22 @@ public class driverControlador {
                         }*/
                         break;
                     case 4:
+                        /*
                             ArrayList<ArrayList<String>> aux= C.getCorrequisitsAssignatura(sc.next(),sc.next());
                             for(int i = 0; i < aux.size();++i) {
                                 for(int j = 0; j < aux.get(i).size(); ++j) {
                                     System.out.println(aux.get(i).get(j));
                                 }
                             }
-                       /* C.esborrarAssignatura(hda);
-                        for(Assignatura aux: C.getPla().getAssignatures()) {
-                            System.out.println(aux.getNom());
+                       C.esborrarAssignatura("");
+                        for(Assignatura as: C.getPla().getAssignatures()) {
+                            System.out.println(as.getNom());
                         }
                         for(int j = 0; j < C.getsessions().size();++j) {
-                            if (C.getsessions().get(j).getNomAssignaturaSessio().equals(hda)) {
+                            if (C.getsessions().get(j).getNomAssignaturaSessio().equals("")) {
                                 System.out.println(C.getsessions().get(j).getId());
                             }
-                        }
+                        }*/
                         /*
                         if (C == null) throw new NullPointerException();
                         opcio2 = sc.nextInt();
