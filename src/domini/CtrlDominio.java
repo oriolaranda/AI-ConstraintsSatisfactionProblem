@@ -393,6 +393,7 @@ public class CtrlDominio {
                 Sessio s2 = h.get(c2);
                 h.put(c1, s2);
                 h.put(c2, s1);
+
             }
         }
     }

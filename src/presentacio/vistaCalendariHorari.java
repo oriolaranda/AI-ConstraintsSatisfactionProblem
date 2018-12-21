@@ -249,7 +249,7 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
     }//GEN-LAST:event_divendresRadioButtonActionPerformed
 
 
-    private void intercanviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intercanviarButtonActionPerformed
+    private void intercanviarButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_intercanviarButtonActionPerformed
         if(classe1[0]!=null && classe2[0]!=null){
             Boolean fet=cp.intecanviar(classe1[0],classe1[1],classe1[2],classe2[0],classe2[1],classe2[2]);
             if(fet) update();
