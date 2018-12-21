@@ -18,7 +18,7 @@ public class RestriccioFase extends Restriccio {
         String nomAula = actualc.getAula().getNom();
         String fase=actuals.getFaseSessio();
         for(Classe c: nou.keySet()) {
-            if(c.getDiaClasse().equals(dca) && c.getHoraClasse()==hca && c.getAula().getNom() != nomAula){
+            if(c.getDiaClasse().equals(dca) && c.getHoraClasse()==hca && !c.getAula().getNom().equals(nomAula)){
                 Sessio s=nou.get(c);
                 if(s.getFaseSessio().equals(fase)) return false;
             }
