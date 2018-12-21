@@ -228,7 +228,7 @@ public class CtrlPresentacio {
     }
 
 
-    void getHorarisPlaEstudis(String nomPlaEstudis) {
+    void getHorarisPlaEstudis(String nomPlaEstudis) throws Exception {
         ArrayList<String> horaris= cd.getHorarisPlaEstudis(nomPlaEstudis);
         if(horaris!=null && !horaris.isEmpty()){
             for (String nomHorari : horaris) {  
