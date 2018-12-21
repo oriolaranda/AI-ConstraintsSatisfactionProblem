@@ -237,7 +237,6 @@ public class CtrlDominio {
         horari.setRestriccions(res);
         horari.generar_horari();
         guardar_horari();
-        horari.printHorari();
         return false;
     }
 /*
