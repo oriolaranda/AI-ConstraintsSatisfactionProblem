@@ -276,11 +276,11 @@ public class CtrlPresentacio {
         return cd.getSessio(dia, hora, nomAula, capacitat, tipus , nomHorari, nomPlaEstudis);
     }
 
-    boolean intecanviar(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) {
+    boolean intecanviar(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) throws Exception {
         return cd.intercanviar( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);
     }
 
-    void intercanviarObligat(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2){
+    void intercanviarObligat(String dia1, String hora1, String nomAula1, String dia2, String hora2, String nomAula2) throws Exception {
         cd.intercanviarObligat( dia1,  hora1,  nomAula1,  dia2,  hora2,  nomAula2);    
     }
 

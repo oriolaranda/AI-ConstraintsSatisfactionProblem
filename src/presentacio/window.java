@@ -16,6 +16,7 @@ public class window extends javax.swing.JFrame {
      */
     public window(CtrlPresentacio cp) {
         initComponents();
+        this.setExtendedState(this.MAXIMIZED_BOTH);
         this.cp=cp;
     }
 

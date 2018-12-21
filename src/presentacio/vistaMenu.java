@@ -48,7 +48,7 @@ public class vistaMenu extends javax.swing.JPanel {
 
         jLabel4.setText("Àlex Valls Torres");
 
-        jButton1.setText("Gestió Centre");
+        jButton1.setText("Gestió Aules");
         jButton1.setPreferredSize(new java.awt.Dimension(50, 50));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +56,7 @@ public class vistaMenu extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Pla Estudis");
+        jButton2.setText("Gestió Pla Estudis");
         jButton2.setMinimumSize(new java.awt.Dimension(80, 80));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

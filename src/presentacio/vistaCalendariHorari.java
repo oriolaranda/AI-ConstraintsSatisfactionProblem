@@ -271,11 +271,12 @@ public class vistaCalendariHorari extends javax.swing.JPanel {
         tm.setRowCount(0);
         tm.setColumnCount(0);
         tm.addColumn("Hora");
+       /*
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
         jTable1.getColumnModel().getColumn(0).setMinWidth(20);
         jTable1.getColumnModel().getColumn(0).setMaxWidth(20);
         jTable1.getColumnModel().getColumn(0).sizeWidthToFit();
-                
+          */
         for(ArrayList<String> a:aules){
             String nomAula=a.get(0);
             tm.addColumn(nomAula);

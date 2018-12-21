@@ -49,14 +49,9 @@ public class Algorisme {
 
             for (int j = 0; j < prev.get(s.get(i)).size();++j){
                 Classe c = prev.get(s.get(i)).get(j);
-                //System.out.println("***"+s.get(i));
-
-
-                //System.out.println(s.get(i)+" "+ prev.get(s.get(i)));
 
 
                 boolean correcte = comprovarRestriccions(c,s.get(i));
-
 
 
                 if (correcte) {
@@ -66,6 +61,7 @@ public class Algorisme {
                         prev.put(s1, supr(prev.get(s1), c));
                         //System.out.println(s1+" "+prev.get(s1));
                     }
+                    forwardChecking(s.get(i),c);
 
                     if (backtracking(i+1)) return true;
                     else {
@@ -116,11 +112,9 @@ public class Algorisme {
      * @param classe
      * @return stack<classe>
      */
-    private Stack<Classe> forwardChecking(Sessio sessio, Classe classe) {
-        Stack<Classe> poda = new Stack<>();
-        for (Sessio s1 : split(s.indexOf(sessio) + 1)) {
+    private void forwardChecking(Sessio sessio, Classe classe) {
+        for (Sessio s1 : split(s.size()-1)) {
             Vector<Classe> v = supr(prev.get(s1), classe);
-
 
 
             for(Restriccio r: restriccions) {
@@ -147,8 +141,6 @@ public class Algorisme {
             prev.put(s1,v);
 
         }
-
-        return poda;
     }
 
     private ArrayList<Classe> eliminarTotes(Sessio s, Classe c) {

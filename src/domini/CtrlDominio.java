@@ -239,11 +239,8 @@ public class CtrlDominio {
         guardar_horari();
         return false;
     }
-/*
-    public void print_horari() {
-        horari.printHorari();
-    }
-*/
+
+
 //MODIFICAR
 
    public boolean modificarAula(String nomAulaAntic,String nomAula,String capacitat,String tipus) throws Exception { //OK
@@ -329,7 +326,7 @@ public class CtrlDominio {
        return false;
    }
 
-    public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) { //OK
+    public boolean intercanviar(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) throws Exception { //OK
         //Modificar horari pero no se la dif entre els 2 intercanviars
         Map<Classe,Sessio> h = horari.getNou();
         DiaHora d1 = new DiaHora(dia1,Integer.valueOf(hora1));
@@ -359,12 +356,12 @@ public class CtrlDominio {
                     return false;
                 }
             }
-            return true;
         }
+        guardar_horari();
         return true;
     }
 
-    public void intercanviarObligat(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) { //OK
+    public void intercanviarObligat(String dia1,String  hora1,String  nomAula1,String  dia2,String  hora2,String  nomAula2) throws Exception { //OK
         Map<Classe,Sessio> h = horari.getNou();
         DiaHora d1 = new DiaHora(dia1,Integer.valueOf(hora1));
         DiaHora d2 = new DiaHora(dia2,Integer.valueOf(hora2));
@@ -377,13 +374,15 @@ public class CtrlDominio {
         if(a1 != null && a2 != null) {
             Classe c1 = new Classe(a1, d1);
             Classe c2 = new Classe(a2, d2);
-           if ( h.containsKey(c1) && h.containsKey(c2)) {
-                Sessio s1 = h.get(c1);
-                Sessio s2 = h.get(c2);
-                h.put(c1, s2);
-                h.put(c2, s1);
-
-           }
+            Sessio s1 = null;
+            Sessio s2 = null;
+           if (h.containsKey(c1))  s1 = h.get(c1);
+           if (h.containsKey(c2)) s2 = h.get(c2);
+           if (s1 != null) h.put(c2,s1);
+           else h.remove(c2);
+           if (s2 != null) h.put(c1,s2);
+           else h.remove(c1);
+           guardar_horari();
         }
     }
 
@@ -472,7 +471,7 @@ public class CtrlDominio {
     }
 
     public void guardar_horari() throws Exception {
-        if (horari.getPle() != false) {
+        if (horari.getPle()) {
             ArrayList<ArrayList<String>> p = new ArrayList<>();
             ArrayList<String> aux = new ArrayList<>();
             aux.add(horari.getNom());
@@ -665,6 +664,7 @@ public class CtrlDominio {
             }
         }
         horari = nou;
+        horari.setPle(true);
     }
 
 //AUXILIARS
