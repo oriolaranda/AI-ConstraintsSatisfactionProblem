@@ -414,11 +414,6 @@ public class CtrlDominio {
             if (info_plans.get(i).get(0).equals(nomPlaEstudis)) {
                 if (!pers.borrar_pla(nomPlaEstudis)) return false;
                 info_plans.remove(i);
-                /* si eliminem pla quan esta carregat
-                hores.clear();
-                sessions.clear();
-                classes.clear();
-                 */
                 correct = true;
             }
         }
