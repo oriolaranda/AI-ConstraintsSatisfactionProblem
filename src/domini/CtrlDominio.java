@@ -269,7 +269,8 @@ public class CtrlDominio {
        //Cridar guardar_aula(nom, Integer.valueOf(capacitat), tipus) amb parametres nous
        return false;
    }
-    //REVISAR!!!!!!!!!!!!!!
+
+   //OK
    public boolean modificarPlaEstudis( String nomPlaEstudisAntic,String nomPlaEstudis,String horaInici,String horaFinal) throws Exception {
 
        //Si nomantic no esta en info_plans return false
