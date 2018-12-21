@@ -27,8 +27,7 @@ public class CtrlDominio {
         this.sessions = new ArrayList<>();                                  //Sessions actives
         this.info_plans = pers.carregar_all_plans();
         carregar_all_aules();
-        //carregar_pla("FIB");
-      //  this.pres = new CtrlPresentacio();
+      //  carregar_pla("FIB");
     }
 
 
@@ -109,19 +108,17 @@ public class CtrlDominio {
         return c;
     }
 
-    public ArrayList<String> getHorarisPlaEstudis(String nomPla) {
-        ArrayList<String> aux = new ArrayList<>();
-        for(Horari as: pla.getHoraris()) {
-            String s = as.getNom();
-            aux.add(s);
-        }
+    public ArrayList<String> getHorarisPlaEstudis(String nomPla) throws Exception {
+        ArrayList<String> aux = pers.carregar_noms_horaris(nomPla);
         return aux;
     }
 
     public ArrayList<ArrayList<String>> getAll_plans() { return info_plans;}
+/*
     public Vector<Classe> getclasses() { return classes;}
 
     public ArrayList<Sessio> getsessions() {return sessions;}
+*/
     public ArrayList<String> getHores(String nomPla) {
         ArrayList<String> hores = new ArrayList<>();
         for(int i = pla.getPeriodeLectiu()[0]; i < pla.getPeriodeLectiu()[1];++i) {
@@ -583,6 +580,10 @@ public class CtrlDominio {
         for(int k = 1; k < dades.size(); ++k) {
             carregar_assignatura(dades.get(k).get(1));
         }
+        ArrayList<String> h = getHorarisPlaEstudis(nom);
+        for(int j = 0; j < h.size();++j) {
+            carregar_horari(h.get(j));
+        }
         pla = p;
         hores.clear();
        // classes.clear();
@@ -605,23 +606,69 @@ public class CtrlDominio {
         }
     }
 
-    public void carregar_horari(String nom) throws Exception {
-      /*  Horari nou = new Horari("");
-        ArrayList<ArrayList<String> > dades = pers.carregar_horari(nom,pla.getNom());
+    public void carregar_horari(String nom) throws Exception {                          //OK
+        Horari nou = new Horari("");
+        ArrayList<ArrayList<String> > dades = pers.carregar_horari(nom,pla.getNom(),true);
         ArrayList<String> aux = dades.get(0);
-        horari.setNom(aux.get(0));
-        horari.setNomPla(aux.get(1));
+        nou.setNom(aux.get(0));
+        nou.setNomPla(aux.get(1));
         int res = Integer.valueOf(aux.get(2));
         int as = Integer.valueOf(aux.get(3));
         int cl = Integer.valueOf(aux.get(4));
-        ArrayList<String> aux2 = dades.get(1);
-        for(int i = 0; i < res; ++i) {
-            if(aux2.get(i).equals("RF")) {
+        for(int i = 1; i < res+1; ++i) {
+            ArrayList<String> aux2 = dades.get(i);
+            if(aux2.get(0).equals("RF")) {
                 RestriccioFase r = new RestriccioFase();
-                horari.add_restriccio(r);
+                nou.add_restriccio(r);
+            }
+            if(aux2.get(0).equals("RC")) {
+                RestriccioCorrequisit r = new RestriccioCorrequisit();
+                nou.add_restriccio(r);
+            }
+            if(aux2.get(0).equals("RCP")) {
+                RestriccioCapacitat r = new RestriccioCapacitat();
+                nou.add_restriccio(r);
+            }
+            if(aux2.get(0).equals("RT")) {
+                RestriccioTipusAula r = new RestriccioTipusAula();
+                nou.add_restriccio(r);
+            }
+            if(aux2.get(0).equals("RG")) {
+                RestriccioGrupDiaHora r = new RestriccioGrupDiaHora(aux2.get(1),aux2.get(2),Integer.valueOf(aux2.get(3)),aux2.get(4),Integer.valueOf(aux2.get(5)));
+                nou.add_restriccio(r);
+            }
+            if(aux2.get(0).equals("RCL")) {
+                RestriccioClasse r = new RestriccioClasse(aux2.get(1),aux2.get(2),aux2.get(3),Integer.valueOf(aux2.get(4)));
+                nou.add_restriccio(r);
             }
         }
-        for(int i = 0; )*/
+        for(int i = 1 + res; i < as + res + 1; ++i) {
+            ArrayList<String> aux3 = dades.get(i);
+            Assignatura a = new Assignatura(pla.getNom(),aux3.get(0),aux3.get(1),Integer.valueOf(aux3.get(2)),Integer.valueOf(aux3.get(3)),Integer.valueOf(aux3.get(4)),TipusAula.stoTipusAula(aux3.get(5)),Integer.valueOf(aux3.get(6)),Integer.valueOf(aux3.get(7)));
+            for (int j = 0; j < Integer.valueOf(aux3.get(8)); ++j) {
+                a.afegirCorrequisit(aux3.get(j + 9));
+            }
+            for (int k = 0; k < a.getGrups().size(); ++k) {
+                Grup g = a.getGrups().get(k);
+                for (int j = 0; j < g.getSessions().size(); ++j) {
+                    Sessio s = g.getSessions().get(j);
+                    nou.getSessions().add(s);
+                }
+            }
+        }
+        for(int i = 1 + res + as; i < cl + 1 + res + as; ++i) {
+            ArrayList<String> aux4 = dades.get(i);
+            Aula a = new Aula(aux4.get(0),Integer.valueOf(aux4.get(1)),TipusAula.stoTipusAula(aux4.get(2)));
+            DiaHora d = new DiaHora(aux4.get(3),Integer.valueOf(aux4.get(4)));
+            Classe c = new Classe(a,d);
+            nou.add_classe(c);
+            String s = aux4.get(5);
+            int x = Integer.valueOf(aux4.get(6));
+            for(int j = 0; j < nou.getSessions().size(); ++j) {
+                if (x == nou.getSessions().get(j).getNum() && s.equals(nou.getSessions().get(j).getId())) nou.getNou().put(c,nou.getSessions().get(j));
+            }
+        }
+        horari = nou;
     }
 
 //AUXILIARS
