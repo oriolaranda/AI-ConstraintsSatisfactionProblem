@@ -36,24 +36,17 @@
                   <Component id="jScrollPane2" alignment="0" pref="468" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="intercanviarButton" alignment="1" min="-2" pref="94" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="1" max="-2" attributes="0"/>
-                          <Component id="sessio2" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="sessio1" alignment="1" min="-2" pref="78" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="dillunsRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="dimartsRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="dimecresRadioButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="dijousRadioButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="divendresRadioButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="dillunsRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="dimartsRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="dimecresRadioButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="dijousRadioButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="divendresRadioButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="intercanviarButton" alignment="1" pref="94" max="32767" attributes="0"/>
+                  <Component id="sessio1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="sessio2" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

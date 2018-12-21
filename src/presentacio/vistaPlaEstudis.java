@@ -110,7 +110,7 @@ public class vistaPlaEstudis extends javax.swing.JPanel {
             }
         });
 
-        consultarHorariButton.setText("Consultar Horari");
+        consultarHorariButton.setText("Consultar Horaris");
         consultarHorariButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
