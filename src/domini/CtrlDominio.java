@@ -285,8 +285,9 @@ public class CtrlDominio {
                        for (ArrayList<String> s: info_plans) {
                            if(s.get(0).equals(nomPlaEstudis)) return false;
                        }
-                       pers.borrar_pla(nomPlaEstudisAntic);
                    }
+                   esborrarPlaEstudis(nomPlaEstudisAntic);
+                   afegirPlaEstudis(nomPlaEstudis,horaInici,horaFinal);
                    guardar_pla(nomPlaEstudis,Integer.valueOf(horaInici),Integer.valueOf(horaFinal));
                    info_plans = pers.carregar_all_plans();
                    return true;
